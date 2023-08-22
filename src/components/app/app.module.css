@@ -46,8 +46,11 @@ body {
   font-weight: 400;
 }
 body {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
   height: 100vh;
   background: #131316;
+  color: rgba(242, 242, 243, 1);
+}
+#root {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
 }
