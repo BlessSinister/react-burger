@@ -5,9 +5,19 @@
 }
 .ing_container {
   height: 75.6rem;
-  max-width: 60rem;
-  width: 100%;
-  overflow-x: auto;
-  scrollbar-width: thin;
-  scrollbar-color: rgba(133, 133, 173, 1);
+  width: 60rem;
+  overflow-x: overlay;
+}
+.ing_container::-webkit-scrollbar {
+  width: 1rem; /* ширина всей полосы прокрутки */
+}
+
+.ing_container::-webkit-scrollbar-track {
+  background: rgba(47, 47, 55, 1); /* цвет зоны отслеживания */
+}
+
+.ing_container::-webkit-scrollbar-thumb {
+  background-color: rgba(133, 133, 173, 1); /* цвет бегунка */
+  border-radius: 2rem; /* округлось бегунка */
+  border: 3px solid rgba(133, 133, 173, 1); /* отступ вокруг бегунка */
 }

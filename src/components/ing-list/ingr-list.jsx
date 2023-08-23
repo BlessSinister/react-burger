@@ -13,7 +13,12 @@ export default function IngrList({ data }) {
         <h2 className={`text text_type_main-medium mb-6`}>Булки</h2>
         <div className={ingrlist.wrapper}>
           {bun.map((item) => (
-            <IngrItems price={item.price} image={item.image} name={item.name} />
+            <IngrItems
+              key={item._id}
+              price={item.price}
+              image={item.image}
+              name={item.name}
+            />
           ))}
         </div>
       </div>
@@ -21,7 +26,12 @@ export default function IngrList({ data }) {
         <h2 className={`text text_type_main-medium mb-6`}>Соусы</h2>
         <div className={ingrlist.wrapper}>
           {sauce.map((item) => (
-            <IngrItems price={item.price} image={item.image} name={item.name} />
+            <IngrItems
+              key={item._id}
+              price={item.price}
+              image={item.image}
+              name={item.name}
+            />
           ))}
         </div>
       </div>
@@ -30,7 +40,12 @@ export default function IngrList({ data }) {
         <h2 className={`text text_type_main-medium mb-6`}>Начинки</h2>
         <div className={ingrlist.wrapper}>
           {main.map((item) => (
-            <IngrItems price={item.price} image={item.image} name={item.name} />
+            <IngrItems
+              key={item._id}
+              price={item.price}
+              image={item.image}
+              name={item.name}
+            />
           ))}
         </div>
       </div>
