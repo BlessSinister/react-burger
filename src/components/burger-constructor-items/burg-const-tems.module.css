@@ -1,10 +1,10 @@
 .wrapper {
-  height: 56rem;
+  height: 560px;
   overflow-x: overlay;
   font-size: 16px;
 }
 .wrapper::-webkit-scrollbar {
-  width: 1rem; /* ширина всей полосы прокрутки */
+  width: 10px; /* ширина всей полосы прокрутки */
 }
 
 .wrapper::-webkit-scrollbar-track {
@@ -13,6 +13,9 @@
 
 .wrapper::-webkit-scrollbar-thumb {
   background-color: rgba(133, 133, 173, 1); /* цвет бегунка */
-  border-radius: 2rem; /* округлось бегунка */
+  border-radius: 20px; /* округлось бегунка */
   border: 3px solid rgba(133, 133, 173, 1); /* отступ вокруг бегунка */
+}
+.ml {
+  margin-left: 40px;
 }

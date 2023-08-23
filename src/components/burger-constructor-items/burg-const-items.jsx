@@ -16,13 +16,23 @@ export default function BurgConstItems({ data }) {
           gap: '10px',
         }}
       >
-        <ConstructorElement
-          type="top"
-          isLocked={true}
-          text="Краторная булка N-200i (верх)"
-          price={200}
-          thumbnail={data[0].image}
-        />
+        <div
+          className="decor_wrap"
+          style={{
+            display: 'flex',
+            justifyContent: 'flex-end',
+            paddingRight: 10,
+          }}
+        >
+          <ConstructorElement
+            type="top"
+            isLocked={true}
+            text="Краторная булка N-200i (верх)"
+            price={200}
+            thumbnail={data[0].image}
+            style={{ marginLeft: 40 }}
+          />
+        </div>
 
         {data1.map((item) => (
           // При создание элемента конструктора, предложенного из библиотеки
@@ -32,31 +42,39 @@ export default function BurgConstItems({ data }) {
           //  насколько я понял это связано с установкой размера пикселей
           // для последующего использования rem, есть ли иной способ повлиять на размеры?
           <div
-            // style={{
-            //   display: 'flex',
-            //   justifyContent: 'center',
-            //   alignItems: 'center',
-            //   gap: '8px',
-            // }}
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              gap: '8px',
+            }}
             key={item._id}
           >
-            {/* <DragIcon type="primary" /> */}
+            <DragIcon type="primary" />
 
             <ConstructorElement
               text={item.name}
               price={item.price}
               thumbnail={item.image}
-              className
             />
           </div>
         ))}
-        <ConstructorElement
-          type="bottom"
-          isLocked={true}
-          text="Краторная булка N-200i (низ)"
-          price={200}
-          thumbnail={data[0].image}
-        />
+        <div
+          className="decor_wrap"
+          style={{
+            display: 'flex',
+            justifyContent: 'flex-end',
+            paddingRight: 10,
+          }}
+        >
+          <ConstructorElement
+            type="bottom"
+            isLocked={true}
+            text="Краторная булка N-200i (низ)"
+            price={200}
+            thumbnail={data[0].image}
+          />
+        </div>
       </div>
     </div>
   )

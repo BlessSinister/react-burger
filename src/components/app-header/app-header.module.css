@@ -1,16 +1,16 @@
 header {
   grid-column: 1/-1;
 
-  height: 8.8rem;
+  height: 88px;
   background: #1c1c21;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 nav {
-  max-width: 128rem;
+  max-width: 1280px;
   width: 100%;
-  height: 5.6rem;
+  height: 56px;
 
   display: flex;
   justify-content: space-around;
@@ -18,16 +18,16 @@ nav {
 }
 .btn_wrapper {
   display: flex;
-  max-width: 39.3rem;
+  max-width: 393px;
   width: 100%;
-  height: 5.6rem;
+  height: 56px;
   justify-content: flex-end;
 }
 .btn_block_item {
   display: flex;
-  max-width: 17.8rem;
+  max-width: 178px;
   width: 100%;
-  height: 5.6rem;
+  height: 56px;
 }
 
 .a {
@@ -35,7 +35,7 @@ nav {
   color: rgba(242, 242, 243, 1);
 }
 .btn_item2 {
-  max-width: 20.7rem;
+  max-width: 207px;
   width: 100%;
 }
 .a1 {
