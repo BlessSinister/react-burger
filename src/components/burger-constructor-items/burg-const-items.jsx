@@ -8,7 +8,7 @@ export default function BurgConstItems({ data }) {
     data1.push(data[i])
   }
   return (
-    <div className={`${burg.wrapper}`}>
+    <div className={`${burg.wrapper} mb-10`}>
       <div
         style={{
           display: 'flex',
@@ -24,6 +24,9 @@ export default function BurgConstItems({ data }) {
             paddingRight: 10,
           }}
         >
+          {/* Элемент ConstrucotrElement не удавалась выронять ни классическими mr,padd
+          ни тем что были в библиотеки Яндекса, self флексов тоже не работало, в связи с чем
+          принял решение создать обёртку и центрировать в ней */}
           <ConstructorElement
             type="top"
             isLocked={true}

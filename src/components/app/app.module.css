@@ -46,7 +46,7 @@ body {
 }
 body {
   background: #131316;
-
+  overflow: hidden;
   color: rgba(242, 242, 243, 1);
 }
 
