@@ -12,7 +12,7 @@ export default function App() {
       </header>
       <main>
         <BurgerIngredients data={data} />
-        <BurgerConstructor />
+        <BurgerConstructor data={data} />
       </main>
     </>
   )

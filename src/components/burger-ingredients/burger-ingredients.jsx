@@ -5,7 +5,7 @@ import IngrList from '../ing-list/ingr-list'
 
 export default function BurgerIngredients({ data }) {
   return (
-    <section className={ingrStyle.wrapper}>
+    <section className={`${ingrStyle.wrapper} mr-14`}>
       <h1 className={`mt-10 mb-5 ${ingrStyle.h2} text text_type_main-large`}>
         Соберите бургер
       </h1>

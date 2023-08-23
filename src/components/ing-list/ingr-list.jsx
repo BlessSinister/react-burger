@@ -3,10 +3,10 @@ import IngrItems from '../ingr-items/ingr-items'
 import ingrlist from './ingr-list.module.css'
 
 export default function IngrList({ data }) {
-  let bun = data.filter((item) => item.type == 'bun')
-  let sauce = data.filter((item) => item.type == 'sauce')
-  let main = data.filter((item) => item.type == 'main')
-  console.log(data)
+  let bun = data.filter((item) => item.type === 'bun')
+  let sauce = data.filter((item) => item.type === 'sauce')
+  let main = data.filter((item) => item.type === 'main')
+
   return (
     <div className={ingrlist.ing_container}>
       <div>
