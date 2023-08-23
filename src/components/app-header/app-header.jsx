@@ -3,6 +3,7 @@ import headerStyle from './app-header.module.css'
 import {
   BurgerIcon,
   ListIcon,
+  ProfileIcon,
   Logo,
   Box,
 } from '@ya.praktikum/react-developer-burger-ui-components'
@@ -41,15 +42,19 @@ export default function AppHeader() {
       <Logo />
       <div className={`${headerStyle.btn_wrapper}`}>
         <div
-          className={`${headerStyle.btn_block_item} pl-5 pr-5 pt-4 pb-4 mr-2`}
+          className={`${headerStyle.btn_block_item} ${headerStyle.btn_item2}  pl-5 pr-5 pt-4 pb-4 mr-2`}
         >
-          <BurgerIcon type="primary" className={`${headerStyle.item1_ico} `} />
-          <p className={`ml-2`}>
+          <ProfileIcon
+            type="secondary"
+            className={`${headerStyle.item1_ico} `}
+          />
+
+          <p className={`ml-2 `}>
             <a
               href="#"
-              className={`text text_type_main-default ${headerStyle.a}`}
+              className={`text text_type_main-default ${headerStyle.a1}`}
             >
-              Конструктор
+              Личный кабинет
             </a>
           </p>
         </div>
