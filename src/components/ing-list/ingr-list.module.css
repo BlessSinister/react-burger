@@ -1,0 +1,13 @@
+.wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.ing_container {
+  height: 75.6rem;
+  max-width: 60rem;
+  width: 100%;
+  overflow-x: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(133, 133, 173, 1);
+}

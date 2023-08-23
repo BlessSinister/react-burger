@@ -11,7 +11,7 @@ export default function App() {
         <AppHeader />
       </header>
       <main>
-        <BurgerIngredients />
+        <BurgerIngredients data={data} />
         <BurgerConstructor />
       </main>
     </>

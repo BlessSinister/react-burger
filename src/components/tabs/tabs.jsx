@@ -13,7 +13,7 @@ const Tabs = () => {
         Соусы
       </Tab>
       <Tab value="three" active={current === 'three'} onClick={setCurrent}>
-        Новинки
+        Начинки
       </Tab>
     </div>
   )
