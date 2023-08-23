@@ -1,0 +1,9 @@
+.wrapper {
+  grid-column: 11/23;
+  height: 91.2rem;
+  border: 1px solid wheat;
+}
+.h2 {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+}

@@ -7,16 +7,12 @@ import BurgerConstructor from '../burger-constructor/burger-constructor'
 export default function App() {
   return (
     <>
-      <header>
+      <header className={app.header}>
         <AppHeader />
       </header>
       <main>
-        <section>
-          <BurgerIngredients />
-        </section>
-        <section>
-          <BurgerConstructor />
-        </section>
+        <BurgerIngredients />
+        <BurgerConstructor />
       </main>
     </>
   )
