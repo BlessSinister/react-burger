@@ -54,3 +54,16 @@ main {
   display: grid;
   grid-template-columns: repeat(45, 1fr);
 }
+.scroll::-webkit-scrollbar {
+  width: 10px; /* ширина всей полосы прокрутки */
+}
+
+.scroll::-webkit-scrollbar-track {
+  background: rgba(47, 47, 55, 1); /* цвет зоны отслеживания */
+}
+
+.scroll::-webkit-scrollbar-thumb {
+  background-color: rgba(133, 133, 173, 1); /* цвет бегунка */
+  border-radius: 20px; /* округлось бегунка */
+  border: 3px solid rgba(133, 133, 173, 1); /* отступ вокруг бегунка */
+}

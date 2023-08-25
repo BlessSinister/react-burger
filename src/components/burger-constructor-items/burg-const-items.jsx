@@ -1,5 +1,6 @@
 import { ConstructorElement } from '@ya.praktikum/react-developer-burger-ui-components'
 import burg_items_style from './burg-const-tems.module.css'
+import app_style from '../app/app.module.css'
 import { DragIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 export default function BurgConstItems({ data }) {
   const data1 = []
@@ -7,7 +8,7 @@ export default function BurgConstItems({ data }) {
     data1.push(data[i])
   }
   return (
-    <div className={`${burg_items_style.wrapper} mb-10`}>
+    <div className={`${burg_items_style.wrapper} mb-10 ${app_style.scroll}`}>
       <div
         style={{
           display: 'flex',

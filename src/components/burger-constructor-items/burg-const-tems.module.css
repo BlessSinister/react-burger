@@ -3,19 +3,6 @@
   overflow-x: overlay;
   font-size: 16px;
 }
-.wrapper::-webkit-scrollbar {
-  width: 10px; /* ширина всей полосы прокрутки */
-}
-
-.wrapper::-webkit-scrollbar-track {
-  background: rgba(47, 47, 55, 1); /* цвет зоны отслеживания */
-}
-
-.wrapper::-webkit-scrollbar-thumb {
-  background-color: rgba(133, 133, 173, 1); /* цвет бегунка */
-  border-radius: 20px; /* округлось бегунка */
-  border: 3px solid rgba(133, 133, 173, 1); /* отступ вокруг бегунка */
-}
 .ml {
   margin-left: 40px;
 }
