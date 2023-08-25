@@ -1,5 +1,5 @@
 import { ConstructorElement } from '@ya.praktikum/react-developer-burger-ui-components'
-import burg from './burg-const-tems.module.css'
+import burg_items_style from './burg-const-tems.module.css'
 import { DragIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 export default function BurgConstItems({ data }) {
   const data1 = []
@@ -7,7 +7,7 @@ export default function BurgConstItems({ data }) {
     data1.push(data[i])
   }
   return (
-    <div className={`${burg.wrapper} mb-10`}>
+    <div className={`${burg_items_style.wrapper} mb-10`}>
       <div
         style={{
           display: 'flex',
@@ -17,7 +17,7 @@ export default function BurgConstItems({ data }) {
       >
         {/* Эти стили сделаные не мною, они прописаны в самом компоненте
         из UI библиотеки, поэтому я их не трогаю */}
-        <div className={burg.decor_wrap}>
+        <div className={burg_items_style.decor_wrap}>
           <ConstructorElement
             type="top"
             isLocked={true}
@@ -26,9 +26,8 @@ export default function BurgConstItems({ data }) {
             thumbnail={data[0].image}
           />
         </div>
-
         {data1.map((item) => (
-          <div className={burg.decor_wrap_dnd} key={item._id}>
+          <div className={burg_items_style.decor_wrap_dnd} key={item._id}>
             <DragIcon type="primary" />
             <ConstructorElement
               text={item.name}
@@ -37,7 +36,11 @@ export default function BurgConstItems({ data }) {
             />
           </div>
         ))}
-        <div className={burg.decor_wrap}>
+        <div className={burg_items_style.decor_wrap}>
+          {/* Не могу использовать для отступов родителеьский контейнер
+            посколку, у динамически созданых элементов, помимо самого элемента
+            есть также icon, в связи с чем элементы верхней и нижней булки, всё равно
+            будет необходимо двигать навешивая дополнительные классы конкретно на них */}
           <ConstructorElement
             type="bottom"
             isLocked={true}

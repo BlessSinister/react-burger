@@ -1,13 +1,13 @@
-import zakaz from '../zakaz-info/zakaz-info.module.css'
+import zakaz_style from '../zakaz-info/zakaz-info.module.css'
 import {
   CurrencyIcon,
   Button,
 } from '@ya.praktikum/react-developer-burger-ui-components'
 export default function ZakazInfo() {
   return (
-    <div className={zakaz.wrapper}>
-      <div className={`${zakaz.decor_wrapper_price} mr-10`}>
-        <p className={`ml-2 text text_type_main-large ${zakaz.p}`}>610</p>
+    <div className={zakaz_style.wrapper}>
+      <div className={`${zakaz_style.decor_wrapper_price} mr-10`}>
+        <p className={`ml-2 text text_type_main-large ${zakaz_style.p}`}>610</p>
         <CurrencyIcon type="primary" />
       </div>
       <Button htmlType="button" type="primary" size="large">

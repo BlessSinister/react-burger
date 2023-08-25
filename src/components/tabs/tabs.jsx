@@ -1,10 +1,13 @@
 import React from 'react'
-import tabs from './tabs.module.css'
+import tabs_style from './tabs.module.css'
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components'
 const Tabs = () => {
   const [current, setCurrent] = React.useState('one')
   return (
-    <div style={{ display: 'flex' }} className={`mb-10 ${tabs.tabs_wrapper}`}>
+    <div
+      style={{ display: 'flex' }}
+      className={`mb-10 ${tabs_style.tabs_wrapper}`}
+    >
       {/* Этот атрибут style часть компонента, сделал не я */}
       <Tab value="one" active={current === 'one'} onClick={setCurrent}>
         Булки

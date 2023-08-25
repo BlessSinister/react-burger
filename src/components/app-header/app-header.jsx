@@ -1,4 +1,4 @@
-import headerStyle from './app-header.module.css'
+import header_style from './app-header.module.css'
 import {
   BurgerIcon,
   ListIcon,
@@ -9,28 +9,28 @@ import {
 export default function AppHeader() {
   return (
     <nav>
-      <div className={`${headerStyle.btn_wrapper}`}>
+      <div className={`${header_style.btn_wrapper}`}>
         <div
-          className={`${headerStyle.btn_block_item} pl-5 pr-5 pt-4 pb-4 mr-2`}
+          className={`${header_style.btn_block_item} pl-5 pr-5 pt-4 pb-4 mr-2`}
         >
-          <BurgerIcon type="primary" className={`${headerStyle.item1_ico} `} />
+          <BurgerIcon type="primary" className={`${header_style.item1_ico} `} />
           <p className={`ml-2`}>
             <a
               href="#"
-              className={`text text_type_main-default ${headerStyle.a}`}
+              className={`text text_type_main-default ${header_style.a}`}
             >
               Конструктор
             </a>
           </p>
         </div>
         <div
-          className={`${headerStyle.btn_block_item} ${headerStyle.btn_item2} pl-5 pr-5 pt-4 pb-4 mr-2`}
+          className={`${header_style.btn_block_item} ${header_style.btn_item2} pl-5 pr-5 pt-4 pb-4 mr-2`}
         >
           <ListIcon type="secondary" />
           <p className={`ml-2`}>
             <a
               href="#"
-              className={`text text_type_main-default ${headerStyle.a1}`}
+              className={`text text_type_main-default ${header_style.a1}`}
             >
               Лента заказов
             </a>
@@ -38,19 +38,19 @@ export default function AppHeader() {
         </div>
       </div>
       <Logo />
-      <div className={`${headerStyle.btn_wrapper}`}>
+      <div className={`${header_style.btn_wrapper}`}>
         <div
-          className={`${headerStyle.btn_block_item} ${headerStyle.btn_item2}  pl-5 pr-5 pt-4 pb-4 mr-2`}
+          className={`${header_style.btn_block_item} ${header_style.btn_item2}  pl-5 pr-5 pt-4 pb-4 mr-2`}
         >
           <ProfileIcon
             type="secondary"
-            className={`${headerStyle.item1_ico} `}
+            className={`${header_style.item1_ico} `}
           />
 
           <p className={`ml-2 `}>
             <a
               href="#"
-              className={`text text_type_main-default ${headerStyle.a1}`}
+              className={`text text_type_main-default ${header_style.a1}`}
             >
               Личный кабинет
             </a>
