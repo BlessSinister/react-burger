@@ -6,3 +6,9 @@
 .p {
   font-family: 'Iceland', cursive;
 }
+.decor_wrapper_price {
+  display: flex;
+  margin-left: 40px;
+  gap: 8px;
+  align-items: center;
+}

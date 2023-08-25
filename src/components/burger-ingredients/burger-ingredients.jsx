@@ -1,4 +1,3 @@
-import React from 'react'
 import ingrStyle from './burger-ingredients.module.css'
 import Tabs from '../tabs/tabs'
 import IngrList from '../ing-list/ingr-list'

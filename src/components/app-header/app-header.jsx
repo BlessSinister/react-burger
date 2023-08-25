@@ -1,4 +1,3 @@
-import React from 'react'
 import headerStyle from './app-header.module.css'
 import {
   BurgerIcon,

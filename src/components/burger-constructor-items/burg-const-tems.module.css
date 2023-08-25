@@ -19,3 +19,14 @@
 .ml {
   margin-left: 40px;
 }
+.decor_wrap {
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 10px;
+}
+.decor_wrap_dnd {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
