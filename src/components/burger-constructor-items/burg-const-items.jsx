@@ -4,11 +4,17 @@ import app_style from '../app/app.module.css'
 import { DragIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 import PropTypes from 'prop-types'
 
-export default function BurgConstItems({ data }) {
+export default function BurgConstItems({ data, summ }) {
   const data1 = []
-  for (let i = 1; i < 8; i++) {
-    data1.push(data[i])
+  if (data) {
+    for (let i = 1; i < 8; i++) {
+      data1.push(data[i])
+    }
+    summ(data1)
+  } else {
+    return
   }
+
   return (
     <div className={`${burg_items_style.wrapper} mb-10 ${app_style.scroll}`}>
       <div

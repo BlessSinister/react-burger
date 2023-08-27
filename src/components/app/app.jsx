@@ -1,10 +1,22 @@
 import app_style from './app.module.css'
-import data from '../../utils/data'
 import AppHeader from '../app-header/app-header'
 import BurgerIngredients from '../burger-ingredients/burger-ingredients'
 import BurgerConstructor from '../burger-constructor/burger-constructor'
+import { useEffect, useState } from 'react'
 
 export default function App() {
+  const url = 'https://norma.nomoreparties.space/api/ingredients'
+  const [state, setState] = useState({})
+  useEffect(() => {
+    try {
+      fetch(url)
+        .then((resp) => resp.json())
+        .then((data) => setState(data))
+    } catch (e) {
+      console.log(e)
+    }
+  }, [])
+
   return (
     <>
       <header className={app_style.header}>
@@ -16,8 +28,8 @@ export default function App() {
         <AppHeader />
       </header>
       <main>
-        <BurgerIngredients data={data} />
-        <BurgerConstructor data={data} />
+        <BurgerIngredients data={state.data} />
+        <BurgerConstructor data={state.data} />
       </main>
     </>
   )

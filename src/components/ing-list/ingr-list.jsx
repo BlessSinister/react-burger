@@ -4,9 +4,16 @@ import app_style from '../app/app.module.css'
 import PropTypes from 'prop-types'
 
 export default function IngrList({ data }) {
-  let bun = data.filter((item) => item.type === 'bun')
-  let sauce = data.filter((item) => item.type === 'sauce')
-  let main = data.filter((item) => item.type === 'main')
+  let bun, sauce, main
+
+  if (data) {
+    bun = data.filter((item) => item.type === 'bun')
+    sauce = data.filter((item) => item.type === 'sauce')
+    main = data.filter((item) => item.type === 'main')
+  } else {
+    return
+  }
+
   return (
     <div className={`${ingr_list_style.ing_container} ${app_style.scroll}`}>
       <div>
