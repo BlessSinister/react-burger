@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import style from './modal-overlay.module.css'
 import { CloseIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 
@@ -6,6 +6,18 @@ export default function ModalOverlay({ modal, setModal }) {
   const closeModal = () => {
     setModal(false)
   }
+  const keyCloseModal = (e) => {
+    if (e.key === 'Escape') {
+      setModal(false)
+    }
+  }
+  useEffect(() => {
+    document.addEventListener('keydown', keyCloseModal)
+    return () => {
+      document.removeEventListener('keydown', keyCloseModal)
+    }
+  }, [])
+
   return (
     <div>
       <div className={style.modal} onClick={closeModal}>
