@@ -2,7 +2,7 @@ import { ConstructorElement } from '@ya.praktikum/react-developer-burger-ui-comp
 import burg_items_style from './burg-const-tems.module.css'
 import app_style from '../app/app.module.css'
 import { DragIcon } from '@ya.praktikum/react-developer-burger-ui-components'
-import PropTypes from 'prop-types'
+import propTypes from '../../utils/props-types'
 
 export default function BurgConstItems({ data, summ }) {
   const data1 = []
@@ -62,17 +62,5 @@ export default function BurgConstItems({ data, summ }) {
     </div>
   )
 }
-BurgConstItems.propTypes = {
-  _id: PropTypes.string,
-  price: PropTypes.number,
-  image: PropTypes.string,
-  name: PropTypes.string,
-  type: PropTypes.string,
-  proteins: PropTypes.number,
-  fat: PropTypes.number,
-  carbohydrates: PropTypes.number,
-  calories: PropTypes.number,
-  image_mobile: PropTypes.string,
-  image_large: PropTypes.string,
-  __v: PropTypes.number,
-}
+
+propTypes(BurgConstItems)
