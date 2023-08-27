@@ -6,6 +6,7 @@ import propTypes from '../../utils/props-types'
 
 export default function BurgConstItems({ data, summ }) {
   const data1 = []
+
   if (data) {
     for (let i = 1; i < 8; i++) {
       data1.push(data[i])
