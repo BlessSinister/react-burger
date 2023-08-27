@@ -3,7 +3,7 @@ import Tabs from '../tabs/tabs'
 import IngrList from '../ing-list/ingr-list'
 
 import propTypes from '../../utils/props-types'
-export default function BurgerIngredients({ data }) {
+export default function BurgerIngredients({ data, modalIngFn }) {
   return (
     <section className={`${burg_ingr_style.wrapper} mr-14`}>
       <h1
@@ -12,7 +12,7 @@ export default function BurgerIngredients({ data }) {
         Соберите бургер
       </h1>
       <Tabs />
-      <IngrList data={data} />
+      <IngrList data={data} modalIngFn={modalIngFn} />
     </section>
   )
 }

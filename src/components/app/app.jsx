@@ -11,12 +11,15 @@ export default function App() {
   const [state, setState] = useState({})
   const [modal, setModal] = useState(false)
   const [modalIng, setModalIng] = useState(false)
+  const [idElem, setIdElem] = useState('')
   const modalFn = () => {
     setModal(true)
   }
-  const modalIngFn = () => {
+  const modalIngFn = (id) => {
+    setIdElem(id)
     setModalIng(true)
   }
+
   useEffect(() => {
     try {
       fetch(url)
@@ -38,11 +41,16 @@ export default function App() {
         <AppHeader />
       </header>
       <main>
-        <BurgerIngredients data={state.data} />
+        <BurgerIngredients data={state.data} modalIngFn={modalIngFn} />
         <BurgerConstructor data={state.data} modalFn={modalFn} />
         {modal && <ModalOverlay modal={modal} setModal={setModal} />}
         {modalIng && (
-          <ModalOverlayIngr modalIng={modalIng} setModalIng={setModalIng} />
+          <ModalOverlayIngr
+            modalIng={modalIng}
+            setModalIng={setModalIng}
+            data={state.data}
+            idElem={idElem}
+          />
         )}
       </main>
     </>
