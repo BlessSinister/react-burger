@@ -5,7 +5,6 @@ import React from 'react'
 
 export default function ModalOverlayIngr({ setModalIng, data, idElem }) {
   let arr = data.filter((item) => item._id === idElem)
-  console.log(arr)
   const closeModal = () => {
     setModalIng(false)
   }
