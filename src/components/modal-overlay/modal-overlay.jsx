@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import style from './modal-overlay.module.css'
 import { createPortal } from 'react-dom'
-
+import propTypes from '../../utils/props-types'
 import OrderDetailse from '../order-detailse/order-detailse'
-import Modal from './modal'
+import Modal from '../modal/modal'
 import IngredientsDetails from '../ingridients-detailse/ingridients-detailse'
 export default function ModalOverlay({
   modal,
@@ -19,11 +19,11 @@ export default function ModalOverlay({
       setModalIng(false)
     }
   }
-  let activeClass = modal || modalIng ? `${style.active}` : `${style.modal}`
+  let setActiveClass = modal || modalIng ? `${style.active}` : `${style.modal}`
   const closeModal = () => {
     setModal(false)
     setModalIng(false)
-    activeClass = modal || modalIng ? `${style.active}` : `${style.modal}`
+    setActiveClass = modal || modalIng ? `${style.active}` : `${style.modal}`
   }
   useEffect(() => {
     document.addEventListener('keydown', keyCloseModal)
@@ -35,7 +35,7 @@ export default function ModalOverlay({
   return (
     <>
       {createPortal(
-        <div className={activeClass} onClick={closeModal}>
+        <div className={setActiveClass} onClick={closeModal}>
           <Modal>
             {modal && <OrderDetailse modal={modal} setModal={setModal} />}
             {modalIng && (
@@ -53,3 +53,4 @@ export default function ModalOverlay({
     </>
   )
 }
+propTypes(ModalOverlay)

@@ -1,4 +1,5 @@
 import style from '../order-info/style.module.css'
+import propTypes from '../../utils/props-types'
 import {
   CurrencyIcon,
   Button,
@@ -18,3 +19,4 @@ export default function OrderInfo({ summPrice, modalFn }) {
     </div>
   )
 }
+propTypes(OrderInfo)

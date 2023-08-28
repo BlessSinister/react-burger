@@ -1,5 +1,6 @@
 import style from './ingridients-detailse.module.css'
 import { CloseIcon } from '@ya.praktikum/react-developer-burger-ui-components'
+import propTypes from '../../utils/props-types'
 
 export default function IngredientsDetail({ setModalIng, data, idElem }) {
   let arr = data.filter((item) => item._id === idElem)
@@ -38,3 +39,4 @@ export default function IngredientsDetail({ setModalIng, data, idElem }) {
     </div>
   )
 }
+propTypes(IngredientsDetail)

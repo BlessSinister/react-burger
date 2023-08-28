@@ -1,6 +1,6 @@
 import style from './order-detailse.module.css'
 import { CloseIcon } from '@ya.praktikum/react-developer-burger-ui-components'
-
+import propTypes from '../../utils/props-types'
 export default function OrderDetailse({ setModal }) {
   const closeModal = () => {
     setModal(false)
@@ -29,3 +29,4 @@ export default function OrderDetailse({ setModal }) {
     </div>
   )
 }
+propTypes(OrderDetailse)

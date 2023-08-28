@@ -18,13 +18,7 @@ export default function BurgConstItems({ data, summ }) {
 
   return (
     <div className={`${burg_items_style.wrapper} mb-10 ${app_style.scroll}`}>
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '10px',
-        }}
-      >
+      <div className={burg_items_style.content_container}>
         {/* Эти стили сделаные не мною, они прописаны в самом компоненте
         из UI библиотеки, поэтому я их не трогаю */}
         <div className={burg_items_style.decor_wrap}>

@@ -3,7 +3,7 @@ import AppHeader from '../app-header/app-header'
 import BurgerIngredients from '../burger-ingredients/burger-ingredients'
 import BurgerConstructor from '../burger-constructor/burger-constructor'
 import { useEffect, useState } from 'react'
-import ModalOverlay from '../modal/modal-overlay'
+import ModalOverlay from '../modal-overlay/modal-overlay'
 
 export default function App() {
   const url = 'https://norma.nomoreparties.space/api/ingredients'
@@ -21,7 +21,11 @@ export default function App() {
   useEffect(() => {
     try {
       fetch(url)
-        .then((resp) => resp.json())
+        .then((resp) => {
+          if (resp.ok) {
+            return resp.json()
+          }
+        })
         .then((data) => setState(data))
     } catch (e) {
       console.log(e)
