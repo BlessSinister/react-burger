@@ -3,8 +3,8 @@ import AppHeader from '../app-header/app-header'
 import BurgerIngredients from '../burger-ingredients/burger-ingredients'
 import BurgerConstructor from '../burger-constructor/burger-constructor'
 import { useEffect, useState } from 'react'
-import ModalOverlay from '../modal/modal-overlay'
-import ModalOverlayIngr from '../modal-ingri/modal-overlay-ingr'
+import ModalOverlay from '../order-detailse/order-detailse'
+import ModalOverlayIngr from '../ingridients-detailse/ingridients-detailse'
 
 export default function App() {
   const url = 'https://norma.nomoreparties.space/api/ingredients'

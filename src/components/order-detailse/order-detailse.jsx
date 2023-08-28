@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import style from './modal-overlay.module.css'
+import style from './order-detailse.module.css'
 import { CloseIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 
 export default function ModalOverlay({ modal, setModal }) {
