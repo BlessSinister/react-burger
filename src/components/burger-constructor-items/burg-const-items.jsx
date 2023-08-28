@@ -4,14 +4,13 @@ import app_style from '../app/app.module.css'
 import { DragIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 import propTypes from '../../utils/props-types'
 
-export default function BurgConstItems({ data, summ }) {
+export default function BurgConstItems({ data }) {
   const data1 = []
 
   if (data) {
     for (let i = 1; i < 8; i++) {
       data1.push(data[i])
     }
-    summ(data1)
   } else {
     return
   }
@@ -41,10 +40,6 @@ export default function BurgConstItems({ data, summ }) {
           </div>
         ))}
         <div className={burg_items_style.decor_wrap}>
-          {/* Не могу использовать для отступов родителеьский контейнер
-            посколку, у динамически созданых элементов, помимо самого элемента
-            есть также icon, в связи с чем элементы верхней и нижней булки, всё равно
-            будет необходимо двигать навешивая дополнительные классы конкретно на них */}
           <ConstructorElement
             type="bottom"
             isLocked={true}

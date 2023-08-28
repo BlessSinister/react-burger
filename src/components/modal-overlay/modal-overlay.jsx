@@ -1,4 +1,3 @@
-import React, { useEffect } from 'react'
 import style from './modal-overlay.module.css'
 import { createPortal } from 'react-dom'
 import propTypes from '../../utils/props-types'

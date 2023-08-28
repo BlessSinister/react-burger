@@ -7,7 +7,7 @@ export default function Modal(props) {
     return () => {
       document.removeEventListener('keydown', props.keyCloseModal)
     }
-  }, [])
+  }, [props.keyCloseModal])
 
   return <div className={style.modal__content}>{props.children}</div>
 }
