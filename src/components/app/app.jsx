@@ -3,8 +3,7 @@ import AppHeader from '../app-header/app-header'
 import BurgerIngredients from '../burger-ingredients/burger-ingredients'
 import BurgerConstructor from '../burger-constructor/burger-constructor'
 import { useEffect, useState } from 'react'
-import ModalOverlay from '../order-detailse/order-detailse'
-import ModalOverlayIngr from '../ingridients-detailse/ingridients-detailse'
+import ModalOverlay from '../modal/modal-overlay'
 
 export default function App() {
   const url = 'https://norma.nomoreparties.space/api/ingredients'
@@ -19,7 +18,6 @@ export default function App() {
     setIdElem(id)
     setModalIng(true)
   }
-
   useEffect(() => {
     try {
       fetch(url)
@@ -43,15 +41,14 @@ export default function App() {
       <main>
         <BurgerIngredients data={state.data} modalIngFn={modalIngFn} />
         <BurgerConstructor data={state.data} modalFn={modalFn} />
-        {modal && <ModalOverlay modal={modal} setModal={setModal} />}
-        {modalIng && (
-          <ModalOverlayIngr
-            modalIng={modalIng}
-            setModalIng={setModalIng}
-            data={state.data}
-            idElem={idElem}
-          />
-        )}
+        <ModalOverlay
+          modal={modal}
+          setModal={setModal}
+          modalIng={modalIng}
+          setModalIng={setModalIng}
+          idElem={idElem}
+          data={state.data}
+        />
       </main>
     </>
   )

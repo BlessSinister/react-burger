@@ -1,33 +1,10 @@
-.modal {
+.flex_container {
+  max-width: 640px;
   width: 100%;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.6);
-
-  position: fixed;
-  top: 0;
-  left: 0;
   display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.modal__content {
-  padding: 20px;
-  border-radius: 40px;
-  background: rgb(28, 28, 33);
-  width: 720px;
-  height: 538px;
-  display: flex;
-  padding-top: 40px;
-  padding-right: 40px;
-  padding-left: 40px;
-  align-items: center;
   flex-direction: column;
-  border: 1px solid var(--interface-modal-edge, rgba(76, 76, 255, 0.2));
-  background: var(--interface-modal-bg, #1c1c21);
-  /* card/x-large */
-  box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.04),
-    0px 4px 8px 0px rgba(0, 0, 0, 0.04), 0px 16px 24px 0px rgba(0, 0, 0, 0.04),
-    0px 24px 32px 0px rgba(0, 0, 0, 0.04);
+
+  align-items: center;
 }
 .decor_wrapper_icon {
   display: flex;
