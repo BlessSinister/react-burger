@@ -25,18 +25,12 @@ export default function ModalOverlay({
     setModalIng(false)
     setActiveClass = modal || modalIng ? `${style.active}` : `${style.modal}`
   }
-  useEffect(() => {
-    document.addEventListener('keydown', keyCloseModal)
-    return () => {
-      document.removeEventListener('keydown', keyCloseModal)
-    }
-  }, [])
 
   return (
     <>
       {createPortal(
         <div className={setActiveClass} onClick={closeModal}>
-          <Modal>
+          <Modal keyCloseModal={keyCloseModal}>
             {modal && <OrderDetailse modal={modal} setModal={setModal} />}
             {modalIng && (
               <IngredientsDetails
