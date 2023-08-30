@@ -19,7 +19,7 @@ export default function Modal(props) {
 
   return createPortal(
     <div>
-      <div onClick={props.closeModal} className={style.modal__content}>
+      <div className={style.modal__content}>
         {props.modal && props.children[0]}
         {props.modalIng && props.children[1]}
       </div>
