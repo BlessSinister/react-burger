@@ -14,11 +14,11 @@ export default function App() {
   const [modalIng, setModalIng] = useState(false)
   const [idElem, setIdElem] = useState('')
   const modalFn = () => {
-    setModal(true)
+    setModal(!modal)
   }
   const modalIngFn = (id) => {
     setIdElem(id)
-    setModalIng(true)
+    setModalIng(!modalIng)
   }
   useEffect(() => {
     try {
@@ -41,8 +41,10 @@ export default function App() {
 
         <Modal
           modal={modal}
-          setModal={setModal}
+          modalFn={modalFn}
+          modalIngFn={modalIngFn}
           modalIng={modalIng}
+          setModal={setModal}
           setModalIng={setModalIng}
           idElem={idElem}
           data={state.data}

@@ -16,19 +16,21 @@ export default function Modal(props) {
       document.removeEventListener('keydown', keyCloseModal)
     }
   }, [])
-
+  let setActiveClass =
+    props.modal || props.modalIng ? `${style.active}` : `${style.modal}`
+  const onCloseModal = () => {
+    props.setModal(false)
+    props.setModalIng(false)
+    setActiveClass =
+      props.modal || props.modalIng ? `${style.active}` : `${style.modal}`
+  }
   return createPortal(
-    <div>
+    <div className={setActiveClass}>
       <div className={style.modal__content}>
         {props.modal && props.children[0]}
         {props.modalIng && props.children[1]}
       </div>
-      <ModalOverlay
-        modal={props.modal}
-        modalIng={props.modalIng}
-        setModal={props.setModal}
-        setModalIng={props.setModalIng}
-      />
+      <ModalOverlay onCloseModal={onCloseModal} />
     </div>,
     document.getElementById('modal-root')
   )
