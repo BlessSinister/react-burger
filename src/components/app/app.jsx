@@ -3,8 +3,10 @@ import AppHeader from '../app-header/app-header'
 import BurgerIngredients from '../burger-ingredients/burger-ingredients'
 import BurgerConstructor from '../burger-constructor/burger-constructor'
 import { useEffect, useState } from 'react'
-import ModalOverlay from '../modal-overlay/modal-overlay'
 import { checkResponse, url } from '../../utils/api'
+import Modal from '../modal/modal'
+import OrderDetailse from '../order-detailse/order-detailse'
+import IngredientDetails from '../ingredient-details/ingredient-details'
 
 export default function App() {
   const [state, setState] = useState({})
@@ -36,14 +38,23 @@ export default function App() {
       <main>
         <BurgerIngredients data={state.data} modalIngFn={modalIngFn} />
         <BurgerConstructor data={state.data} modalFn={modalFn} />
-        <ModalOverlay
+
+        <Modal
           modal={modal}
           setModal={setModal}
           modalIng={modalIng}
           setModalIng={setModalIng}
           idElem={idElem}
           data={state.data}
-        />
+        >
+          <OrderDetailse modal={modal} setModal={setModal} />
+          <IngredientDetails
+            modalIng={modalIng}
+            setModalIng={setModalIng}
+            data={state.data}
+            idElem={idElem}
+          />
+        </Modal>
       </main>
     </>
   )

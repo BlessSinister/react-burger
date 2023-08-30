@@ -1,10 +1,17 @@
 .flex_container {
-  max-width: 640px;
-  width: 100%;
   display: flex;
   flex-direction: column;
-
+  background: rgb(28, 28, 33);
+  border-radius: 40px;
   align-items: center;
+  position: fixed;
+  z-index: 2;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 720px;
+  width: 100%;
+  height: 539px;
 }
 .decor_wrapper_icon {
   display: flex;

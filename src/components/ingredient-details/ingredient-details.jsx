@@ -9,7 +9,10 @@ export default function IngredientDetails({ setModalIng, data, idElem }) {
     setModalIng(false)
   }
   return (
-    <div onClick={(e) => e.stopPropagation()} className={style.flex_container}>
+    <div
+      onClick={(e) => e.stopPropagation()}
+      className={`${style.flex_container} p-10 pb-15`}
+    >
       <div className={`${style.decor_wrapper_icon}`}>
         <h2 className={style.h2}>Детали ингредиентов</h2>
         <CloseIcon type="primary" onClick={closeModal} />
