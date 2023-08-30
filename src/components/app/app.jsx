@@ -4,9 +4,9 @@ import BurgerIngredients from '../burger-ingredients/burger-ingredients'
 import BurgerConstructor from '../burger-constructor/burger-constructor'
 import { useEffect, useState } from 'react'
 import ModalOverlay from '../modal-overlay/modal-overlay'
+import { checkResponse, url } from '../../utils/api'
 
 export default function App() {
-  const url = 'https://norma.nomoreparties.space/api/ingredients'
   const [state, setState] = useState({})
   const [modal, setModal] = useState(false)
   const [modalIng, setModalIng] = useState(false)
@@ -21,11 +21,7 @@ export default function App() {
   useEffect(() => {
     try {
       fetch(url)
-        .then((resp) => {
-          if (resp.ok) {
-            return resp.json()
-          }
-        })
+        .then((res) => checkResponse(res))
         .then((data) => setState(data))
     } catch (e) {
       console.log(e)
@@ -35,11 +31,6 @@ export default function App() {
   return (
     <>
       <header className={app_style.header}>
-        {/* Не могу её убрать, уменя при помощи неё выровнян блок Appheader, в
-        котором содержится сам контент, она выравнивает блок с контентом по
-        центру, а внутри самого блока Appheader элементы выравнины по средствам flex, то есть
-        если я её уберу блоки изменят своё местоположениее, то есть по сути будет тоже самое,
-        для выравнивания просто обертку придётся делать в самом компоненте AppHeader */}
         <AppHeader />
       </header>
       <main>

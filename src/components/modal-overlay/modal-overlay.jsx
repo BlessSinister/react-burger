@@ -3,7 +3,7 @@ import { createPortal } from 'react-dom'
 import propTypes from '../../utils/props-types'
 import OrderDetailse from '../order-detailse/order-detailse'
 import Modal from '../modal/modal'
-import IngredientsDetails from '../ingridients-detailse/ingridients-detailse'
+import IngredientDetails from '../ingredient-details/ingredient-details'
 export default function ModalOverlay({
   modal,
   setModal,
@@ -32,7 +32,7 @@ export default function ModalOverlay({
           <Modal keyCloseModal={keyCloseModal}>
             {modal && <OrderDetailse modal={modal} setModal={setModal} />}
             {modalIng && (
-              <IngredientsDetails
+              <IngredientDetails
                 modalIng={modalIng}
                 setModalIng={setModalIng}
                 data={data}
