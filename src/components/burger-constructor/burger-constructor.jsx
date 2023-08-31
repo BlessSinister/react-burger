@@ -1,7 +1,7 @@
 import const_style from './burger-constructor.module.css'
 import BurgConstItems from '../burger-constructor-items/burg-const-items'
 import OrderInfo from '../order-info/order-info'
-import propTypes from '../../utils/props-types'
+import { burgerConstructorPropTypes } from '../../utils/props-types'
 
 export default function BurgerConstructor({ data }) {
   return (
@@ -12,4 +12,4 @@ export default function BurgerConstructor({ data }) {
   )
 }
 
-propTypes(BurgerConstructor)
+burgerConstructorPropTypes(BurgerConstructor)

@@ -1,5 +1,5 @@
 import style from './ingredient-details.module.css'
-import propTypes from '../../utils/props-types'
+import { ingredientDetailsPropTypes } from '../../utils/props-types'
 import { CustomContext } from '../hooks/context'
 import React, { useContext } from 'react'
 export default function IngredientDetails({ data }) {
@@ -37,4 +37,4 @@ export default function IngredientDetails({ data }) {
     </div>
   )
 }
-propTypes(IngredientDetails)
+ingredientDetailsPropTypes(IngredientDetails)

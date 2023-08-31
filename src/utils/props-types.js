@@ -18,3 +18,76 @@ let propTypes = (a) => {
 }
 
 export default propTypes
+
+let burgerIngrPropTypes = (a) => {
+  return (a.propTypes = {
+    _id: PropTypes.string,
+    price: PropTypes.number,
+    image: PropTypes.string,
+    name: PropTypes.string,
+    type: PropTypes.string,
+    data: PropTypes.array,
+  })
+}
+export { burgerIngrPropTypes }
+
+let ingrListPropType = (a) => {
+  return (a.propTypes = {
+    _id: PropTypes.string,
+    price: PropTypes.number,
+    image: PropTypes.string,
+    name: PropTypes.string,
+    type: PropTypes.string,
+    modalIngFn: PropTypes.func,
+    data: PropTypes.array,
+  })
+}
+export { ingrListPropType }
+let ingItemsPropType = (a) => {
+  return (a.propTypes = {
+    _id: PropTypes.string,
+    price: PropTypes.number,
+    image: PropTypes.string,
+    name: PropTypes.string,
+    type: PropTypes.string,
+    modalIngFn: PropTypes.func,
+  })
+}
+export { ingItemsPropType }
+let burgerConstructorPropTypes = (a) => {
+  return (a.propTypes = {
+    _id: PropTypes.string,
+    price: PropTypes.number,
+    image: PropTypes.string,
+    name: PropTypes.string,
+    type: PropTypes.string,
+    data: PropTypes.array,
+  })
+}
+export { burgerConstructorPropTypes }
+let burgConstItemsPropTypes = (a) => {
+  return (a.propTypes = {
+    price: PropTypes.number,
+    image: PropTypes.string,
+    name: PropTypes.string,
+    isLocked: PropTypes.bool,
+    type: PropTypes.string,
+    thumbnail: PropTypes.string,
+    data: PropTypes.array,
+  })
+}
+export { burgConstItemsPropTypes }
+
+let orderDetailsPropTypes = (a) => {
+  return (a.propTypes = {
+    orderNumber: PropTypes.string,
+  })
+}
+export { orderDetailsPropTypes }
+
+let ingredientDetailsPropTypes = (a) => {
+  return (a.propTypes = {
+    data: PropTypes.array,
+  })
+}
+export { ingredientDetailsPropTypes }

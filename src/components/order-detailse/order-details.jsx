@@ -1,5 +1,5 @@
 import style from './order-details.module.css'
-import propTypes from '../../utils/props-types'
+import { orderDetailsPropTypes } from '../../utils/props-types'
 export default function OrderDetails({ orderNumber }) {
   return (
     <div className={style.modal}>
@@ -21,4 +21,4 @@ export default function OrderDetails({ orderNumber }) {
     </div>
   )
 }
-propTypes(OrderDetails)
+orderDetailsPropTypes(OrderDetails)

@@ -2,7 +2,7 @@ import { ConstructorElement } from '@ya.praktikum/react-developer-burger-ui-comp
 import burg_items_style from './burg-const-tems.module.css'
 import app_style from '../app/app.module.css'
 import { DragIcon } from '@ya.praktikum/react-developer-burger-ui-components'
-import propTypes from '../../utils/props-types'
+import { burgConstItemsPropTypes } from '../../utils/props-types'
 
 export default function BurgConstItems({ data }) {
   const data1 = []
@@ -18,8 +18,6 @@ export default function BurgConstItems({ data }) {
   return (
     <div className={`${burg_items_style.wrapper} mb-10 ${app_style.scroll}`}>
       <div className={burg_items_style.content_container}>
-        {/* Эти стили сделаные не мною, они прописаны в самом компоненте
-        из UI библиотеки, поэтому я их не трогаю */}
         <div className={burg_items_style.decor_wrap}>
           <ConstructorElement
             type="top"
@@ -53,4 +51,4 @@ export default function BurgConstItems({ data }) {
   )
 }
 
-propTypes(BurgConstItems)
+burgConstItemsPropTypes(BurgConstItems)

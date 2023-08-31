@@ -1,10 +1,9 @@
 import burg_ingr_style from './burger-ingredients.module.css'
 import Tabs from '../tabs/tabs'
 import IngrList from '../ing-list/ingr-list'
-import PropTypes from 'prop-types'
 import { CustomContext } from '../hooks/context'
 import React, { useContext } from 'react'
-import propTypes from '../../utils/props-types'
+import { burgerIngrPropTypes } from '../../utils/props-types'
 export default function BurgerIngredients({ data }) {
   const { modalIngFn } = useContext(CustomContext)
   return (
@@ -19,6 +18,6 @@ export default function BurgerIngredients({ data }) {
     </section>
   )
 }
-propTypes(BurgerIngredients)
+burgerIngrPropTypes(BurgerIngredients)
 
 // type,_id,price,image,name
