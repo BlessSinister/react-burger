@@ -3,6 +3,8 @@ import propTypes from '../../utils/props-types'
 import { useEffect } from 'react'
 import { createPortal } from 'react-dom'
 import ModalOverlay from '../modal-overlay/modal-overlay'
+import OrderDetails from '../order-detailse/order-details'
+import { CloseIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 export default function Modal(props) {
   useEffect(() => {
     const keyCloseModal = (e) => {
@@ -24,10 +26,25 @@ export default function Modal(props) {
     setActiveClass =
       props.modal || props.modalIng ? `${style.active}` : `${style.modal}`
   }
+  let setModalIngContenClass = props.modalIng
+    ? `${style.modal__content_ingr}`
+    : null
+  let setModalOrderContenClass = props.modal ? `${style.modal__content}` : null
   return createPortal(
     <div className={setActiveClass}>
-      <div className={style.modal__content}>
+      <div className={setModalOrderContenClass}>
+        <div className={`${style.decor_wrapper_icon} mb-4`}>
+          <CloseIcon type="primary" onClick={onCloseModal} />
+        </div>
+
         {props.modal && props.children[0]}
+      </div>
+
+      <div className={setModalIngContenClass}>
+        <div className={`${style.decor_wrapper_icon_ingr} mb-4`}>
+          <h2 className={style.h2}>Детали ингредиента</h2>
+          <CloseIcon type="primary" onClick={onCloseModal} />
+        </div>
         {props.modalIng && props.children[1]}
       </div>
       <ModalOverlay onCloseModal={onCloseModal} />

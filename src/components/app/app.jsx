@@ -5,8 +5,8 @@ import BurgerConstructor from '../burger-constructor/burger-constructor'
 import { useEffect, useState } from 'react'
 import { checkResponse, url } from '../../utils/api'
 import Modal from '../modal/modal'
-import OrderDetailse from '../order-detailse/order-detailse'
 import IngredientDetails from '../ingredient-details/ingredient-details'
+import OrderDetails from '../order-detailse/order-details'
 
 export default function App() {
   const [state, setState] = useState({})
@@ -41,15 +41,15 @@ export default function App() {
 
         <Modal
           modal={modal}
+          setModal={setModal}
           modalFn={modalFn}
           modalIngFn={modalIngFn}
           modalIng={modalIng}
-          setModal={setModal}
           setModalIng={setModalIng}
           idElem={idElem}
           data={state.data}
         >
-          <OrderDetailse modal={modal} setModal={setModal} />
+          <OrderDetails />
           <IngredientDetails
             modalIng={modalIng}
             setModalIng={setModalIng}

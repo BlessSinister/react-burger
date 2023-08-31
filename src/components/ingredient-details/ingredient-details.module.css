@@ -1,33 +1,9 @@
 .flex_container {
   display: flex;
   flex-direction: column;
-  background: rgb(28, 28, 33);
-  border-radius: 40px;
+  justify-content: center;
   align-items: center;
-  position: fixed;
-  z-index: 2;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  max-width: 720px;
-  width: 100%;
-  height: 539px;
-}
-.decor_wrapper_icon {
-  display: flex;
-  justify-content: space-between;
-  max-width: 640px;
-  width: 100%;
-  height: 64px;
-  align-items: center;
-}
-.h2 {
-  color: var(--text-primary-light-standart-text, #f2f2f3);
-  font-family: 'Jet Brains Mono';
-  font-size: 36px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 40px;
+  padding: 0;
 }
 .main_card_img {
   max-width: 480px;

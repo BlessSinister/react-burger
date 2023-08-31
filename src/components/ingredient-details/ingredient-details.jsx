@@ -1,22 +1,14 @@
 import style from './ingredient-details.module.css'
-import { CloseIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 import propTypes from '../../utils/props-types'
 
-export default function IngredientDetails({ setModalIng, data, idElem }) {
+export default function IngredientDetails({ data, idElem }) {
   let arr = data.filter((item) => item._id === idElem)
 
-  const closeModal = () => {
-    setModalIng(false)
-  }
   return (
     <div
       onClick={(e) => e.stopPropagation()}
       className={`${style.flex_container} p-10 pb-15`}
     >
-      <div className={`${style.decor_wrapper_icon}`}>
-        <h2 className={style.h2}>Детали ингредиентов</h2>
-        <CloseIcon type="primary" onClick={closeModal} />
-      </div>
       <div className={`${style.main_card_img} mb-4`}>
         <img src={arr[0].image_large} className={style.img} alt="" />
       </div>

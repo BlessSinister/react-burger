@@ -1,21 +1,12 @@
-import style from './order-detailse.module.css'
-import { CloseIcon } from '@ya.praktikum/react-developer-burger-ui-components'
+import style from './order-details.module.css'
 import propTypes from '../../utils/props-types'
-export default function OrderDetailse({ setModal }) {
-  const closeModal = () => {
-    setModal(false)
-  }
-
+export default function OrderDetails() {
   return (
     <div className={style.modal}>
       <div
         className={`${style.modal__content}`}
         onClick={(e) => e.stopPropagation()}
       >
-        <div className={`${style.decor_wrapper_icon} mb-4`}>
-          <CloseIcon type="primary" onClick={closeModal} />
-        </div>
-
         <h2 className={`${style.h2} mb-8`}>034546</h2>
         <p className={`${style.p_content_item1}  ${style.p} mb-15`}>
           идентификатор заказа
@@ -29,4 +20,4 @@ export default function OrderDetailse({ setModal }) {
     </div>
   )
 }
-propTypes(OrderDetailse)
+propTypes(OrderDetails)
