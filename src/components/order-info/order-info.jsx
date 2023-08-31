@@ -5,7 +5,7 @@ import {
   Button,
 } from '@ya.praktikum/react-developer-burger-ui-components'
 import React, { useContext } from 'react'
-import { CustomContext } from '../hooks/context'
+import { CustomContext } from '../context/context'
 export default function OrderInfo() {
   const { modalFn } = useContext(CustomContext)
 

@@ -4,7 +4,7 @@ import React, { useEffect, useContext } from 'react'
 import { createPortal } from 'react-dom'
 import ModalOverlay from '../modal-overlay/modal-overlay'
 import { CloseIcon } from '@ya.praktikum/react-developer-burger-ui-components'
-import { CustomContext } from '../hooks/context'
+import { CustomContext } from '../context/context'
 export default function Modal(props) {
   const { modal, setModal, modalIng, setModalIng } = useContext(CustomContext)
 

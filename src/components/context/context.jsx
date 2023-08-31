@@ -4,7 +4,8 @@ export const CustomContext = createContext()
 export const Context = (props) => {
   const [modal, setModal] = useState(false)
   const [modalIng, setModalIng] = useState(false)
-  const [idElem, setIdElem] = useState(12)
+  const [idElem, setIdElem] = useState()
+  const [state, setState] = useState({})
   const modalFn = () => {
     setModal(!modal)
   }
@@ -12,6 +13,11 @@ export const Context = (props) => {
     setIdElem(id)
     setModalIng(!modalIng)
   }
+  let arr = []
+  if (state.data) {
+    arr = state.data.filter((item) => item._id === idElem)
+  }
+
   const value = {
     modal,
     modalIng,
@@ -21,6 +27,9 @@ export const Context = (props) => {
     idElem,
     setIdElem,
     setModalIng,
+    state,
+    setState,
+    arr,
   }
 
   return (

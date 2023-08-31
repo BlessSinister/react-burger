@@ -1,7 +1,7 @@
 import burg_ingr_style from './burger-ingredients.module.css'
 import Tabs from '../tabs/tabs'
 import IngrList from '../ing-list/ingr-list'
-import { CustomContext } from '../hooks/context'
+import { CustomContext } from '../context/context'
 import React, { useContext } from 'react'
 import { burgerIngrPropTypes } from '../../utils/props-types'
 export default function BurgerIngredients({ data }) {

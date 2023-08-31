@@ -2,15 +2,17 @@ import app_style from './app.module.css'
 import AppHeader from '../app-header/app-header'
 import BurgerIngredients from '../burger-ingredients/burger-ingredients'
 import BurgerConstructor from '../burger-constructor/burger-constructor'
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { getData } from '../../utils/api'
 import Modal from '../modal/modal'
 import IngredientDetails from '../ingredient-details/ingredient-details'
 import OrderDetails from '../order-detailse/order-details'
-import { Context } from '../hooks/context'
+import { CustomContext } from '../context/context'
 
 export default function App() {
-  const [state, setState] = useState({})
+  const { modal, setModal, modalIng, setModalIng, setState, state, arr } =
+    useContext(CustomContext)
+
   const [orderNumber, setOrderNumber] = useState('034546')
 
   useEffect(() => {
@@ -18,7 +20,7 @@ export default function App() {
   }, [])
 
   return (
-    <Context>
+    <>
       <header className={app_style.header}>
         <AppHeader />
       </header>
@@ -27,10 +29,10 @@ export default function App() {
         <BurgerConstructor data={state.data} />
 
         <Modal>
-          <OrderDetails orderNumber={orderNumber} />
-          <IngredientDetails data={state.data} />
+          {modal && <OrderDetails orderNumber={orderNumber} />}
+          {modalIng && <IngredientDetails data={arr} />}
         </Modal>
       </main>
-    </Context>
+    </>
   )
 }
