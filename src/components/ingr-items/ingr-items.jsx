@@ -1,6 +1,7 @@
 import ing_items_style from './ingr-items.module.css'
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components'
-import { ingItemsPropType } from '../../utils/props-types'
+import PropTypes from 'prop-types'
+
 export default function IngrItems({ image, name, price, modalIngFn, id }) {
   const openModalIng = (id) => {
     modalIngFn(id)
@@ -27,4 +28,11 @@ export default function IngrItems({ image, name, price, modalIngFn, id }) {
   )
 }
 
-ingItemsPropType(IngrItems)
+IngrItems.propTypes = {
+  _id: PropTypes.string,
+  price: PropTypes.number,
+  image: PropTypes.string,
+  name: PropTypes.string,
+  type: PropTypes.string,
+  modalIngFn: PropTypes.func,
+}

@@ -3,7 +3,7 @@ import Tabs from '../tabs/tabs'
 import IngrList from '../ing-list/ingr-list'
 import { CustomContext } from '../context/context'
 import React, { useContext } from 'react'
-import { burgerIngrPropTypes } from '../../utils/props-types'
+import PropTypes from 'prop-types'
 export default function BurgerIngredients({ data }) {
   const { modalIngFn } = useContext(CustomContext)
   return (
@@ -18,6 +18,11 @@ export default function BurgerIngredients({ data }) {
     </section>
   )
 }
-burgerIngrPropTypes(BurgerIngredients)
-
-// type,_id,price,image,name
+BurgerIngredients.propTypes = {
+  _id: PropTypes.string,
+  price: PropTypes.number,
+  image: PropTypes.string,
+  name: PropTypes.string,
+  type: PropTypes.string,
+  data: PropTypes.array,
+}

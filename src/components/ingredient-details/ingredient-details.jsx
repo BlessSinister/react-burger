@@ -1,5 +1,5 @@
 import style from './ingredient-details.module.css'
-import { ingredientDetailsPropTypes } from '../../utils/props-types'
+import PropTypes from 'prop-types'
 
 export default function IngredientDetails({ data }) {
   return (
@@ -32,4 +32,6 @@ export default function IngredientDetails({ data }) {
     </div>
   )
 }
-ingredientDetailsPropTypes(IngredientDetails)
+IngredientDetails.propTypes = {
+  data: PropTypes.array,
+}

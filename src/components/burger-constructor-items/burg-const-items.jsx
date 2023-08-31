@@ -2,7 +2,7 @@ import { ConstructorElement } from '@ya.praktikum/react-developer-burger-ui-comp
 import burg_items_style from './burg-const-tems.module.css'
 import app_style from '../app/app.module.css'
 import { DragIcon } from '@ya.praktikum/react-developer-burger-ui-components'
-import { burgConstItemsPropTypes } from '../../utils/props-types'
+import PropTypes from 'prop-types'
 
 export default function BurgConstItems({ data }) {
   const data1 = []
@@ -51,4 +51,12 @@ export default function BurgConstItems({ data }) {
   )
 }
 
-burgConstItemsPropTypes(BurgConstItems)
+BurgConstItems.propTypes = {
+  price: PropTypes.number,
+  image: PropTypes.string,
+  name: PropTypes.string,
+  isLocked: PropTypes.bool,
+  type: PropTypes.string,
+  thumbnail: PropTypes.string,
+  data: PropTypes.array,
+}
