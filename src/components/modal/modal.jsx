@@ -3,9 +3,9 @@ import propTypes from '../../utils/props-types'
 import { useEffect } from 'react'
 import { createPortal } from 'react-dom'
 import ModalOverlay from '../modal-overlay/modal-overlay'
-import OrderDetails from '../order-detailse/order-details'
 import { CloseIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 export default function Modal(props) {
+  // data={state.data}
   useEffect(() => {
     const keyCloseModal = (e) => {
       if (e.key === 'Escape') {

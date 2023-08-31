@@ -13,6 +13,7 @@ export default function App() {
   const [modal, setModal] = useState(false)
   const [modalIng, setModalIng] = useState(false)
   const [idElem, setIdElem] = useState('')
+  const [orderNumber, setOrderNumber] = useState('034546')
   const modalFn = () => {
     setModal(!modal)
   }
@@ -42,20 +43,11 @@ export default function App() {
         <Modal
           modal={modal}
           setModal={setModal}
-          modalFn={modalFn}
-          modalIngFn={modalIngFn}
           modalIng={modalIng}
           setModalIng={setModalIng}
-          idElem={idElem}
-          data={state.data}
         >
-          <OrderDetails />
-          <IngredientDetails
-            modalIng={modalIng}
-            setModalIng={setModalIng}
-            data={state.data}
-            idElem={idElem}
-          />
+          <OrderDetails orderNumber={orderNumber} />
+          <IngredientDetails data={state.data} idElem={idElem} />
         </Modal>
       </main>
     </>

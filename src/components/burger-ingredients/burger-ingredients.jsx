@@ -1,6 +1,7 @@
 import burg_ingr_style from './burger-ingredients.module.css'
 import Tabs from '../tabs/tabs'
 import IngrList from '../ing-list/ingr-list'
+import PropTypes from 'prop-types'
 
 import propTypes from '../../utils/props-types'
 export default function BurgerIngredients({ data, modalIngFn }) {
@@ -17,3 +18,7 @@ export default function BurgerIngredients({ data, modalIngFn }) {
   )
 }
 propTypes(BurgerIngredients)
+BurgerIngredients.propTypes = {
+  modalIngFn: PropTypes.func.isRequired,
+}
+// type,_id,price,image,name

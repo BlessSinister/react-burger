@@ -1,13 +1,14 @@
 import style from './order-details.module.css'
 import propTypes from '../../utils/props-types'
-export default function OrderDetails() {
+export default function OrderDetails({ orderNumber }) {
   return (
     <div className={style.modal}>
       <div
         className={`${style.modal__content}`}
         onClick={(e) => e.stopPropagation()}
       >
-        <h2 className={`${style.h2} mb-8`}>034546</h2>
+        <h2 className={`${style.h2} mb-8`}>{orderNumber}</h2>
+
         <p className={`${style.p_content_item1}  ${style.p} mb-15`}>
           идентификатор заказа
         </p>
