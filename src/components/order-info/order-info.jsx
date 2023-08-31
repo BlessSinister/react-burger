@@ -4,7 +4,11 @@ import {
   CurrencyIcon,
   Button,
 } from '@ya.praktikum/react-developer-burger-ui-components'
-export default function OrderInfo({ modalFn }) {
+import React, { useContext } from 'react'
+import { CustomContext } from '../hooks/context'
+export default function OrderInfo() {
+  const { modalFn } = useContext(CustomContext)
+
   return (
     <div className={style.wrapper}>
       <div className={`${style.decor_wrapper_price} mr-10`}>

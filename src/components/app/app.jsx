@@ -7,20 +7,11 @@ import { checkResponse, url } from '../../utils/api'
 import Modal from '../modal/modal'
 import IngredientDetails from '../ingredient-details/ingredient-details'
 import OrderDetails from '../order-detailse/order-details'
-
+import { Context } from '../hooks/context'
 export default function App() {
   const [state, setState] = useState({})
-  const [modal, setModal] = useState(false)
-  const [modalIng, setModalIng] = useState(false)
-  const [idElem, setIdElem] = useState('')
   const [orderNumber, setOrderNumber] = useState('034546')
-  const modalFn = () => {
-    setModal(!modal)
-  }
-  const modalIngFn = (id) => {
-    setIdElem(id)
-    setModalIng(!modalIng)
-  }
+
   useEffect(() => {
     try {
       fetch(url)
@@ -32,24 +23,19 @@ export default function App() {
   }, [])
 
   return (
-    <>
+    <Context>
       <header className={app_style.header}>
         <AppHeader />
       </header>
       <main>
-        <BurgerIngredients data={state.data} modalIngFn={modalIngFn} />
-        <BurgerConstructor data={state.data} modalFn={modalFn} />
+        <BurgerIngredients data={state.data} />
+        <BurgerConstructor data={state.data} />
 
-        <Modal
-          modal={modal}
-          setModal={setModal}
-          modalIng={modalIng}
-          setModalIng={setModalIng}
-        >
+        <Modal>
           <OrderDetails orderNumber={orderNumber} />
-          <IngredientDetails data={state.data} idElem={idElem} />
+          <IngredientDetails data={state.data} />
         </Modal>
       </main>
-    </>
+    </Context>
   )
 }

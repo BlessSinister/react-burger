@@ -2,6 +2,7 @@ import IngrItems from '../ingr-items/ingr-items'
 import ingr_list_style from './ingr-list.module.css'
 import app_style from '../app/app.module.css'
 import propTypes from '../../utils/props-types'
+
 export default function IngrList({ data, modalIngFn }) {
   let bun, sauce, main
 

@@ -1,7 +1,10 @@
 import style from './ingredient-details.module.css'
 import propTypes from '../../utils/props-types'
+import { CustomContext } from '../hooks/context'
+import React, { useContext } from 'react'
+export default function IngredientDetails({ data }) {
+  const { idElem } = useContext(CustomContext)
 
-export default function IngredientDetails({ data, idElem }) {
   let arr = data.filter((item) => item._id === idElem)
 
   return (

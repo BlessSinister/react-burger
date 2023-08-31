@@ -1,16 +1,18 @@
 import style from './modal.module.css'
 import propTypes from '../../utils/props-types'
-import { useEffect } from 'react'
+import React, { useEffect, useContext } from 'react'
 import { createPortal } from 'react-dom'
 import ModalOverlay from '../modal-overlay/modal-overlay'
 import { CloseIcon } from '@ya.praktikum/react-developer-burger-ui-components'
+import { CustomContext } from '../hooks/context'
 export default function Modal(props) {
-  // data={state.data}
+  const { modal, setModal, modalIng, setModalIng } = useContext(CustomContext)
+
   useEffect(() => {
     const keyCloseModal = (e) => {
       if (e.key === 'Escape') {
-        props.setModal(false)
-        props.setModalIng(false)
+        setModal(false)
+        setModalIng(false)
       }
     }
     document.addEventListener('keydown', keyCloseModal)
@@ -18,18 +20,14 @@ export default function Modal(props) {
       document.removeEventListener('keydown', keyCloseModal)
     }
   }, [])
-  let setActiveClass =
-    props.modal || props.modalIng ? `${style.active}` : `${style.modal}`
+  let setActiveClass = modal || modalIng ? `${style.active}` : `${style.modal}`
   const onCloseModal = () => {
-    props.setModal(false)
-    props.setModalIng(false)
-    setActiveClass =
-      props.modal || props.modalIng ? `${style.active}` : `${style.modal}`
+    setModal(false)
+    setModalIng(false)
+    setActiveClass = modal || modalIng ? `${style.active}` : `${style.modal}`
   }
-  let setModalIngContenClass = props.modalIng
-    ? `${style.modal__content_ingr}`
-    : null
-  let setModalOrderContenClass = props.modal ? `${style.modal__content}` : null
+  let setModalIngContenClass = modalIng ? `${style.modal__content_ingr}` : null
+  let setModalOrderContenClass = modal ? `${style.modal__content}` : null
   return createPortal(
     <div className={setActiveClass}>
       <div className={setModalOrderContenClass}>
@@ -37,7 +35,7 @@ export default function Modal(props) {
           <CloseIcon type="primary" onClick={onCloseModal} />
         </div>
 
-        {props.modal && props.children[0]}
+        {modal && props.children[0]}
       </div>
 
       <div className={setModalIngContenClass}>
@@ -45,7 +43,7 @@ export default function Modal(props) {
           <h2 className={style.h2}>Детали ингредиента</h2>
           <CloseIcon type="primary" onClick={onCloseModal} />
         </div>
-        {props.modalIng && props.children[1]}
+        {modalIng && props.children[1]}
       </div>
       <ModalOverlay onCloseModal={onCloseModal} />
     </div>,
