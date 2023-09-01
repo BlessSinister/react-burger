@@ -19,6 +19,7 @@
   width: 100%;
   display: flex;
   justify-content: flex-end;
+  align-items: center;
 }
 .modal__content {
   padding: 20px;
@@ -57,13 +58,7 @@
   padding-left: 40px;
   padding-bottom: 60px;
 }
-.decor_wrapper_icon_ingr {
-  max-width: 640px;
-  height: 64px;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-}
+
 .h2 {
   color: var(--text-primary-light-standart-text, #f2f2f3);
   font-family: 'Jet Brains Mono';
@@ -71,4 +66,5 @@
   font-style: normal;
   font-weight: 700;
   line-height: 40px;
+  margin-right: 227px;
 }

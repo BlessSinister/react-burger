@@ -2,12 +2,21 @@ import const_style from './burger-constructor.module.css'
 import BurgConstItems from '../burger-constructor-items/burg-const-items'
 import OrderInfo from '../order-info/order-info'
 import PropTypes from 'prop-types'
-
-export default function BurgerConstructor({ data }) {
+import { CustomContext } from '../context/context'
+import { useContext } from 'react'
+import Modal from '../modal/modal'
+import OrderDetails from '../order-detailse/order-details'
+export default function BurgerConstructor({ data, orderNumber }) {
+  const { modal } = useContext(CustomContext)
   return (
     <section className={`${const_style.wrapper} mt-25`}>
       <BurgConstItems data={data} />
       <OrderInfo />
+      {modal && (
+        <Modal>
+          <OrderDetails orderNumber={orderNumber} />
+        </Modal>
+      )}
     </section>
   )
 }
@@ -18,4 +27,5 @@ BurgerConstructor.propTypes = {
   name: PropTypes.string,
   type: PropTypes.string,
   data: PropTypes.array,
+  orderNumber: PropTypes.string,
 }

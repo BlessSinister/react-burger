@@ -13,9 +13,9 @@ export const Context = (props) => {
     setIdElem(id)
     setModalIng(!modalIng)
   }
-  let arr = []
+  let ingredientDetails = []
   if (state.data) {
-    arr = state.data.filter((item) => item._id === idElem)
+    ingredientDetails = state.data.filter((item) => item._id === idElem)
   }
 
   const value = {
@@ -29,7 +29,7 @@ export const Context = (props) => {
     setModalIng,
     state,
     setState,
-    arr,
+    ingredientDetails,
   }
 
   return (
