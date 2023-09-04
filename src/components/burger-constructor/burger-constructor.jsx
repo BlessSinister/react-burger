@@ -12,11 +12,7 @@ export default function BurgerConstructor({ data, orderNumber }) {
     <section className={`${const_style.wrapper} mt-25`}>
       <BurgConstItems data={data} />
       <OrderInfo />
-      {modal && (
-        <Modal>
-          <OrderDetails orderNumber={orderNumber} />
-        </Modal>
-      )}
+      <Modal>{modal && <OrderDetails orderNumber={orderNumber} />}</Modal>
     </section>
   )
 }
