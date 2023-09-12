@@ -9,6 +9,7 @@ export const Context = (props) => {
   const modalFn = () => {
     setModal(!modal)
   }
+
   const modalIngFn = (id) => {
     setIdElem(id)
     setModalIng(!modalIng)
