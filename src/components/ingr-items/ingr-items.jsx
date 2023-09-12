@@ -12,7 +12,7 @@ export default function IngrItems({ image, name, price, modalIngFn, id }) {
 
   const dispatch = useDispatch()
   return (
-    <div onClick={() => dispatch(modalFlag())}>
+    <div onClick={() => dispatch(modalFlag(true))}>
       <div
         className={`${ing_items_style.card} mr-6 mb-8`}
         onClick={() => dispatch(modalChanger({ id: id, data: data }))}

@@ -15,7 +15,7 @@ export default function Modal({ modalIng, children }) {
     const keyCloseModal = (e) => {
       if (e.key === 'Escape') {
         setModal(false)
-        dispatch(modalFlag())
+        dispatch(modalFlag(false))
       }
     }
 
@@ -27,7 +27,7 @@ export default function Modal({ modalIng, children }) {
   let setActiveClass = modal || modalIng ? `${style.active}` : `${style.modal}`
   const onCloseModal = () => {
     setModal(false)
-    dispatch(modalFlag())
+    dispatch(modalFlag(false))
     setActiveClass = modal || modalIng ? `${style.active}` : `${style.modal}`
   }
   let setModalIngContenClass = modalIng
