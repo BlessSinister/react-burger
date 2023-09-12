@@ -3,7 +3,7 @@ import ingr_list_style from './ingr-list.module.css'
 import app_style from '../app/app.module.css'
 import PropTypes from 'prop-types'
 
-export default function IngrList({ data, modalIngFn }) {
+export default function IngrList({ data, modalIngFn, setModaling, modalIng }) {
   let bun, sauce, main
 
   if (data) {
@@ -25,7 +25,6 @@ export default function IngrList({ data, modalIngFn }) {
               price={item.price}
               image={item.image}
               name={item.name}
-              modalIngFn={modalIngFn}
               id={item._id}
             />
           ))}

@@ -1,7 +1,10 @@
+import { useSelector } from 'react-redux'
 import style from './ingredient-details.module.css'
 import PropTypes from 'prop-types'
 
-export default function IngredientDetails({ data }) {
+export default function IngredientDetails() {
+  const data = useSelector((state) => state.currentIngridient)
+
   return (
     <div
       onClick={(e) => e.stopPropagation()}

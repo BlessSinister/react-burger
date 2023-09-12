@@ -1,17 +1,24 @@
 import { configureStore } from '@reduxjs/toolkit'
-import { burgerIngridientsReducer } from './reducer'
+import {
+  burgerIngridientsReducer,
+  modalIngridientsReducer,
+  modalingFlagReducer,
+} from './reducer'
 
 export const store = configureStore({
   reducer: {
     burgerIngridients: burgerIngridientsReducer.reducer,
     ingridietnConstructor: burgerIngridientsReducer.reducer,
+    currentIngridient: modalIngridientsReducer.reducer,
+    modalIngridientFlag: modalingFlagReducer.reducer,
   },
   devTools: true,
   middleware: (defaultMiddleWare) => defaultMiddleWare().concat(),
   preloadedState: {
     burgerIngridients: [],
     ingridietnConstructor: [],
-    currentIngridient: {},
+    currentIngridient: { id: 1, data: [] },
     order: {},
+    modalIngridientFlag: false,
   },
 })

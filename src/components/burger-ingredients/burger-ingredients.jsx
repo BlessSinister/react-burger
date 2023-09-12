@@ -1,8 +1,8 @@
 import burg_ingr_style from './burger-ingredients.module.css'
 import Tabs from '../tabs/tabs'
 import IngrList from '../ing-list/ingr-list'
-import { CustomContext } from '../context/context'
-import { useContext, useEffect } from 'react'
+
+import { useEffect } from 'react'
 import Modal from '../modal/modal'
 import PropTypes from 'prop-types'
 import { useSelector, useDispatch } from 'react-redux'
@@ -10,8 +10,8 @@ import { getBurgerIngridientList } from '../../services/actions'
 import IngredientDetails from '../ingredient-details/ingredient-details'
 
 export default function BurgerIngredients() {
-  const { modalIngFn, modalIng } = useContext(CustomContext)
   const data = useSelector((state) => state.burgerIngridients)
+  const modalIng = useSelector((state) => state.modalIngridientFlag)
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -26,11 +26,11 @@ export default function BurgerIngredients() {
         Соберите бургер
       </h1>
       <Tabs />
-      <IngrList data={data} modalIngFn={modalIngFn} />
+      <IngrList data={data} />
 
       {modalIng && (
-        <Modal>
-          <IngredientDetails data={data} />
+        <Modal modalIng={modalIng}>
+          <IngredientDetails />
         </Modal>
       )}
     </section>

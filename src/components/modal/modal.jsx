@@ -5,25 +5,29 @@ import { createPortal } from 'react-dom'
 import ModalOverlay from '../modal-overlay/modal-overlay'
 import { CloseIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 import { CustomContext } from '../context/context'
-export default function Modal(props) {
-  const { modal, setModal, modalIng, setModalIng } = useContext(CustomContext)
+import { useDispatch } from 'react-redux'
+import { modalFlag } from '../../services/reducer'
+export default function Modal({ modalIng, children }) {
+  const { modal, setModal } = useContext(CustomContext)
+  const dispatch = useDispatch()
 
   useEffect(() => {
     const keyCloseModal = (e) => {
       if (e.key === 'Escape') {
         setModal(false)
-        setModalIng(false)
+        dispatch(modalFlag())
       }
     }
+
     document.addEventListener('keydown', keyCloseModal)
     return () => {
       document.removeEventListener('keydown', keyCloseModal)
     }
-  }, [setModal, setModalIng])
+  }, [setModal])
   let setActiveClass = modal || modalIng ? `${style.active}` : `${style.modal}`
   const onCloseModal = () => {
     setModal(false)
-    setModalIng(false)
+    dispatch(modalFlag())
     setActiveClass = modal || modalIng ? `${style.active}` : `${style.modal}`
   }
   let setModalIngContenClass = modalIng
@@ -38,7 +42,7 @@ export default function Modal(props) {
           {modalIng && <h2 className={style.h2}>Детали ингредиента</h2>}
           <CloseIcon type="primary" onClick={onCloseModal} />
         </div>
-        {props.children}
+        {children}
       </div>
       <ModalOverlay onCloseModal={onCloseModal} />
     </div>,
