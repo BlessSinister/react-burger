@@ -3,10 +3,19 @@ import BurgConstItems from '../burger-constructor-items/burg-const-items'
 import OrderInfo from '../order-info/order-info'
 import PropTypes from 'prop-types'
 import { CustomContext } from '../context/context'
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { getBurgerIngridientList } from '../../services/actions'
 import Modal from '../modal/modal'
 import OrderDetails from '../order-detailse/order-details'
-export default function BurgerConstructor({ data, orderNumber }) {
+export default function BurgerConstructor({ orderNumber }) {
+  const data = useSelector((state) => state.burgerIngridients)
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(getBurgerIngridientList)
+  }, [])
+
   const { modal } = useContext(CustomContext)
   return (
     <section className={`${const_style.wrapper} mt-25`}>
