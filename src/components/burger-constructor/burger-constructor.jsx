@@ -5,15 +5,15 @@ import PropTypes from 'prop-types'
 import { CustomContext } from '../context/context'
 import { useContext, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { getBurgerIngridientList } from '../../services/actions'
+import { getConstructorList } from '../../services/actions'
 import Modal from '../modal/modal'
 import OrderDetails from '../order-detailse/order-details'
 export default function BurgerConstructor({ orderNumber }) {
-  const data = useSelector((state) => state.burgerIngridients)
+  const data = useSelector((state) => state.ingridietnConstructor)
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(getBurgerIngridientList)
+    dispatch(getConstructorList)
   }, [])
 
   const { modal } = useContext(CustomContext)

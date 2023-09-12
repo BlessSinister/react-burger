@@ -4,6 +4,7 @@ import { burgerIngridientsReducer } from './reducer'
 export const store = configureStore({
   reducer: {
     burgerIngridients: burgerIngridientsReducer.reducer,
+    ingridietnConstructor: burgerIngridientsReducer.reducer,
   },
   devTools: true,
   middleware: (defaultMiddleWare) => defaultMiddleWare().concat(),

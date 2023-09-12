@@ -12,3 +12,16 @@ export const burgerIngridientsReducer = createSlice({
 })
 
 export const { addIngridientsList } = burgerIngridientsReducer.actions
+
+export const burgerConstructorReducer = createSlice({
+  name: 'burgerconstructor',
+  initialState: [],
+  reducers: {
+    addBurgerConstructorList: {
+      reducer: (state, action) => action.payload,
+    },
+    payload: [],
+  },
+})
+
+export const { addBurgerConstructorList } = burgerConstructorReducer.actions
