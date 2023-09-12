@@ -51,3 +51,14 @@ export const modalingFlagReducer = createSlice({
   },
 })
 export const { modalFlag } = modalingFlagReducer.actions
+
+export const modalOrderFlagReducer = createSlice({
+  name: 'modal',
+  initialState: false,
+  reducers: {
+    modalOrderFlag: {
+      reducer: (state, action) => action.payload,
+    },
+  },
+})
+export const { modalOrderFlag } = modalOrderFlagReducer.actions

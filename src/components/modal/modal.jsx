@@ -1,20 +1,18 @@
 import style from './modal.module.css'
 import propTypes from '../../utils/props-types'
-import { useEffect, useContext } from 'react'
+import { useEffect } from 'react'
 import { createPortal } from 'react-dom'
 import ModalOverlay from '../modal-overlay/modal-overlay'
 import { CloseIcon } from '@ya.praktikum/react-developer-burger-ui-components'
-import { CustomContext } from '../context/context'
 import { useDispatch } from 'react-redux'
-import { modalFlag } from '../../services/reducer'
-export default function Modal({ modalIng, children }) {
-  const { modal, setModal } = useContext(CustomContext)
+import { modalFlag, modalOrderFlag } from '../../services/reducer'
+export default function Modal({ modalIng, children, modal }) {
   const dispatch = useDispatch()
 
   useEffect(() => {
     const keyCloseModal = (e) => {
       if (e.key === 'Escape') {
-        setModal(false)
+        dispatch(modalOrderFlag(false))
         dispatch(modalFlag(false))
       }
     }
@@ -23,10 +21,10 @@ export default function Modal({ modalIng, children }) {
     return () => {
       document.removeEventListener('keydown', keyCloseModal)
     }
-  }, [setModal])
+  }, [])
   let setActiveClass = modal || modalIng ? `${style.active}` : `${style.modal}`
   const onCloseModal = () => {
-    setModal(false)
+    dispatch(modalOrderFlag(false))
     dispatch(modalFlag(false))
     setActiveClass = modal || modalIng ? `${style.active}` : `${style.modal}`
   }

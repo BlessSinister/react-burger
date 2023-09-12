@@ -4,10 +4,10 @@ import {
   CurrencyIcon,
   Button,
 } from '@ya.praktikum/react-developer-burger-ui-components'
-import React, { useContext } from 'react'
-import { CustomContext } from '../context/context'
+import { useDispatch } from 'react-redux'
+import { modalOrderFlag } from '../../services/reducer'
 export default function OrderInfo() {
-  const { modalFn } = useContext(CustomContext)
+  const dispatch = useDispatch()
 
   return (
     <div className={style.wrapper}>
@@ -15,7 +15,12 @@ export default function OrderInfo() {
         <p className={`ml-2 text text_type_main-large ${style.p}`}>610</p>
         <CurrencyIcon type="primary" />
       </div>
-      <Button htmlType="button" type="primary" size="large" onClick={modalFn}>
+      <Button
+        htmlType="button"
+        type="primary"
+        size="large"
+        onClick={() => dispatch(modalOrderFlag(true))}
+      >
         Оформить заказ
       </Button>
     </div>
