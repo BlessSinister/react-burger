@@ -2,6 +2,7 @@ import style from './ingredient-details.module.css'
 import PropTypes from 'prop-types'
 
 export default function IngredientDetails({ data }) {
+  console.log(data)
   return (
     <div
       onClick={(e) => e.stopPropagation()}

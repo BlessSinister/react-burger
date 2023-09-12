@@ -7,7 +7,7 @@ import Modal from '../modal/modal'
 import PropTypes from 'prop-types'
 import IngredientDetails from '../ingredient-details/ingredient-details'
 export default function BurgerIngredients({ data }) {
-  const { modalIngFn, ingredientDetails, modalIng } = useContext(CustomContext)
+  const { modalIngFn, modalIng } = useContext(CustomContext)
   return (
     <section className={`${burg_ingr_style.wrapper} mr-14`}>
       <h1
@@ -20,7 +20,7 @@ export default function BurgerIngredients({ data }) {
 
       {modalIng && (
         <Modal>
-          <IngredientDetails data={ingredientDetails} />
+          <IngredientDetails data={data} />
         </Modal>
       )}
     </section>

@@ -5,14 +5,18 @@ import BurgerConstructor from '../burger-constructor/burger-constructor'
 import { useContext, useEffect, useState } from 'react'
 import { getData } from '../../utils/api'
 import { CustomContext } from '../context/context'
+import { useSelector, useDispatch } from 'react-redux'
+import { getBurgerIngridientList } from '../../services/actions'
 
 export default function App() {
-  const { setState, state } = useContext(CustomContext)
+  const burgerIngridientList = useSelector((state) => state.burgerIngridients)
+  const dispatch = useDispatch()
+
   const [orderNumber] = useState('034546')
 
   useEffect(() => {
-    getData().then((data) => setState(data))
-  }, [setState])
+    dispatch(getBurgerIngridientList)
+  }, [])
 
   return (
     <>
@@ -20,8 +24,8 @@ export default function App() {
         <AppHeader />
       </header>
       <main>
-        <BurgerIngredients data={state.data} />
-        <BurgerConstructor data={state.data} orderNumber={orderNumber} />
+        <BurgerIngredients data={burgerIngridientList} />
+        {/* <BurgerConstructor data={state.data} orderNumber={orderNumber} /> */}
       </main>
     </>
   )
