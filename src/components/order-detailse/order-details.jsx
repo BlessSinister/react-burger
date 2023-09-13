@@ -1,6 +1,8 @@
+import { useSelector } from 'react-redux'
 import style from './order-details.module.css'
 import PropTypes from 'prop-types'
-export default function OrderDetails({ orderNumber }) {
+export default function OrderDetails() {
+  const orderNumber = useSelector((state) => state.order)
   return (
     <div className={style.modal}>
       <div

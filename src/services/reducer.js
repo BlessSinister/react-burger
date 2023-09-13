@@ -62,3 +62,14 @@ export const modalOrderFlagReducer = createSlice({
   },
 })
 export const { modalOrderFlag } = modalOrderFlagReducer.actions
+
+export const orderConstructorInfo = createSlice({
+  name: 'orderInfo',
+  initialState: 12,
+  reducers: {
+    orderInfoGetter: {
+      reducer: (state, action) => action.payload,
+    },
+  },
+})
+export const { orderInfoGetter } = orderConstructorInfo.actions

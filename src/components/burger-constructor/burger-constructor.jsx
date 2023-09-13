@@ -7,19 +7,32 @@ import { useSelector, useDispatch } from 'react-redux'
 import { getConstructorList } from '../../services/actions'
 import Modal from '../modal/modal'
 import OrderDetails from '../order-detailse/order-details'
+
 export default function BurgerConstructor({ orderNumber }) {
   const data = useSelector((state) => state.ingridietnConstructor)
   const modal = useSelector((state) => state.modalOrderFlag)
-  const dispatch = useDispatch()
 
+  const dispatch = useDispatch()
   useEffect(() => {
     dispatch(getConstructorList)
   }, [])
-  console.log(modal)
+  const data1 = []
+
+  if (data.length > 0) {
+    for (let i = 1; i < 8; i++) {
+      data1.push(data[i])
+      if (id.length < 8) {
+        id.push(data[i]._id)
+      }
+    }
+  } else {
+    return
+  }
+  console.log(id)
   return (
     <section className={`${const_style.wrapper} mt-25`}>
-      <BurgConstItems data={data} />
-      <OrderInfo />
+      <BurgConstItems data={data} data1={data1} />
+      <OrderInfo id={id} />
       {modal && (
         <Modal modal={modal}>
           <OrderDetails orderNumber={orderNumber} />
@@ -37,3 +50,4 @@ BurgerConstructor.propTypes = {
   data: PropTypes.array,
   orderNumber: PropTypes.string,
 }
+export const id = []

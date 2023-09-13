@@ -4,16 +4,7 @@ import app_style from '../app/app.module.css'
 import { DragIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 import PropTypes from 'prop-types'
 
-export default function BurgConstItems({ data }) {
-  const data1 = []
-
-  if (data.length > 0) {
-    for (let i = 1; i < 8; i++) {
-      data1.push(data[i])
-    }
-  } else {
-    return
-  }
+export default function BurgConstItems({ data, data1 }) {
   return (
     <div className={`${burg_items_style.wrapper} mb-10 ${app_style.scroll}`}>
       <div className={burg_items_style.content_container}>
@@ -26,7 +17,7 @@ export default function BurgConstItems({ data }) {
             thumbnail={data[0].image}
           />
         </div>
-        {data.map((item) => (
+        {data1.map((item) => (
           <div className={burg_items_style.decor_wrap_dnd} key={item._id}>
             <DragIcon type="primary" />
             <ConstructorElement

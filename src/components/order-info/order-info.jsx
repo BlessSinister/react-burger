@@ -4,8 +4,9 @@ import {
   CurrencyIcon,
   Button,
 } from '@ya.praktikum/react-developer-burger-ui-components'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { modalOrderFlag } from '../../services/reducer'
+import { getOrderInfo } from '../../services/actions'
 export default function OrderInfo() {
   const dispatch = useDispatch()
 
@@ -15,14 +16,16 @@ export default function OrderInfo() {
         <p className={`ml-2 text text_type_main-large ${style.p}`}>610</p>
         <CurrencyIcon type="primary" />
       </div>
-      <Button
-        htmlType="button"
-        type="primary"
-        size="large"
-        onClick={() => dispatch(modalOrderFlag(true))}
-      >
-        Оформить заказ
-      </Button>
+      <div onClick={() => dispatch(modalOrderFlag(true))}>
+        <Button
+          htmlType="button"
+          type="primary"
+          size="large"
+          onClick={() => dispatch(getOrderInfo)}
+        >
+          Оформить заказ
+        </Button>
+      </div>
     </div>
   )
 }

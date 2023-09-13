@@ -4,6 +4,7 @@ import {
   modalIngridientsReducer,
   modalOrderFlagReducer,
   modalingFlagReducer,
+  orderConstructorInfo,
 } from './reducer'
 
 export const store = configureStore({
@@ -13,6 +14,7 @@ export const store = configureStore({
     currentIngridient: modalIngridientsReducer.reducer,
     modalIngridientFlag: modalingFlagReducer.reducer,
     modalOrderFlag: modalOrderFlagReducer.reducer,
+    order: orderConstructorInfo.reducer,
   },
   devTools: true,
   middleware: (defaultMiddleWare) => defaultMiddleWare().concat(),
@@ -20,8 +22,8 @@ export const store = configureStore({
     burgerIngridients: [],
     ingridietnConstructor: [],
     currentIngridient: { id: 1, data: [] },
-    order: {},
     modalIngridientFlag: false,
     modalOrderFlag: false,
+    order: null,
   },
 })
