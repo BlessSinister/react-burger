@@ -3,7 +3,7 @@ import ingr_list_style from './ingr-list.module.css'
 import app_style from '../app/app.module.css'
 import PropTypes from 'prop-types'
 
-export default function IngrList({ data, modalIngFn, setModaling, modalIng }) {
+export default function IngrList({ data, modalIngFn, tabScrollChanger }) {
   let bun, sauce, main
 
   if (data) {
@@ -15,9 +15,14 @@ export default function IngrList({ data, modalIngFn, setModaling, modalIng }) {
   }
 
   return (
-    <div className={`${ingr_list_style.ing_container} ${app_style.scroll}`}>
+    <div
+      className={`${ingr_list_style.ing_container} ${app_style.scroll}`}
+      onScroll={tabScrollChanger}
+    >
       <div>
-        <h2 className={`text text_type_main-medium mb-6`}>Булки</h2>
+        <h2 className={`text text_type_main-medium mb-6`} id="main_bun">
+          Булки
+        </h2>
         <div className={ingr_list_style.wrapper}>
           {bun.map((item) => (
             <IngrItems

@@ -16,23 +16,18 @@ export default function BurgerConstructor({ orderNumber }) {
   useEffect(() => {
     dispatch(getConstructorList)
   }, [])
-  const data1 = []
 
+  let bun
   if (data.length > 0) {
-    for (let i = 1; i < 8; i++) {
-      data1.push(data[i])
-      if (id.length < 8) {
-        id.push(data[i]._id)
-      }
-    }
+    bun = [...data].slice(0, 1)
   } else {
     return
   }
-  console.log(id)
+
   return (
     <section className={`${const_style.wrapper} mt-25`}>
-      <BurgConstItems data={data} data1={data1} />
-      <OrderInfo id={id} />
+      <BurgConstItems data={data} bun={bun} />
+      <OrderInfo />
       {modal && (
         <Modal modal={modal}>
           <OrderDetails orderNumber={orderNumber} />
@@ -50,4 +45,3 @@ BurgerConstructor.propTypes = {
   data: PropTypes.array,
   orderNumber: PropTypes.string,
 }
-export const id = []

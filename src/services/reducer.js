@@ -18,7 +18,7 @@ export const burgerConstructorReducer = createSlice({
   initialState: [],
   reducers: {
     addBurgerConstructorList: {
-      reducer: (state, action) => action.payload,
+      reducer: (state, action) => action.payload.slice(0, 8),
     },
     payload: [],
   },
@@ -65,7 +65,7 @@ export const { modalOrderFlag } = modalOrderFlagReducer.actions
 
 export const orderConstructorInfo = createSlice({
   name: 'orderInfo',
-  initialState: 12,
+  initialState: 0,
   reducers: {
     orderInfoGetter: {
       reducer: (state, action) => action.payload,
