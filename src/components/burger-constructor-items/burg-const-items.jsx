@@ -3,11 +3,29 @@ import burg_items_style from './burg-const-tems.module.css'
 import app_style from '../app/app.module.css'
 import { DragIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 import PropTypes from 'prop-types'
+import { useDrop } from 'react-dnd/dist/hooks/useDrop'
+import { useDispatch, useSelector } from 'react-redux'
+import { dropTargetSetter } from '../../services/reducer'
 
-export default function BurgConstItems({ data, bun }) {
+export default function BurgConstItems({ bun }) {
+  const dispatch = useDispatch()
+  const [, DropTargetRef] = useDrop(() => ({
+    accept: 'ingridients',
+    drop(itemId) {
+      dispatch(dropTargetSetter(itemId))
+    },
+  }))
+  let data = useSelector((state) => state.dropTargetElem)
+  let x = document.querySelectorAll('.constructor-element__action svg')
+  let arr = [...x]
+  arr.shift()
+  arr.pop()
+  console.log(arr)
+  let counter = 0
+  // $0.getAttribute('d').startsWith('M18.9391') иконка помойки начинается со строки M18 можем найти подстроку и выделить тем самым только помойки свг
   return (
     <div className={`${burg_items_style.wrapper} mb-10 ${app_style.scroll}`}>
-      <div className={burg_items_style.content_container}>
+      <div className={burg_items_style.content_container} ref={DropTargetRef}>
         <div className={burg_items_style.decor_wrap}>
           <ConstructorElement
             type="top"
@@ -18,7 +36,11 @@ export default function BurgConstItems({ data, bun }) {
           />
         </div>
         {data.map((item) => (
-          <div className={burg_items_style.decor_wrap_dnd} key={item._id}>
+          <div
+            className={burg_items_style.decor_wrap_dnd}
+            key={++counter}
+            set-id={++counter}
+          >
             <DragIcon type="primary" />
             <ConstructorElement
               text={item.name}

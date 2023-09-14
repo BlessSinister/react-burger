@@ -2,8 +2,7 @@ import IngrItems from '../ingr-items/ingr-items'
 import ingr_list_style from './ingr-list.module.css'
 import app_style from '../app/app.module.css'
 import PropTypes from 'prop-types'
-
-export default function IngrList({ data, modalIngFn, tabScrollChanger }) {
+export default function IngrList({ data, modalIngFn, tabScrollChanger, id }) {
   let bun, sauce, main
 
   if (data) {

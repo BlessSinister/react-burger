@@ -11,6 +11,8 @@ import IngredientDetails from '../ingredient-details/ingredient-details'
 
 export default function BurgerIngredients() {
   const data = useSelector((state) => state.burgerIngridients)
+  const id = data.map((item) => item._id)
+
   const modalIng = useSelector((state) => state.modalIngridientFlag)
   const dispatch = useDispatch()
   const [current, setCurrent] = useState('one')
@@ -44,7 +46,7 @@ export default function BurgerIngredients() {
         Соберите бургер
       </h1>
       <Tabs tabChanger={tabScrollChanger} current={current} />
-      <IngrList data={data} tabScrollChanger={tabScrollChanger} />
+      <IngrList data={data} tabScrollChanger={tabScrollChanger} id={id} />
 
       {modalIng && (
         <Modal modalIng={modalIng}>

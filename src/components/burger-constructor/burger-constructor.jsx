@@ -8,7 +8,7 @@ import { getConstructorList } from '../../services/actions'
 import Modal from '../modal/modal'
 import OrderDetails from '../order-detailse/order-details'
 
-export default function BurgerConstructor({ orderNumber }) {
+export default function BurgerConstructor() {
   const data = useSelector((state) => state.ingridietnConstructor)
   const modal = useSelector((state) => state.modalOrderFlag)
 
@@ -30,7 +30,7 @@ export default function BurgerConstructor({ orderNumber }) {
       <OrderInfo />
       {modal && (
         <Modal modal={modal}>
-          <OrderDetails orderNumber={orderNumber} />
+          <OrderDetails />
         </Modal>
       )}
     </section>

@@ -2,6 +2,7 @@ import { configureStore } from '@reduxjs/toolkit'
 import {
   burgerConstructorReducer,
   burgerIngridientsReducer,
+  dropTargetReducer,
   modalIngridientsReducer,
   modalOrderFlagReducer,
   modalingFlagReducer,
@@ -16,6 +17,7 @@ export const store = configureStore({
     modalIngridientFlag: modalingFlagReducer.reducer,
     modalOrderFlag: modalOrderFlagReducer.reducer,
     order: orderConstructorInfo.reducer,
+    dropTargetElem: dropTargetReducer.reducer,
   },
   devTools: true,
   middleware: (defaultMiddleWare) => defaultMiddleWare().concat(),
@@ -26,5 +28,6 @@ export const store = configureStore({
     modalIngridientFlag: false,
     modalOrderFlag: false,
     order: 0,
+    dropTargetElem: [],
   },
 })

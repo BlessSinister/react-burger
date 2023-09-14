@@ -3,16 +3,18 @@ import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components
 import PropTypes from 'prop-types'
 import { modalChanger, modalFlag } from '../../services/reducer'
 import { useDispatch, useSelector } from 'react-redux'
+import { useDrag } from 'react-dnd'
 
-export default function IngrItems({ image, name, price, modalIngFn, id }) {
-  // const openModalIng = (id) => {
-  //   modalIngFn(id)
-  // }
+export default function IngrItems({ image, name, price, id }) {
   const data = useSelector((state) => state.burgerIngridients)
+  const [, drag] = useDrag(() => ({
+    type: 'ingridients',
+    item: { id, data },
+  }))
 
   const dispatch = useDispatch()
   return (
-    <div onClick={() => dispatch(modalFlag(true))}>
+    <div onClick={() => dispatch(modalFlag(true))} ref={drag}>
       <div
         className={`${ing_items_style.card} mr-6 mb-8`}
         onClick={() => dispatch(modalChanger({ id: id, data: data }))}

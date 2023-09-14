@@ -18,7 +18,11 @@ export const burgerConstructorReducer = createSlice({
   initialState: [],
   reducers: {
     addBurgerConstructorList: {
-      reducer: (state, action) => action.payload.slice(0, 8),
+      reducer: (state, action) => {
+        if (action.payload.length > 1) {
+          return action.payload.slice(0, 8)
+        }
+      },
     },
     payload: [],
   },
@@ -73,3 +77,20 @@ export const orderConstructorInfo = createSlice({
   },
 })
 export const { orderInfoGetter } = orderConstructorInfo.actions
+
+export const dropTargetReducer = createSlice({
+  name: 'dropTarget',
+  initialState: [],
+  reducers: {
+    dropTargetSetter: {
+      reducer: (state, action) => {
+        state.push(
+          ...action.payload.data.filter(
+            (item) => item._id === action.payload.id
+          )
+        )
+      },
+    },
+  },
+})
+export const { dropTargetSetter } = dropTargetReducer.actions
