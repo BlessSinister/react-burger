@@ -91,6 +91,10 @@ export const dropTargetReducer = createSlice({
         )
       },
     },
+    mixConstructorItems: {
+      reducer: (state, action) => action.payload.map((item) => item),
+    },
   },
 })
-export const { dropTargetSetter } = dropTargetReducer.actions
+export const { dropTargetSetter, mixConstructorItems } =
+  dropTargetReducer.actions

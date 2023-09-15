@@ -6,8 +6,9 @@ import PropTypes from 'prop-types'
 import { useDrop } from 'react-dnd/dist/hooks/useDrop'
 import { useDispatch, useSelector } from 'react-redux'
 import { dropTargetSetter } from '../../services/reducer'
+import BoxDndController from './box-dnd-controller'
 
-export default function BurgConstItems({ bun }) {
+export default function BurgConstItems({ bun, counter }) {
   const dispatch = useDispatch()
   const [, DropTargetRef] = useDrop(() => ({
     accept: 'ingridients',
@@ -16,12 +17,13 @@ export default function BurgConstItems({ bun }) {
     },
   }))
   let data = useSelector((state) => state.dropTargetElem)
-  let x = document.querySelectorAll('.constructor-element__action svg')
-  let arr = [...x]
-  arr.shift()
-  arr.pop()
-  console.log(arr)
-  let counter = 0
+
+  // let x = document.querySelectorAll('.constructor-element__action svg')
+  // let arr = [...x]
+  // arr.shift()
+  // arr.pop()
+  // console.log(arr)
+
   // $0.getAttribute('d').startsWith('M18.9391') иконка помойки начинается со строки M18 можем найти подстроку и выделить тем самым только помойки свг
   return (
     <div className={`${burg_items_style.wrapper} mb-10 ${app_style.scroll}`}>
@@ -35,20 +37,25 @@ export default function BurgConstItems({ bun }) {
             thumbnail={bun[0].image}
           />
         </div>
-        {data.map((item) => (
-          <div
-            className={burg_items_style.decor_wrap_dnd}
+
+        {data.map((item, index) => (
+          <BoxDndController
+            style={{ width: '100%', heitgh: '200px' }}
+            data={data}
+            index={index}
             key={++counter}
-            set-id={++counter}
           >
-            <DragIcon type="primary" />
-            <ConstructorElement
-              text={item.name}
-              price={item.price}
-              thumbnail={item.image}
-            />
-          </div>
+            <div className={burg_items_style.decor_wrap_dnd}>
+              <DragIcon type="primary" />
+              <ConstructorElement
+                text={item.name}
+                price={item.price}
+                thumbnail={item.image}
+              />
+            </div>
+          </BoxDndController>
         ))}
+
         <div className={burg_items_style.decor_wrap}>
           <ConstructorElement
             type="bottom"

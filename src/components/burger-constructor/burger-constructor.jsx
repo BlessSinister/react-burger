@@ -23,10 +23,10 @@ export default function BurgerConstructor() {
   } else {
     return
   }
-
+  let counter = 0
   return (
     <section className={`${const_style.wrapper} mt-25`}>
-      <BurgConstItems data={data} bun={bun} />
+      <BurgConstItems data={data} bun={bun} counter={counter} />
       <OrderInfo />
       {modal && (
         <Modal modal={modal}>
