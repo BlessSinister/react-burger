@@ -11,6 +11,7 @@ import IngredientDetails from '../ingredient-details/ingredient-details'
 
 export default function BurgerIngredients() {
   const data = useSelector((state) => state.burgerIngridients)
+  console.log(data)
   const id = data.map((item) => item._id)
 
   const modalIng = useSelector((state) => state.modalIngridientFlag)

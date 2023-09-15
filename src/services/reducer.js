@@ -86,7 +86,10 @@ export const dropTargetReducer = createSlice({
       reducer: (state, action) => {
         state.push(
           ...action.payload.data.filter(
-            (item) => item._id === action.payload.id
+            (item) =>
+              item._id === action.payload.id &&
+              action.payload.id !== '643d69a5c3f7b9001cfa093c' &&
+              action.payload.id !== '643d69a5c3f7b9001cfa093d'
           )
         )
       },
@@ -94,7 +97,22 @@ export const dropTargetReducer = createSlice({
     mixConstructorItems: {
       reducer: (state, action) => action.payload.map((item) => item),
     },
+    deleteItems: {
+      reducer: (state, action) =>
+        state.filter((item, index) => index !== action.payload),
+    },
   },
 })
-export const { dropTargetSetter, mixConstructorItems } =
+export const { dropTargetSetter, mixConstructorItems, deleteItems } =
   dropTargetReducer.actions
+
+export const bunInfo = createSlice({
+  name: 'orderInfo',
+  initialState: [{}],
+  reducers: {
+    bunChanger: {
+      reducer: (state, action) => action.payload,
+    },
+  },
+})
+export const { bunChanger } = bunInfo.actions
