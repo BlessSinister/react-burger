@@ -5,25 +5,38 @@ import { DragIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 import PropTypes from 'prop-types'
 import { useDrop } from 'react-dnd/dist/hooks/useDrop'
 import { useDispatch, useSelector } from 'react-redux'
-import { deleteItems, dropTargetSetter } from '../../services/reducer'
+import {
+  bunChanger,
+  deleteItems,
+  dropTargetSetter,
+} from '../../services/reducer'
 import BoxDndController from './box-dnd-controller'
 
-export default function BurgConstItems({ bun, counter }) {
+export default function BurgConstItems({ counter }) {
   const dispatch = useDispatch()
-
   const [, DropTargetRef] = useDrop(() => ({
     accept: 'ingridients',
     drop(itemId) {
-      dispatch(dropTargetSetter(itemId))
+      if (
+        itemId.id !== '643d69a5c3f7b9001cfa093c' &&
+        itemId.id !== '643d69a5c3f7b9001cfa093d'
+      ) {
+        dispatch(dropTargetSetter(itemId))
+      } else {
+        dispatch(bunChanger(itemId))
+      }
     },
   }))
+
   let dropElements = useSelector((state) => state.dropTargetElem)
   let bunInfo = useSelector((state) => state.bunState)
-  console.log(bunInfo)
 
   return (
-    <div className={`${burg_items_style.wrapper} mb-10 ${app_style.scroll}`}>
-      <div className={burg_items_style.content_container} ref={DropTargetRef}>
+    <div
+      className={`${burg_items_style.wrapper} mb-10 ${app_style.scroll}`}
+      ref={DropTargetRef}
+    >
+      <div className={burg_items_style.content_container}>
         <div className={burg_items_style.decor_wrap}>
           {bunInfo.map((item) => (
             <ConstructorElement
@@ -35,6 +48,7 @@ export default function BurgConstItems({ bun, counter }) {
             />
           ))}
         </div>
+
         {dropElements.map((item, index) => (
           <BoxDndController
             style={{ width: '100%', heitgh: '80px' }}
@@ -44,7 +58,7 @@ export default function BurgConstItems({ bun, counter }) {
           >
             <div
               className={burg_items_style.decor_wrap_dnd}
-              style={{ position: 'relative' }}
+              // style={{ position: 'relative' }}
             >
               <div
                 onClick={() => dispatch(deleteItems(index))}
@@ -54,6 +68,7 @@ export default function BurgConstItems({ bun, counter }) {
                   width: 25,
                   height: 25,
                   marginLeft: '475px',
+                  cursor: 'pointer',
                 }}
               ></div>
               <DragIcon type="primary" />

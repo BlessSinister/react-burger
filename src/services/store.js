@@ -31,7 +31,6 @@ export const store = configureStore({
     modalIngridientFlag: false,
     modalOrderFlag: false,
     order: 0,
-    dropTargetElem: [],
     bunState: [
       {
         calories: 420,
@@ -48,5 +47,6 @@ export const store = configureStore({
         _id: '643d69a5c3f7b9001cfa093c',
       },
     ],
+    dropTargetElem: [],
   },
 })

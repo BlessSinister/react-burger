@@ -111,7 +111,24 @@ export const bunInfo = createSlice({
   initialState: [{}],
   reducers: {
     bunChanger: {
-      reducer: (state, action) => action.payload,
+      reducer: (state, action) => {
+        if (
+          '643d69a5c3f7b9001cfa093c' === action.payload.id ||
+          '643d69a5c3f7b9001cfa093d' === action.payload.id
+        ) {
+          state.shift()
+        }
+
+        state.push(
+          ...action.payload.data.filter(
+            (item) =>
+              (item._id === '643d69a5c3f7b9001cfa093c' &&
+                '643d69a5c3f7b9001cfa093c' === action.payload.id) ||
+              (item._id === '643d69a5c3f7b9001cfa093d' &&
+                '643d69a5c3f7b9001cfa093d' === action.payload.id)
+          )
+        )
+      },
     },
   },
 })

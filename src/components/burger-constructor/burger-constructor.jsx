@@ -17,16 +17,10 @@ export default function BurgerConstructor() {
     dispatch(getConstructorList)
   }, [])
 
-  let bun
-  if (data.length > 0) {
-    bun = [...data].slice(0, 1)
-  } else {
-    return
-  }
   let counter = 0
   return (
     <section className={`${const_style.wrapper} mt-25`}>
-      <BurgConstItems data={data} bun={bun} counter={counter} />
+      <BurgConstItems data={data} counter={counter} />
       <OrderInfo />
       {modal && (
         <Modal modal={modal}>
