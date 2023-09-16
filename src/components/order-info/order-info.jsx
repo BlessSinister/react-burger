@@ -9,8 +9,11 @@ import { modalOrderFlag, orderInfoGetter } from '../../services/reducer'
 
 export default function OrderInfo() {
   const dispatch = useDispatch()
-  const id = useSelector((state) => state.dropTargetElem)
-  let sumPrice = id.map((item) => item.price).reduce((a, b) => a + b, 0) + 400
+  const dropList = useSelector((state) => state.dropTargetElem)
+  const bunPrice = useSelector((state) => state.bunState[0].price) * 2
+  const id = dropList.map((item) => item._id)
+  let sumPrice =
+    dropList.map((item) => item.price).reduce((a, b) => a + b, 0) + bunPrice
   const getOrderInfo = async (dispatch) => {
     fetch('https://norma.nomoreparties.space/api/orders', {
       method: 'post',
