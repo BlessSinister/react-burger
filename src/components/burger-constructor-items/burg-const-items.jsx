@@ -51,25 +51,15 @@ export default function BurgConstItems({ counter }) {
 
         {dropElements.map((item, index) => (
           <BoxDndController
-            style={{ width: '100%', heitgh: '80px' }}
+            className={burg_items_style.box_dnd_wrapper}
             data={dropElements}
             index={index}
             key={++counter}
           >
-            <div
-              className={burg_items_style.decor_wrap_dnd}
-              // style={{ position: 'relative' }}
-            >
+            <div className={burg_items_style.decor_wrap_dnd}>
               <div
                 onClick={() => dispatch(deleteItems(index))}
-                style={{
-                  zIndex: 2,
-                  position: 'absolute',
-                  width: 25,
-                  height: 25,
-                  marginLeft: '475px',
-                  cursor: 'pointer',
-                }}
+                className={burg_items_style.trash_decor}
               ></div>
               <DragIcon type="primary" />
               <ConstructorElement
