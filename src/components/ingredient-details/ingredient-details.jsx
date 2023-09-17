@@ -1,7 +1,8 @@
 import { useSelector } from 'react-redux'
 import style from './ingredient-details.module.css'
+import { CloseIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 
-export default function IngredientDetails() {
+export default function IngredientDetails({ onCloseModal }) {
   const data = useSelector((state) => state.currentIngridient)
 
   return (
@@ -9,6 +10,10 @@ export default function IngredientDetails() {
       onClick={(e) => e.stopPropagation()}
       className={`${style.flex_container} p-10 pb-15`}
     >
+      <div className={`${style.decor_wrapper_icon} mb-4`}>
+        <h2 className={style.h2}>Детали ингредиента</h2>
+        <CloseIcon type="primary" onClick={onCloseModal} />
+      </div>
       <div className={`${style.main_card_img} mb-4`}>
         <img src={data[0].image_large} className={style.img} alt="" />
       </div>

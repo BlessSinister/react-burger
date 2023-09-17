@@ -1,6 +1,7 @@
 import { useSelector } from 'react-redux'
 import style from './order-details.module.css'
-export default function OrderDetails() {
+import { CloseIcon } from '@ya.praktikum/react-developer-burger-ui-components'
+export default function OrderDetails({ onCloseModal }) {
   const orderNumber = useSelector((state) => state.order)
   return (
     <div className={style.modal}>
@@ -8,8 +9,10 @@ export default function OrderDetails() {
         className={`${style.modal__content}`}
         onClick={(e) => e.stopPropagation()}
       >
+        <div className={`${style.decor_wrapper_icon} `}>
+          <CloseIcon type="primary" onClick={onCloseModal} />
+        </div>
         <h2 className={`${style.h2} mb-8`}>{orderNumber}</h2>
-
         <p className={`${style.p_content_item1}  ${style.p} mb-15`}>
           идентификатор заказа
         </p>

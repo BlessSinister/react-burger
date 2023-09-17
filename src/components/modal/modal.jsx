@@ -3,7 +3,7 @@ import propTypes from '../../utils/props-types'
 import { useEffect } from 'react'
 import { createPortal } from 'react-dom'
 import ModalOverlay from '../modal-overlay/modal-overlay'
-import { CloseIcon } from '@ya.praktikum/react-developer-burger-ui-components'
+
 import { useDispatch } from 'react-redux'
 import { modalFlag, modalOrderFlag } from '../../services/reducer'
 import PropTypes from 'prop-types'
@@ -34,15 +34,10 @@ export default function Modal({ modalIng, children, modal }) {
     : modal
     ? `${style.modal__content}`
     : null
+
   return createPortal(
     <div className={setActiveClass}>
-      <div className={setModalIngContenClass}>
-        <div className={`${style.decor_wrapper_icon} mb-4`}>
-          {modalIng && <h2 className={style.h2}>Детали ингредиента</h2>}
-          <CloseIcon type="primary" onClick={onCloseModal} />
-        </div>
-        {children}
-      </div>
+      <div className={setModalIngContenClass}>{children}</div>
       <ModalOverlay onCloseModal={onCloseModal} />
     </div>,
     document.getElementById('modal-root')

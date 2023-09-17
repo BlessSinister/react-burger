@@ -7,18 +7,20 @@ import Modal from '../modal/modal'
 import { useSelector, useDispatch } from 'react-redux'
 import { getBurgerIngridientList } from '../../services/actions'
 import IngredientDetails from '../ingredient-details/ingredient-details'
+import { modalFlag, modalOrderFlag } from '../../services/reducer'
 
-export default function BurgerIngredients() {
+export default function BurgerIngredients({ onCloseModal }) {
+  const modalIng = useSelector((state) => state.modalIngridientFlag)
+
   const data = useSelector((state) => state.burgerIngridients)
 
   const id = data.map((item) => item._id)
 
-  const modalIng = useSelector((state) => state.modalIngridientFlag)
   const dispatch = useDispatch()
   const [current, setCurrent] = useState('one')
   useEffect(() => {
-    dispatch(getBurgerIngridientList)
-  }, [])
+    dispatch(getBurgerIngridientList())
+  }, [dispatch])
   let titlePlace = document.getElementById('main_bun')
 
   const tabScrollChanger = () => {
@@ -38,6 +40,7 @@ export default function BurgerIngredients() {
       }
     }
   }
+
   return (
     <section className={`${burg_ingr_style.wrapper} mr-14`}>
       <h1
@@ -50,7 +53,7 @@ export default function BurgerIngredients() {
 
       {modalIng && (
         <Modal modalIng={modalIng}>
-          <IngredientDetails />
+          <IngredientDetails onCloseModal={onCloseModal} />
         </Modal>
       )}
     </section>

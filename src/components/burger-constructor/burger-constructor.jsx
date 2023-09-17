@@ -7,22 +7,21 @@ import { getConstructorList } from '../../services/actions'
 import Modal from '../modal/modal'
 import OrderDetails from '../order-detailse/order-details'
 
-export default function BurgerConstructor() {
+export default function BurgerConstructor({ onCloseModal }) {
   const modal = useSelector((state) => state.modalOrderFlag)
 
   const dispatch = useDispatch()
   useEffect(() => {
-    dispatch(getConstructorList)
+    dispatch(getConstructorList())
   }, [])
 
-  let counter = 0
   return (
     <section className={`${const_style.wrapper} mt-25`}>
-      <BurgConstItems counter={counter} />
+      <BurgConstItems />
       <OrderInfo />
       {modal && (
         <Modal modal={modal}>
-          <OrderDetails />
+          <OrderDetails onCloseModal={onCloseModal} />
         </Modal>
       )}
     </section>

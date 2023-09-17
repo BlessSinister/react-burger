@@ -10,6 +10,7 @@ import {
   modalingFlagReducer,
   orderConstructorInfo,
 } from './reducer'
+import { getBurgerIngridientList, getConstructorList, logger } from './actions'
 
 export const store = configureStore({
   reducer: {
@@ -25,7 +26,7 @@ export const store = configureStore({
   },
 
   devTools: true,
-  middleware: (defaultMiddleWare) => defaultMiddleWare().concat(),
+  middleware: (defaultMiddleWare) => defaultMiddleWare(),
   preloadedState: {
     burgerIngridients: [],
     ingridietnConstructor: [],
