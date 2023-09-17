@@ -15,18 +15,27 @@ export default function OrderInfo() {
   let sumPrice =
     dropList.map((item) => item.price).reduce((a, b) => a + b, 0) + bunPrice
   const getOrderInfo = async (dispatch) => {
-    fetch('https://norma.nomoreparties.space/api/orders', {
-      method: 'post',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        ingredients: id,
-      }),
-    })
-      .then((res) => res.json())
-      .then((res) => dispatch(orderInfoGetter(res.order.number)))
+    try {
+      const response = await fetch(
+        'https://norma.nomoreparties.space/api/orders',
+        {
+          method: 'post',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            ingredients: id,
+          }),
+        }
+      )
+      if (response.ok) {
+        const data = await response.json()
+        dispatch(orderInfoGetter(data.order.number))
+      }
+    } catch (err) {
+      console.log(err)
+    }
   }
 
   return (

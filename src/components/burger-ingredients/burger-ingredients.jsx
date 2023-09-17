@@ -4,13 +4,13 @@ import IngrList from '../ing-list/ingr-list'
 
 import { useEffect, useState } from 'react'
 import Modal from '../modal/modal'
-import PropTypes from 'prop-types'
 import { useSelector, useDispatch } from 'react-redux'
 import { getBurgerIngridientList } from '../../services/actions'
 import IngredientDetails from '../ingredient-details/ingredient-details'
 
 export default function BurgerIngredients() {
   const data = useSelector((state) => state.burgerIngridients)
+
   const id = data.map((item) => item._id)
 
   const modalIng = useSelector((state) => state.modalIngridientFlag)
@@ -55,12 +55,4 @@ export default function BurgerIngredients() {
       )}
     </section>
   )
-}
-BurgerIngredients.propTypes = {
-  _id: PropTypes.string,
-  price: PropTypes.number,
-  image: PropTypes.string,
-  name: PropTypes.string,
-  type: PropTypes.string,
-  data: PropTypes.array,
 }

@@ -107,7 +107,7 @@ export const { dropTargetSetter, mixConstructorItems, deleteItems } =
   dropTargetReducer.actions
 
 export const bunInfo = createSlice({
-  name: 'orderInfo',
+  name: 'bunInfo',
   initialState: [{}],
   reducers: {
     bunChanger: {
@@ -133,3 +133,16 @@ export const bunInfo = createSlice({
   },
 })
 export const { bunChanger } = bunInfo.actions
+
+export const getCounterReducer = createSlice({
+  name: 'counter',
+  initialState: [],
+  reducers: {
+    checkFlag: {
+      reducer: (state, action) => {
+        state.push(action.payload.id)
+      },
+    },
+  },
+})
+export const { checkFlag } = getCounterReducer.actions

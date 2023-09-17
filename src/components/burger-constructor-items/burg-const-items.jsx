@@ -7,6 +7,7 @@ import { useDrop } from 'react-dnd/dist/hooks/useDrop'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   bunChanger,
+  checkFlag,
   deleteItems,
   dropTargetSetter,
 } from '../../services/reducer'
@@ -22,6 +23,7 @@ export default function BurgConstItems({ counter }) {
         itemId.id !== '643d69a5c3f7b9001cfa093d'
       ) {
         dispatch(dropTargetSetter(itemId))
+        dispatch(checkFlag(itemId))
       } else {
         dispatch(bunChanger(itemId))
       }
@@ -45,6 +47,7 @@ export default function BurgConstItems({ counter }) {
               text={item.name}
               price={item.price}
               thumbnail={item.image}
+              key={++counter}
             />
           ))}
         </div>
@@ -74,6 +77,7 @@ export default function BurgConstItems({ counter }) {
         <div className={burg_items_style.decor_wrap}>
           {bunInfo.map((item) => (
             <ConstructorElement
+              key={++counter}
               type="bottom"
               isLocked={true}
               text={item.name}

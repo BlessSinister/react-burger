@@ -4,6 +4,7 @@ import {
   burgerConstructorReducer,
   burgerIngridientsReducer,
   dropTargetReducer,
+  getCounterReducer,
   modalIngridientsReducer,
   modalOrderFlagReducer,
   modalingFlagReducer,
@@ -20,6 +21,7 @@ export const store = configureStore({
     order: orderConstructorInfo.reducer,
     dropTargetElem: dropTargetReducer.reducer,
     bunState: bunInfo.reducer,
+    counterState: getCounterReducer.reducer,
   },
 
   devTools: true,
@@ -30,7 +32,9 @@ export const store = configureStore({
     currentIngridient: { id: 1, data: [] },
     modalIngridientFlag: false,
     modalOrderFlag: false,
-    order: 0,
+    order: 'Add Ingridients',
+    dropTargetElem: [],
+    counterState: [],
     bunState: [
       {
         calories: 420,
@@ -47,6 +51,5 @@ export const store = configureStore({
         _id: '643d69a5c3f7b9001cfa093c',
       },
     ],
-    dropTargetElem: [],
   },
 })

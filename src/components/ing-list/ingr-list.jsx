@@ -2,15 +2,25 @@ import IngrItems from '../ingr-items/ingr-items'
 import ingr_list_style from './ingr-list.module.css'
 import app_style from '../app/app.module.css'
 import PropTypes from 'prop-types'
-export default function IngrList({ data, modalIngFn, tabScrollChanger, id }) {
-  let bun, sauce, main
+import { Counter } from '@ya.praktikum/react-developer-burger-ui-components'
+import { useSelector } from 'react-redux'
 
+export default function IngrList({ data, modalIngFn, tabScrollChanger }) {
+  let bun, sauce, main
+  let dropElements = useSelector((state) => state.dropTargetElem)
   if (data) {
     bun = data.filter((item) => item.type === 'bun')
     sauce = data.filter((item) => item.type === 'sauce')
     main = data.filter((item) => item.type === 'main')
   } else {
     return
+  }
+  const targetCounter = (arr) => {
+    let tagetCount = []
+    for (let key of arr) {
+      tagetCount.push(dropElements.filter((item) => item._id === key._id))
+    }
+    return tagetCount.map((item) => item.length)
   }
 
   return (
@@ -30,6 +40,7 @@ export default function IngrList({ data, modalIngFn, tabScrollChanger, id }) {
               image={item.image}
               name={item.name}
               id={item._id}
+              dropElements={dropElements}
             />
           ))}
         </div>
@@ -37,15 +48,27 @@ export default function IngrList({ data, modalIngFn, tabScrollChanger, id }) {
       <div>
         <h2 className={`text text_type_main-medium mb-6`}>Соусы</h2>
         <div className={ingr_list_style.wrapper}>
-          {sauce.map((item) => (
-            <IngrItems
-              key={item._id}
-              price={item.price}
-              image={item.image}
-              name={item.name}
-              modalIngFn={modalIngFn}
-              id={item._id}
-            />
+          {sauce.map((item, index) => (
+            <div key={item._id}>
+              <div
+                className="counter_wrapper"
+                style={{
+                  position: 'relative',
+                  width: '80%',
+                  fontSize: 12,
+                }}
+              >
+                <Counter count={targetCounter(sauce)[index]} size="small" />
+              </div>
+              <IngrItems
+                price={item.price}
+                image={item.image}
+                name={item.name}
+                modalIngFn={modalIngFn}
+                id={item._id}
+                dropElements={dropElements}
+              />
+            </div>
           ))}
         </div>
       </div>
@@ -53,15 +76,28 @@ export default function IngrList({ data, modalIngFn, tabScrollChanger, id }) {
       <div>
         <h2 className={`text text_type_main-medium mb-6`}>Начинки</h2>
         <div className={ingr_list_style.wrapper}>
-          {main.map((item) => (
-            <IngrItems
-              key={item._id}
-              price={item.price}
-              image={item.image}
-              name={item.name}
-              modalIngFn={modalIngFn}
-              id={item._id}
-            />
+          {main.map((item, index) => (
+            <div key={item._id}>
+              <div
+                className="counter_wrapper"
+                style={{
+                  position: 'relative',
+                  width: '80%',
+                  fontSize: 12,
+                }}
+              >
+                <Counter count={targetCounter(main)[index]} size="small" />
+              </div>
+              <IngrItems
+                key={item._id}
+                price={item.price}
+                image={item.image}
+                name={item.name}
+                modalIngFn={modalIngFn}
+                id={item._id}
+                dropElements={dropElements}
+              />
+            </div>
           ))}
         </div>
       </div>
@@ -77,4 +113,5 @@ IngrList.propTypes = {
   type: PropTypes.string,
   modalIngFn: PropTypes.func,
   data: PropTypes.array,
+  tabScrollChanger: PropTypes.func,
 }

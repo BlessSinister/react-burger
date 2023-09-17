@@ -5,14 +5,16 @@ import { modalChanger, modalFlag } from '../../services/reducer'
 import { useDispatch, useSelector } from 'react-redux'
 import { useDrag } from 'react-dnd'
 
-export default function IngrItems({ image, name, price, id }) {
+export default function IngrItems({ image, name, price, id, dropElements }) {
   const data = useSelector((state) => state.burgerIngridients)
+
   const [, drag] = useDrag(() => ({
     type: 'ingridients',
-    item: { id, data },
+    item: { id, data, dropElements },
   }))
 
   const dispatch = useDispatch()
+
   return (
     <div onClick={() => dispatch(modalFlag(true))} ref={drag}>
       <div
@@ -21,6 +23,7 @@ export default function IngrItems({ image, name, price, id }) {
         id={id}
       >
         <img src={image} alt="" />
+
         <div className={`${ing_items_style.price_wrapper} mt-2 mb-2`}>
           <p
             className={`mr-2 text text_type_main-medium ${ing_items_style.text_decor}`}
