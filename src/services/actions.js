@@ -3,7 +3,7 @@ import {
   addIngridientsList,
   orderInfoGetter,
 } from './reducer'
-import { url } from '../utils/api'
+import { BASE_URL, url } from '../utils/api'
 
 const checkResponse = (response) => {
   if (response.ok) {
@@ -19,7 +19,7 @@ export const getBurgerIngridientList = () => async (dispatch) => {
       const data = await response.json()
       dispatch(addIngridientsList(data.data))
     } else {
-      throw new Error('error check order')
+      return Promise.reject(`Ошибка ${response.status}`)
     }
   } catch (err) {
     console.log(err)
@@ -33,7 +33,7 @@ export const getConstructorList = () => async (dispatch) => {
       const data = await response.json()
       dispatch(addBurgerConstructorList(data.data))
     } else {
-      throw new Error('error check order')
+      return Promise.reject(`Ошибка ${response.status}`)
     }
   } catch (err) {
     console.log(err)
@@ -42,22 +42,21 @@ export const getConstructorList = () => async (dispatch) => {
 
 export const getOrderInfo = (id) => async (dispatch) => {
   try {
-    const response = await fetch(
-      'https://norma.nomoreparties.space/api/orders',
-      {
-        method: 'post',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          ingredients: id,
-        }),
-      }
-    )
-    if (response.ok) {
+    const response = await fetch(`${BASE_URL}orders`, {
+      method: 'post',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        ingredients: id,
+      }),
+    })
+    if (checkResponse(response)) {
       const data = await response.json()
       dispatch(orderInfoGetter(data.order.number))
+    } else {
+      return Promise.reject(`Ошибка ${response.status}`)
     }
   } catch (err) {
     console.log(err)
