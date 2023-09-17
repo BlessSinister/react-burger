@@ -50,14 +50,7 @@ export default function IngrList({ data, modalIngFn, tabScrollChanger }) {
         <div className={ingr_list_style.wrapper}>
           {sauce.map((item, index) => (
             <div key={item._id}>
-              <div
-                className="counter_wrapper"
-                style={{
-                  position: 'relative',
-                  width: '80%',
-                  fontSize: 12,
-                }}
-              >
+              <div className={ingr_list_style.counter_wrapper}>
                 <Counter count={targetCounter(sauce)[index]} size="small" />
               </div>
               <IngrItems
@@ -78,14 +71,7 @@ export default function IngrList({ data, modalIngFn, tabScrollChanger }) {
         <div className={ingr_list_style.wrapper}>
           {main.map((item, index) => (
             <div key={item._id}>
-              <div
-                className="counter_wrapper"
-                style={{
-                  position: 'relative',
-                  width: '80%',
-                  fontSize: 12,
-                }}
-              >
+              <div className={ingr_list_style.counter_wrapper}>
                 <Counter count={targetCounter(main)[index]} size="small" />
               </div>
               <IngrItems

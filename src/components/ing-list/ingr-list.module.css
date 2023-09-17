@@ -9,3 +9,8 @@
   width: 600px;
   overflow-x: overlay;
 }
+.counter_wrapper {
+  position: relative;
+  width: 80%;
+  font-size: 12px;
+}
