@@ -92,11 +92,5 @@ export default function BurgConstItems({ counter }) {
 }
 
 BurgConstItems.propTypes = {
-  price: PropTypes.number,
-  image: PropTypes.string,
-  name: PropTypes.string,
-  isLocked: PropTypes.bool,
-  type: PropTypes.string,
-  thumbnail: PropTypes.string,
-  data: PropTypes.array,
+  counter: PropTypes.number,
 }

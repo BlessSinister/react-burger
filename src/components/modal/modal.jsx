@@ -6,6 +6,7 @@ import ModalOverlay from '../modal-overlay/modal-overlay'
 import { CloseIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 import { useDispatch } from 'react-redux'
 import { modalFlag, modalOrderFlag } from '../../services/reducer'
+import PropTypes from 'prop-types'
 export default function Modal({ modalIng, children, modal }) {
   const dispatch = useDispatch()
 
@@ -48,3 +49,8 @@ export default function Modal({ modalIng, children, modal }) {
   )
 }
 propTypes(Modal)
+
+Modal.propTypes = {
+  modal: PropTypes.bool,
+  modalIng: PropTypes.bool,
+}

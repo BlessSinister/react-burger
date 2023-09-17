@@ -1,6 +1,5 @@
 import { useSelector } from 'react-redux'
 import style from './ingredient-details.module.css'
-import PropTypes from 'prop-types'
 
 export default function IngredientDetails() {
   const data = useSelector((state) => state.currentIngridient)
@@ -34,7 +33,4 @@ export default function IngredientDetails() {
       </div>
     </div>
   )
-}
-IngredientDetails.propTypes = {
-  data: PropTypes.array,
 }
