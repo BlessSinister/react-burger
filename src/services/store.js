@@ -10,7 +10,6 @@ import {
   modalingFlagReducer,
   orderConstructorInfo,
 } from './reducer'
-import { getBurgerIngridientList, getConstructorList, logger } from './actions'
 
 export const store = configureStore({
   reducer: {

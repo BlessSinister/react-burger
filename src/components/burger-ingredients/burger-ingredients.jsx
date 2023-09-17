@@ -7,7 +7,6 @@ import Modal from '../modal/modal'
 import { useSelector, useDispatch } from 'react-redux'
 import { getBurgerIngridientList } from '../../services/actions'
 import IngredientDetails from '../ingredient-details/ingredient-details'
-import { modalFlag, modalOrderFlag } from '../../services/reducer'
 
 export default function BurgerIngredients({ onCloseModal }) {
   const modalIng = useSelector((state) => state.modalIngridientFlag)

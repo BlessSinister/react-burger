@@ -1,8 +1,6 @@
 import {
   addBurgerConstructorList,
   addIngridientsList,
-  modalFlag,
-  modalOrderFlag,
   orderInfoGetter,
 } from './reducer'
 import { url } from '../utils/api'

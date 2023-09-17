@@ -34,7 +34,9 @@ export default function OrderInfo() {
           htmlType="button"
           type="primary"
           size="large"
-          onClick={() => dispatch(getOrderInfo(id))}
+          onClick={() =>
+            orderButonOn.length ? dispatch(getOrderInfo(id)) : null
+          }
         >
           Оформить заказ
         </Button>
