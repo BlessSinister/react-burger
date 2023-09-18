@@ -3,18 +3,14 @@ import propTypes from '../../utils/props-types'
 import { useEffect } from 'react'
 import { createPortal } from 'react-dom'
 import ModalOverlay from '../modal-overlay/modal-overlay'
-
-import { useDispatch } from 'react-redux'
-import { modalFlag, modalOrderFlag } from '../../services/reducer'
 import PropTypes from 'prop-types'
-export default function Modal({ modalIng, children, modal }) {
-  const dispatch = useDispatch()
+import { CloseIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 
+export default function Modal({ modalIng, children, modal, onCloseModal }) {
   useEffect(() => {
     const keyCloseModal = (e) => {
       if (e.key === 'Escape') {
-        dispatch(modalOrderFlag(false))
-        dispatch(modalFlag(false))
+        onCloseModal()
       }
     }
 
@@ -24,11 +20,6 @@ export default function Modal({ modalIng, children, modal }) {
     }
   }, [])
   let setActiveClass = modal || modalIng ? `${style.active}` : `${style.modal}`
-  const onCloseModal = () => {
-    dispatch(modalOrderFlag(false))
-    dispatch(modalFlag(false))
-    setActiveClass = modal || modalIng ? `${style.active}` : `${style.modal}`
-  }
   let setModalIngContenClass = modalIng
     ? `${style.modal__content_ingr}`
     : modal
@@ -37,7 +28,12 @@ export default function Modal({ modalIng, children, modal }) {
 
   return createPortal(
     <div className={setActiveClass}>
-      <div className={setModalIngContenClass}>{children}</div>
+      <div className={setModalIngContenClass}>
+        <div className={`${style.decor_wrapper_icon} `}>
+          <CloseIcon type="primary" onClick={onCloseModal} />
+        </div>
+        {children}
+      </div>
       <ModalOverlay onCloseModal={onCloseModal} />
     </div>,
     document.getElementById('modal-root')
@@ -48,4 +44,5 @@ propTypes(Modal)
 Modal.propTypes = {
   modal: PropTypes.bool,
   modalIng: PropTypes.bool,
+  onCloseModal: PropTypes.func,
 }

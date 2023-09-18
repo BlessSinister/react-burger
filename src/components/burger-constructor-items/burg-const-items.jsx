@@ -11,7 +11,6 @@ import {
   dropTargetSetter,
 } from '../../services/reducer'
 import BoxDndController from './box-dnd-controller'
-import { v4 as uuidv4 } from 'uuid'
 
 export default function BurgConstItems() {
   const dispatch = useDispatch()
@@ -39,25 +38,26 @@ export default function BurgConstItems() {
       ref={DropTargetRef}
     >
       <div className={burg_items_style.content_container}>
-        <div className={burg_items_style.decor_wrap}>
-          {bunInfo.map((item) => (
-            <ConstructorElement
-              type="top"
-              isLocked={true}
-              text={item.name}
-              price={item.price}
-              thumbnail={item.image}
-              key={uuidv4()}
-            />
-          ))}
-        </div>
-
+        {bunInfo.length ? (
+          <div className={burg_items_style.decor_wrap}>
+            {bunInfo.map((item, index) => (
+              <ConstructorElement
+                type="top"
+                isLocked={true}
+                text={`${item.name}  (верх)`}
+                price={item.price}
+                thumbnail={item.image}
+                key={index + 'bun'}
+              />
+            ))}
+          </div>
+        ) : null}
         {dropElements.map((item, index) => (
           <BoxDndController
             className={burg_items_style.box_dnd_wrapper}
             data={dropElements}
             index={index}
-            key={uuidv4()}
+            key={index + 'main'}
           >
             <div className={burg_items_style.decor_wrap_dnd}>
               <div
@@ -74,18 +74,25 @@ export default function BurgConstItems() {
           </BoxDndController>
         ))}
 
-        <div className={burg_items_style.decor_wrap}>
-          {bunInfo.map((item) => (
-            <ConstructorElement
-              key={uuidv4()}
-              type="bottom"
-              isLocked={true}
-              text={item.name}
-              price={item.price}
-              thumbnail={item.image}
-            />
-          ))}
-        </div>
+        {bunInfo.length || dropElements.length ? (
+          <div className={burg_items_style.decor_wrap}>
+            {bunInfo.map((item, index) => (
+              <ConstructorElement
+                key={index + 'bun'}
+                type="bottom"
+                isLocked={true}
+                text={`${item.name}  (низ)`}
+                price={item.price}
+                thumbnail={item.image}
+              />
+            ))}
+          </div>
+        ) : (
+          <h2>
+            Пожалуйста, перенесите сюда булку и ингредиенты для создания заказа
+            <hr />
+          </h2>
+        )}
       </div>
     </div>
   )

@@ -1,45 +1,27 @@
 import {
-  addBurgerConstructorList,
   addIngridientsList,
+  modalFlag,
+  modalOrderFlag,
   orderInfoGetter,
 } from './reducer'
 import { BASE_URL, url } from '../utils/api'
 
 const checkResponse = (response) => {
   if (response.ok) {
-    return true
-  } else {
-    return false
+    return response.json()
   }
+  return Promise.reject(`Ошибка ${response.status}`)
 }
+
 export const getBurgerIngridientList = () => async (dispatch) => {
   try {
     const response = await fetch(url)
-    if (checkResponse(response)) {
-      const data = await response.json()
-      dispatch(addIngridientsList(data.data))
-    } else {
-      return Promise.reject(`Ошибка ${response.status}`)
-    }
+    const data = await checkResponse(response)
+    dispatch(addIngridientsList(data.data))
   } catch (err) {
     console.log(err)
   }
 }
-
-export const getConstructorList = () => async (dispatch) => {
-  try {
-    const response = await fetch(url)
-    if (checkResponse(response)) {
-      const data = await response.json()
-      dispatch(addBurgerConstructorList(data.data))
-    } else {
-      return Promise.reject(`Ошибка ${response.status}`)
-    }
-  } catch (err) {
-    console.log(err)
-  }
-}
-
 export const getOrderInfo = (id) => async (dispatch) => {
   try {
     const response = await fetch(`${BASE_URL}orders`, {
@@ -52,12 +34,9 @@ export const getOrderInfo = (id) => async (dispatch) => {
         ingredients: id,
       }),
     })
-    if (checkResponse(response)) {
-      const data = await response.json()
-      dispatch(orderInfoGetter(data.order.number))
-    } else {
-      return Promise.reject(`Ошибка ${response.status}`)
-    }
+
+    const data = await checkResponse(response)
+    dispatch(orderInfoGetter(data.order.number))
   } catch (err) {
     console.log(err)
   }
