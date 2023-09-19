@@ -9,11 +9,15 @@ import {
   checkFlag,
   deleteItems,
   dropTargetSetter,
+  setKeyBunId,
+  setKeyIngrId,
 } from '../../services/reducer'
 import BoxDndController from './box-dnd-controller'
-
+import { v4 } from 'uuid'
 export default function BurgConstItems() {
   const dispatch = useDispatch()
+  const keyIngridients = useSelector((state) => state.keyIngridientsGenerate)
+  const keyBun = useSelector((state) => state.keyBunGenerate)
   const [, DropTargetRef] = useDrop(() => ({
     accept: 'ingridients',
     drop(itemId) {
@@ -23,12 +27,13 @@ export default function BurgConstItems() {
       ) {
         dispatch(dropTargetSetter(itemId))
         dispatch(checkFlag(itemId))
+        dispatch(setKeyIngrId(v4()))
       } else {
         dispatch(bunChanger(itemId))
+        dispatch(setKeyBunId(v4()))
       }
     },
   }))
-
   let dropElements = useSelector((state) => state.dropTargetElem)
   let bunInfo = useSelector((state) => state.bunState)
 
@@ -47,7 +52,7 @@ export default function BurgConstItems() {
                 text={`${item.name}  (верх)`}
                 price={item.price}
                 thumbnail={item.image}
-                key={index + 'bun'}
+                key={keyBun[index]}
               />
             ))}
           </div>
@@ -57,7 +62,7 @@ export default function BurgConstItems() {
             className={burg_items_style.box_dnd_wrapper}
             data={dropElements}
             index={index}
-            key={index + 'main'}
+            key={keyIngridients[index]}
           >
             <div className={burg_items_style.decor_wrap_dnd}>
               <div
@@ -78,7 +83,7 @@ export default function BurgConstItems() {
           <div className={burg_items_style.decor_wrap}>
             {bunInfo.map((item, index) => (
               <ConstructorElement
-                key={index + 'bun'}
+                key={keyBun[index]}
                 type="bottom"
                 isLocked={true}
                 text={`${item.name}  (низ)`}

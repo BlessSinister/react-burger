@@ -5,6 +5,8 @@ import {
   burgerIngridientsReducer,
   dropTargetReducer,
   getCounterReducer,
+  keyGenerateBunReducer,
+  keyGenerateIngridientsReducer,
   modalIngridientsReducer,
   modalOrderFlagReducer,
   modalingFlagReducer,
@@ -22,6 +24,8 @@ export const store = configureStore({
     dropTargetElem: dropTargetReducer.reducer,
     bunState: bunInfo.reducer,
     counterState: getCounterReducer.reducer,
+    keyIngridientsGenerate: keyGenerateIngridientsReducer.reducer,
+    keyBunGenerate: keyGenerateBunReducer.reducer,
   },
 
   devTools: true,
@@ -36,5 +40,7 @@ export const store = configureStore({
     dropTargetElem: [],
     counterState: [],
     bunState: [],
+    keyIngridientsGenerate: [],
+    keyBunGenerate: [],
   },
 })

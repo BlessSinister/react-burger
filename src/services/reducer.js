@@ -146,3 +146,29 @@ export const getCounterReducer = createSlice({
   },
 })
 export const { checkFlag } = getCounterReducer.actions
+
+export const keyGenerateIngridientsReducer = createSlice({
+  name: 'keyIngridients',
+  initialState: [],
+  reducers: {
+    setKeyIngrId: {
+      reducer: (state, action) => {
+        state.push(action.payload)
+      },
+    },
+  },
+})
+export const { setKeyIngrId } = keyGenerateIngridientsReducer.actions
+
+export const keyGenerateBunReducer = createSlice({
+  name: 'keyIngridients',
+  initialState: [],
+  reducers: {
+    setKeyBunId: {
+      reducer: (state, action) => {
+        state.push(action.payload)
+      },
+    },
+  },
+})
+export const { setKeyBunId } = keyGenerateBunReducer.actions

@@ -3,3 +3,13 @@
   height: 756px;
   width: 600px;
 }
+@media (max-width: 1669px) {
+  .wrapper {
+    grid-column: 22/-1;
+  }
+}
+@media (max-width: 1450px) {
+  .wrapper {
+    grid-column: 31/-1;
+  }
+}
