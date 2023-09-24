@@ -48,6 +48,7 @@ body {
   background: #131316;
   overflow: hidden;
   color: rgba(242, 242, 243, 1);
+  text-align: center;
 }
 
 main {
@@ -66,4 +67,8 @@ main {
   background-color: rgba(133, 133, 173, 1); /* цвет бегунка */
   border-radius: 20px; /* округлось бегунка */
   border: 3px solid rgba(133, 133, 173, 1); /* отступ вокруг бегунка */
+}
+.not_found {
+  margin-top: 200px;
+  font-size: 54px;
 }

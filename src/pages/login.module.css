@@ -1,0 +1,14 @@
+.login_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.login_wrapper {
+  width: 480px;
+  height: 430px;
+}
+.link {
+  color: var(--interface-accent, #4c4cff);
+  text-decoration: none;
+}
