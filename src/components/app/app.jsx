@@ -13,6 +13,7 @@ export default function App() {
     dispatch(modalOrderFlag(false))
     dispatch(modalFlag(false))
   }
+
   return (
     <>
       <header className={app_style.header}>
