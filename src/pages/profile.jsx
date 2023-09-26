@@ -4,6 +4,7 @@ import {
   EmailInput,
   PasswordInput,
 } from '@ya.praktikum/react-developer-burger-ui-components'
+import { NavLink } from 'react-router-dom'
 
 export default function Profile() {
   const [value, setValue] = useState('Марк')
@@ -13,9 +14,15 @@ export default function Profile() {
   return (
     <div className={styles.container}>
       <div className={`${styles.wrapper_navigation} mt-30`}>
-        <p className={`${styles.p} ${styles.active}`}>Профиль</p>
-        <p className={styles.p}>История заказов</p>
-        <p className={`${styles.p} mb-20`}>Выход</p>
+        <NavLink to="/profile" className={styles.link}>
+          <p className={`${styles.p} ${styles.active}`}>Профиль</p>
+        </NavLink>
+        <NavLink to="/profile/orders" className={styles.link}>
+          <p className={`${styles.p}`}>История заказов</p>
+        </NavLink>
+        <NavLink to="/profile" className={styles.link}>
+          <p className={`${styles.p} mb-20`}>Выход</p>
+        </NavLink>
         <p className={styles.caption}>
           В этом разделе вы можете изменить свои персональные данные
         </p>

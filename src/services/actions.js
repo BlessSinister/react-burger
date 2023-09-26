@@ -63,18 +63,17 @@ export const forgotPassFn = (email) => async (dispatch) => {
   }
 }
 
-export const registrUserFn = (email) => async (dispatch) => {
+export const registrUserFn = (email, password, name) => async (dispatch) => {
   try {
     const response = await fetch(`${BASE_URL}auth/register`, {
-      method: 'post',
+      method: 'POST',
       headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/json; charger=utf-8',
       },
       body: JSON.stringify({
-        email: 'ig.marks@yandex.ru',
-        password: 'pass',
-        name: 'User',
+        email: 'test-data@yandex.ru',
+        password: 'password',
+        name: 'Username',
       }),
     })
     const data = await checkResponse(response)
@@ -84,6 +83,7 @@ export const registrUserFn = (email) => async (dispatch) => {
     console.log(err)
   }
 }
+//Почему то сервер отвечает ошибкой 403
 export const resetPassFn = (email) => async (dispatch) => {
   try {
     const response = await fetch(`${BASE_URL}password-reset/reset`, {
