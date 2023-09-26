@@ -4,6 +4,7 @@ import {
   burgerConstructorReducer,
   burgerIngridientsReducer,
   dropTargetReducer,
+  forgotPasswordReducer,
   getCounterReducer,
   keyGenerateBunReducer,
   keyGenerateIngridientsReducer,
@@ -11,6 +12,7 @@ import {
   modalOrderFlagReducer,
   modalingFlagReducer,
   orderConstructorInfo,
+  resetPasswordReducer,
 } from './reducer'
 
 export const store = configureStore({
@@ -26,6 +28,7 @@ export const store = configureStore({
     counterState: getCounterReducer.reducer,
     keyIngridientsGenerate: keyGenerateIngridientsReducer.reducer,
     keyBunGenerate: keyGenerateBunReducer.reducer,
+    forgotPass: forgotPasswordReducer.reducer,
   },
 
   devTools: true,
@@ -42,5 +45,6 @@ export const store = configureStore({
     bunState: [],
     keyIngridientsGenerate: [],
     keyBunGenerate: [],
+    forgotPass: false,
   },
 })

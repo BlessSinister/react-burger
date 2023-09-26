@@ -1,0 +1,49 @@
+import React, { useRef, useState } from 'react'
+import styles from './profile.module.css'
+import {
+  EmailInput,
+  PasswordInput,
+} from '@ya.praktikum/react-developer-burger-ui-components'
+
+export default function Profile() {
+  const [value, setValue] = useState('Марк')
+  const [email, setEmail] = useState('mail@stellar.burgers')
+  const [pass, setPass] = useState('password')
+  const inputRef = useRef(null)
+  return (
+    <div className={styles.container}>
+      <div className={`${styles.wrapper_navigation} mt-30`}>
+        <p className={`${styles.p} ${styles.active}`}>Профиль</p>
+        <p className={styles.p}>История заказов</p>
+        <p className={`${styles.p} mb-20`}>Выход</p>
+        <p className={styles.caption}>
+          В этом разделе вы можете изменить свои персональные данные
+        </p>
+      </div>
+      <div className={`${styles.wrapper_edit} mt-30 ml-95`}>
+        <EmailInput
+          onChange={(e) => setValue(e.target.value)}
+          value={value}
+          name={'email'}
+          placeholder="Имя"
+          isIcon={true}
+          extraClass="mb-6"
+        />
+        <EmailInput
+          onChange={(e) => setEmail(e.target.value)}
+          value={email}
+          name={'email'}
+          placeholder="Логин"
+          isIcon={true}
+          extraClass="mb-6"
+        />
+        <PasswordInput
+          onChange={(e) => setPass(e.target.value)}
+          value={pass}
+          name={'password'}
+          icon="EditIcon"
+        />
+      </div>
+    </div>
+  )
+}

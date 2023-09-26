@@ -1,8 +1,8 @@
 import {
   addIngridientsList,
-  modalFlag,
-  modalOrderFlag,
+  forgotPass,
   orderInfoGetter,
+  resetPass,
 } from './reducer'
 import { BASE_URL, url } from '../utils/api'
 
@@ -41,3 +41,68 @@ export const getOrderInfo = (id) => async (dispatch) => {
     console.log(err)
   }
 }
+
+export const forgotPassFn = (email) => async (dispatch) => {
+  try {
+    const response = await fetch(`${BASE_URL}password-reset`, {
+      method: 'post',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email: '',
+      }),
+    })
+
+    const data = await checkResponse(response)
+
+    dispatch(forgotPass(data.success))
+  } catch (err) {
+    console.log(err)
+  }
+}
+
+export const registrUserFn = (email) => async (dispatch) => {
+  try {
+    const response = await fetch(`${BASE_URL}auth/register`, {
+      method: 'post',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email: 'ig.marks@yandex.ru',
+        password: 'pass',
+        name: 'User',
+      }),
+    })
+    const data = await checkResponse(response)
+
+    // dispatch(resettPass(data.success))
+  } catch (err) {
+    console.log(err)
+  }
+}
+export const resetPassFn = (email) => async (dispatch) => {
+  try {
+    const response = await fetch(`${BASE_URL}password-reset/reset`, {
+      method: 'post',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        password: '',
+        token: '',
+      }),
+    })
+
+    const data = await checkResponse(response)
+    console.log(data)
+    // dispatch(resettPass(data.success))
+  } catch (err) {
+    console.log(err)
+  }
+}
+//Нужно будет дописать редуссер и стор к этой функции, в настоящий момент функция просто висит на кнопке

@@ -172,3 +172,16 @@ export const keyGenerateBunReducer = createSlice({
   },
 })
 export const { setKeyBunId } = keyGenerateBunReducer.actions
+
+export const forgotPasswordReducer = createSlice({
+  name: 'resetPass',
+  initialState: [],
+  reducers: {
+    forgotPass: {
+      reducer: (state, action) => {
+        return action.payload
+      },
+    },
+  },
+})
+export const { forgotPass } = forgotPasswordReducer.actions
