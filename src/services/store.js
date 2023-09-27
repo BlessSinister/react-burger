@@ -8,10 +8,12 @@ import {
   getCounterReducer,
   keyGenerateBunReducer,
   keyGenerateIngridientsReducer,
+  loginReducer,
   modalIngridientsReducer,
   modalOrderFlagReducer,
   modalingFlagReducer,
   orderConstructorInfo,
+  registerAccountReducer,
   resetPasswordReducer,
 } from './reducer'
 
@@ -28,7 +30,9 @@ export const store = configureStore({
     counterState: getCounterReducer.reducer,
     keyIngridientsGenerate: keyGenerateIngridientsReducer.reducer,
     keyBunGenerate: keyGenerateBunReducer.reducer,
+    registerAcc: registerAccountReducer.reducer,
     forgotPass: forgotPasswordReducer.reducer,
+    authUser: loginReducer.reducer,
   },
 
   devTools: true,
@@ -45,6 +49,8 @@ export const store = configureStore({
     bunState: [],
     keyIngridientsGenerate: [],
     keyBunGenerate: [],
+    registerAcc: false,
     forgotPass: false,
+    authUser: false,
   },
 })

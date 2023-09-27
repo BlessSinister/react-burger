@@ -1,16 +1,26 @@
-import React, { useRef, useState } from 'react'
+import React, { useRef, useState, useEffect } from 'react'
 import styles from './profile.module.css'
 import {
   EmailInput,
   PasswordInput,
 } from '@ya.praktikum/react-developer-burger-ui-components'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { logoutUserFn } from '../services/actions'
 
 export default function Profile() {
   const [value, setValue] = useState('Марк')
   const [email, setEmail] = useState('mail@stellar.burgers')
   const [pass, setPass] = useState('password')
   const inputRef = useRef(null)
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const redirect = useSelector((state) => state.authUser)
+  useEffect(() => {
+    if (!redirect) {
+      navigate('/login')
+    }
+  })
   return (
     <div className={styles.container}>
       <div className={`${styles.wrapper_navigation} mt-30`}>
@@ -20,7 +30,11 @@ export default function Profile() {
         <NavLink to="/profile/orders" className={styles.link}>
           <p className={`${styles.p}`}>История заказов</p>
         </NavLink>
-        <NavLink to="/profile" className={styles.link}>
+        <NavLink
+          to="/profile"
+          className={styles.link}
+          onClick={() => dispatch(logoutUserFn())}
+        >
           <p className={`${styles.p} mb-20`}>Выход</p>
         </NavLink>
         <p className={styles.caption}>

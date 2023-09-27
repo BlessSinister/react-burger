@@ -1,7 +1,9 @@
 import {
   addIngridientsList,
   forgotPass,
+  loginSystem,
   orderInfoGetter,
+  registerAccount,
   resetPass,
 } from './reducer'
 import { BASE_URL, url } from '../utils/api'
@@ -42,27 +44,6 @@ export const getOrderInfo = (id) => async (dispatch) => {
   }
 }
 
-export const forgotPassFn = (email) => async (dispatch) => {
-  try {
-    const response = await fetch(`${BASE_URL}password-reset`, {
-      method: 'post',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        email: '',
-      }),
-    })
-
-    const data = await checkResponse(response)
-
-    dispatch(forgotPass(data.success))
-  } catch (err) {
-    console.log(err)
-  }
-}
-
 export const registrUserFn = (email, password, name) => async (dispatch) => {
   try {
     const response = await fetch(`${BASE_URL}auth/register`, {
@@ -71,20 +52,80 @@ export const registrUserFn = (email, password, name) => async (dispatch) => {
         'Content-Type': 'application/json; charger=utf-8',
       },
       body: JSON.stringify({
-        email: 'test-data@yandex.ru',
-        password: 'password',
-        name: 'Username',
+        email: 'and@yandex.ru',
+        password: 'qwerty',
+        name: 'Андрей',
       }),
     })
     const data = await checkResponse(response)
-
-    // dispatch(resettPass(data.success))
+    localStorage.setItem('accessToken', data.accessToken.split('Bearer ')[1])
+    localStorage.setItem('refreshToken', data.refreshToken)
+    console.log(data)
+    dispatch(registerAccount(data.success))
   } catch (err) {
     console.log(err)
   }
 }
-//Почему то сервер отвечает ошибкой 403
-export const resetPassFn = (email) => async (dispatch) => {
+export const loginUserFn = (email, password) => async (dispatch) => {
+  try {
+    const response = await fetch(`${BASE_URL}auth/login`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json; charger=utf-8',
+      },
+      body: JSON.stringify({
+        email: 'batman@yandex.ru',
+        password: 'batman1337',
+      }),
+    })
+    const data = await checkResponse(response)
+
+    dispatch(loginSystem(data.success))
+  } catch (err) {
+    console.log(err)
+  }
+}
+export const logoutUserFn = () => async (dispatch) => {
+  try {
+    const response = await fetch(`${BASE_URL}auth/logout`, {
+      method: 'post',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        token: localStorage.getItem('refreshToken'),
+      }),
+    })
+
+    const data = await checkResponse(response)
+    console.log(data)
+    dispatch(loginSystem(false))
+  } catch (err) {
+    console.log(err)
+  }
+}
+
+export const forgotPassFn = (email) => async (dispatch) => {
+  try {
+    const response = await fetch(`${BASE_URL}password-reset`, {
+      method: 'post',
+      headers: {
+        'Content-Type': 'application/json; charger=utf-8',
+      },
+      body: JSON.stringify({
+        email: email,
+      }),
+    })
+
+    const data = await checkResponse(response)
+    dispatch(forgotPass(data.success))
+  } catch (err) {
+    console.log(err)
+  }
+}
+
+export const resetPassFn = (password, token) => async (dispatch) => {
   try {
     const response = await fetch(`${BASE_URL}password-reset/reset`, {
       method: 'post',
@@ -93,8 +134,8 @@ export const resetPassFn = (email) => async (dispatch) => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        password: '',
-        token: '',
+        password: password,
+        token: token,
       }),
     })
 

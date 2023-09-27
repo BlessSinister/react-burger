@@ -173,6 +173,19 @@ export const keyGenerateBunReducer = createSlice({
 })
 export const { setKeyBunId } = keyGenerateBunReducer.actions
 
+export const registerAccountReducer = createSlice({
+  name: 'registerAcc',
+  initialState: [],
+  reducers: {
+    registerAccount: {
+      reducer: (state, action) => {
+        return action.payload
+      },
+    },
+  },
+})
+export const { registerAccount } = registerAccountReducer.actions
+
 export const forgotPasswordReducer = createSlice({
   name: 'resetPass',
   initialState: [],
@@ -185,3 +198,16 @@ export const forgotPasswordReducer = createSlice({
   },
 })
 export const { forgotPass } = forgotPasswordReducer.actions
+
+export const loginReducer = createSlice({
+  name: 'resetPass',
+  initialState: [],
+  reducers: {
+    loginSystem: {
+      reducer: (state, action) => {
+        return action.payload
+      },
+    },
+  },
+})
+export const { loginSystem } = loginReducer.actions

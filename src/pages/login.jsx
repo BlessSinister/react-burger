@@ -3,9 +3,11 @@ import {
   Input,
   PasswordInput,
 } from '@ya.praktikum/react-developer-burger-ui-components'
-import { useRef, useState } from 'react'
+import { useRef, useState, useEffect } from 'react'
 import styles from './login.module.css'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
+import { loginUserFn } from '../services/actions'
+import { useDispatch, useSelector } from 'react-redux'
 export default function Login() {
   const [value, setValue] = useState('')
   const inputRef = useRef(null)
@@ -14,7 +16,14 @@ export default function Login() {
     alert('Icon Click Callback')
   }
   const [pass, setPass] = useState('password')
-
+  const dispatch = useDispatch()
+  const redirect = useSelector((state) => state.authUser)
+  const navigate = useNavigate()
+  useEffect(() => {
+    if (redirect) {
+      navigate('/profile')
+    }
+  }, [redirect])
   return (
     <div className={styles.login_container}>
       <div className={styles.login_wrapper}>
@@ -39,7 +48,12 @@ export default function Login() {
             name={'password'}
             extraClass="mt-6 mb-6"
           />
-          <Button htmlType="button" type="primary" size="medium">
+          <Button
+            htmlType="button"
+            type="primary"
+            size="medium"
+            onClick={() => dispatch(loginUserFn())}
+          >
             Войти
           </Button>
           <p className={`${styles.p} mt-20 mb-4`}>

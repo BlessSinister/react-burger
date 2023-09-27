@@ -5,7 +5,7 @@ import {
 import styles from './forgot-pass.module.css'
 import { useRef, useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { forgotPass, forgotPassFn } from '../services/actions'
+import { forgotPassFn } from '../services/actions'
 import { useDispatch, useSelector } from 'react-redux'
 
 export default function ForgotPass() {
@@ -14,7 +14,6 @@ export default function ForgotPass() {
   const inputRef = useRef(null)
   const redirect = useSelector((state) => state.forgotPass)
   const navigate = useNavigate()
-  console.log(redirect)
   useEffect(() => {
     if (redirect) {
       navigate('/resetpass')
@@ -41,7 +40,7 @@ export default function ForgotPass() {
           htmlType="button"
           type="primary"
           size="medium"
-          onClick={() => dispatch(forgotPassFn())}
+          onClick={() => dispatch(forgotPassFn(`${'value'}`))}
         >
           Восстановить
         </Button>

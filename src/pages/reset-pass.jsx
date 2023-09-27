@@ -9,7 +9,8 @@ import { Link } from 'react-router-dom'
 import { resetPassFn } from '../services/actions'
 export default function ResetPass() {
   const [pass, setPass] = useState()
-  const [value, setValue] = useState()
+  const [token, setToken] = useState(localStorage.getItem('accessToken'))
+  console.log(token)
   const inputRef = useRef(null)
   return (
     <div className={styles.container}>
@@ -25,8 +26,8 @@ export default function ResetPass() {
         <Input
           type={'text'}
           placeholder={'Введите код из письма'}
-          onChange={(e) => setValue(e.target.value)}
-          value={value}
+          onChange={(e) => setToken(localStorage.getItem('accessToken'))}
+          value={token}
           name={'name'}
           error={false}
           ref={inputRef}
@@ -38,7 +39,7 @@ export default function ResetPass() {
           htmlType="button"
           type="primary"
           size="medium"
-          onClick={resetPassFn()}
+          onClick={resetPassFn(`${'pass'}`, token)}
         >
           Сохранить
         </Button>
