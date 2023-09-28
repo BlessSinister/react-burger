@@ -8,11 +8,7 @@ import {
 } from '@ya.praktikum/react-developer-burger-ui-components'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import {
-  logoutUserFn,
-  setProfileInfo,
-  setProfileInfoDefault,
-} from '../services/actions'
+import { logoutUserFn, setProfileInfo } from '../services/actions'
 
 export default function Profile() {
   const name = useSelector((state) => state.initialProfileInfo.name)
@@ -24,6 +20,11 @@ export default function Profile() {
   const [value, setValue] = useState(name)
   const [email, setEmail] = useState(emailState)
   const [pass, setPass] = useState(password)
+  const restoreProfileFn = () => {
+    setValue(name)
+    setEmail(emailState)
+    setPass(password)
+  }
   useEffect(() => {
     setValue(editName)
     setPass(editPass)
@@ -93,7 +94,7 @@ export default function Profile() {
           type="secondary"
           size="medium"
           extraClass="mt-6"
-          onClick={() => dispatch(setProfileInfoDefault(pass))}
+          onClick={restoreProfileFn}
         >
           Отменить
         </Button>

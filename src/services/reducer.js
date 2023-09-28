@@ -245,7 +245,7 @@ export const profileInitialStateReducer = createSlice({
   reducers: {
     resetProfileInitialState: {
       reducer: (state, action) => {
-        return state
+        return action.payload
       },
     },
   },
