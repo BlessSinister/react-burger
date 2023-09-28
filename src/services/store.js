@@ -9,10 +9,12 @@ import {
   keyGenerateBunReducer,
   keyGenerateIngridientsReducer,
   loginReducer,
+  mainProfileInitialStateReducer,
   modalIngridientsReducer,
   modalOrderFlagReducer,
   modalingFlagReducer,
   orderConstructorInfo,
+  profileInitialStateReducer,
   registerAccountReducer,
   resetPasswordReducer,
 } from './reducer'
@@ -34,6 +36,8 @@ export const store = configureStore({
     forgotPass: forgotPasswordReducer.reducer,
     authUser: loginReducer.reducer,
     resetPass: resetPasswordReducer.reducer,
+    initialProfileInfo: profileInitialStateReducer.reducer,
+    mainProfileInfo: mainProfileInitialStateReducer.reducer,
   },
 
   devTools: true,
@@ -54,5 +58,17 @@ export const store = configureStore({
     forgotPass: false,
     authUser: false,
     resetPass: false,
+    initialProfileInfo: {
+      name: '',
+      email: '',
+      password: '',
+    },
+    mainProfileInfo: [
+      {
+        name: '',
+        email: '',
+        password: '',
+      },
+    ],
   },
 })

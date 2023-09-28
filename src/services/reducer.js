@@ -224,3 +224,30 @@ export const loginReducer = createSlice({
   },
 })
 export const { loginSystem } = loginReducer.actions
+
+export const mainProfileInitialStateReducer = createSlice({
+  name: 'mainProfileInitialState',
+  initialState: [{ name: '', email: '', password: '' }],
+  reducers: {
+    setMainProfileInitialState: {
+      reducer: (state, action) => {
+        state[0] = action.payload
+      },
+    },
+  },
+})
+export const { setMainProfileInitialState } =
+  mainProfileInitialStateReducer.actions
+
+export const profileInitialStateReducer = createSlice({
+  name: 'profileInitialState',
+  initialState: [],
+  reducers: {
+    resetProfileInitialState: {
+      reducer: (state, action) => {
+        return state
+      },
+    },
+  },
+})
+export const { resetProfileInitialState } = profileInitialStateReducer.actions

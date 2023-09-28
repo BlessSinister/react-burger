@@ -1,18 +1,34 @@
 import React, { useRef, useState, useEffect } from 'react'
 import styles from './profile.module.css'
 import {
+  Button,
   EmailInput,
+  Input,
   PasswordInput,
 } from '@ya.praktikum/react-developer-burger-ui-components'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { logoutUserFn } from '../services/actions'
+import {
+  logoutUserFn,
+  setProfileInfo,
+  setProfileInfoDefault,
+} from '../services/actions'
 
 export default function Profile() {
-  const [value, setValue] = useState('Марк')
-  const [email, setEmail] = useState('mail@stellar.burgers')
-  const [pass, setPass] = useState('password')
-  const inputRef = useRef(null)
+  const name = useSelector((state) => state.initialProfileInfo.name)
+  const password = useSelector((state) => state.initialProfileInfo.password)
+  const emailState = useSelector((state) => state.initialProfileInfo.email)
+  const editName = useSelector((state) => state.mainProfileInfo[0].name)
+  const editPass = useSelector((state) => state.mainProfileInfo[0].password)
+  const editEmail = useSelector((state) => state.mainProfileInfo[0].email)
+  const [value, setValue] = useState(name)
+  const [email, setEmail] = useState(emailState)
+  const [pass, setPass] = useState(password)
+  useEffect(() => {
+    setValue(editName)
+    setPass(editPass)
+    setEmail(editEmail)
+  }, [editEmail, editName, editPass])
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const redirect = useSelector((state) => state.authUser)
@@ -20,7 +36,7 @@ export default function Profile() {
     if (!redirect) {
       navigate('/login')
     }
-  })
+  }, [redirect])
   return (
     <div className={styles.container}>
       <div className={`${styles.wrapper_navigation} mt-30`}>
@@ -42,12 +58,11 @@ export default function Profile() {
         </p>
       </div>
       <div className={`${styles.wrapper_edit} mt-30 ml-95`}>
-        <EmailInput
+        <Input
           onChange={(e) => setValue(e.target.value)}
           value={value}
-          name={'email'}
           placeholder="Имя"
-          isIcon={true}
+          icon="EditIcon"
           extraClass="mb-6"
         />
         <EmailInput
@@ -64,6 +79,24 @@ export default function Profile() {
           name={'password'}
           icon="EditIcon"
         />
+        <Button
+          htmlType="button"
+          type="secondary"
+          size="medium"
+          extraClass="mt-6"
+          onClick={() => dispatch(setProfileInfo(value, pass, email))}
+        >
+          Сохранить
+        </Button>
+        <Button
+          htmlType="button"
+          type="secondary"
+          size="medium"
+          extraClass="mt-6"
+          onClick={() => dispatch(setProfileInfoDefault(pass))}
+        >
+          Отменить
+        </Button>
       </div>
     </div>
   )
