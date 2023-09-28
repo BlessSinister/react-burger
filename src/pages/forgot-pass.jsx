@@ -9,7 +9,7 @@ import { forgotPassFn } from '../services/actions'
 import { useDispatch, useSelector } from 'react-redux'
 
 export default function ForgotPass() {
-  const [value, setValue] = useState('')
+  const [email, setEmail] = useState('')
   const dispatch = useDispatch()
   const inputRef = useRef(null)
   const redirect = useSelector((state) => state.forgotPass)
@@ -27,8 +27,8 @@ export default function ForgotPass() {
         <Input
           type={'text'}
           placeholder={'Укажите e-mail'}
-          onChange={(e) => setValue(e.target.value)}
-          value={value}
+          onChange={(e) => setEmail(e.target.value)}
+          value={email}
           name={'name'}
           error={false}
           ref={inputRef}
@@ -40,7 +40,11 @@ export default function ForgotPass() {
           htmlType="button"
           type="primary"
           size="medium"
-          onClick={() => dispatch(forgotPassFn(`${'value'}`))}
+          onClick={() =>
+            email.length
+              ? dispatch(forgotPassFn(email))
+              : alert('Введите имеил')
+          }
         >
           Восстановить
         </Button>

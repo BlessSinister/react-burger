@@ -52,9 +52,9 @@ export const registrUserFn = (email, password, name) => async (dispatch) => {
         'Content-Type': 'application/json; charger=utf-8',
       },
       body: JSON.stringify({
-        email: 'and@yandex.ru',
-        password: 'qwerty',
-        name: 'Андрей',
+        email: email,
+        password: password,
+        name: name,
       }),
     })
     const data = await checkResponse(response)
@@ -74,13 +74,17 @@ export const loginUserFn = (email, password) => async (dispatch) => {
         'Content-Type': 'application/json; charger=utf-8',
       },
       body: JSON.stringify({
-        email: 'batman@yandex.ru',
-        password: 'batman1337',
+        email: email,
+        password: password,
       }),
     })
     const data = await checkResponse(response)
-
-    dispatch(loginSystem(data.success))
+    console.log(email, password)
+    localStorage.setItem('accessToken', data.accessToken.split('Bearer ')[1])
+    localStorage.setItem('refreshToken', data.refreshToken)
+    dispatch(
+      loginSystem({ success: data.success, email: email, password: password })
+    )
   } catch (err) {
     console.log(err)
   }
@@ -119,6 +123,7 @@ export const forgotPassFn = (email) => async (dispatch) => {
     })
 
     const data = await checkResponse(response)
+    console.log(data)
     dispatch(forgotPass(data.success))
   } catch (err) {
     console.log(err)
@@ -141,7 +146,7 @@ export const resetPassFn = (password, token) => async (dispatch) => {
 
     const data = await checkResponse(response)
     console.log(data)
-    // dispatch(resettPass(data.success))
+    dispatch(resetPass(data.success))
   } catch (err) {
     console.log(err)
   }

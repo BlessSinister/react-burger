@@ -61,9 +61,7 @@ export default function Registr() {
             htmlType="button"
             type="primary"
             size="medium"
-            onClick={() =>
-              dispatch(registrUserFn(`${'email'}`, `${'pass'}`, `${'name'}`))
-            }
+            onClick={() => dispatch(registrUserFn(email, pass, name))}
           >
             Зарегистрироваться
           </Button>

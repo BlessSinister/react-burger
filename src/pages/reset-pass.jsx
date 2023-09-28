@@ -1,15 +1,25 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import styles from './forgot-pass.module.css'
 import {
   Button,
   Input,
   PasswordInput,
 } from '@ya.praktikum/react-developer-burger-ui-components'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { resetPassFn } from '../services/actions'
+import { useDispatch, useSelector } from 'react-redux'
 export default function ResetPass() {
+  const dispatch = useDispatch()
+  const redirect = useSelector((state) => state.resetPass)
+  const navigate = useNavigate()
+  useEffect(() => {
+    if (redirect) {
+      navigate('/login')
+    }
+  }, [redirect])
+
   const [pass, setPass] = useState()
-  const [token, setToken] = useState(localStorage.getItem('accessToken'))
+  const [token, setToken] = useState()
   console.log(token)
   const inputRef = useRef(null)
   return (
@@ -26,7 +36,7 @@ export default function ResetPass() {
         <Input
           type={'text'}
           placeholder={'Введите код из письма'}
-          onChange={(e) => setToken(localStorage.getItem('accessToken'))}
+          onChange={(e) => setToken(e.target.value)}
           value={token}
           name={'name'}
           error={false}
@@ -39,7 +49,7 @@ export default function ResetPass() {
           htmlType="button"
           type="primary"
           size="medium"
-          onClick={resetPassFn(`${'pass'}`, token)}
+          onClick={() => dispatch(resetPassFn(pass, token))}
         >
           Сохранить
         </Button>

@@ -33,6 +33,7 @@ export const store = configureStore({
     registerAcc: registerAccountReducer.reducer,
     forgotPass: forgotPasswordReducer.reducer,
     authUser: loginReducer.reducer,
+    resetPass: resetPasswordReducer.reducer,
   },
 
   devTools: true,
@@ -52,5 +53,6 @@ export const store = configureStore({
     registerAcc: false,
     forgotPass: false,
     authUser: false,
+    resetPass: false,
   },
 })
