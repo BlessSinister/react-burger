@@ -11,8 +11,12 @@ import { useDispatch, useSelector } from 'react-redux'
 export default function ResetPass() {
   const dispatch = useDispatch()
   const redirect = useSelector((state) => state.resetPass)
+  const forgotRedirect = useSelector((state) => state.forgotPass)
   const navigate = useNavigate()
   useEffect(() => {
+    if (!forgotRedirect) {
+      navigate('/forgotpass')
+    }
     if (redirect) {
       navigate('/login')
     }

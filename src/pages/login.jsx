@@ -7,19 +7,12 @@ import { useRef, useState, useEffect } from 'react'
 import styles from './login.module.css'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { loginUserFn } from '../services/actions'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 export default function Login() {
   const [email, setEmail] = useState('')
   const inputRef = useRef(null)
   const [pass, setPass] = useState('')
   const dispatch = useDispatch()
-  const redirect = useSelector((state) => state.authUser.success)
-  const navigate = useNavigate()
-  useEffect(() => {
-    if (redirect) {
-      navigate('/profile')
-    }
-  }, [redirect])
   const handleSbubmit = (e) => {
     e.preventDefault()
     dispatch(loginUserFn(email, pass))

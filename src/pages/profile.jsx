@@ -6,7 +6,7 @@ import {
   Input,
   PasswordInput,
 } from '@ya.praktikum/react-developer-burger-ui-components'
-import { NavLink, useNavigate } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { logoutUserFn, setProfileInfo } from '../services/actions'
 
@@ -31,13 +31,7 @@ export default function Profile() {
     setEmail(editEmail)
   }, [editEmail, editName, editPass])
   const dispatch = useDispatch()
-  const navigate = useNavigate()
-  const redirect = useSelector((state) => state.authUser)
-  useEffect(() => {
-    if (!redirect) {
-      navigate('/login')
-    }
-  }, [redirect])
+
   return (
     <div className={styles.container}>
       <div className={`${styles.wrapper_navigation} mt-30`}>

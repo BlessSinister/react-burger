@@ -213,7 +213,7 @@ export const resetPasswordReducer = createSlice({
 export const { resetPass } = resetPasswordReducer.actions
 
 export const loginReducer = createSlice({
-  name: 'resetPass',
+  name: 'login',
   initialState: [],
   reducers: {
     loginSystem: {

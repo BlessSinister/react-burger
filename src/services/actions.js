@@ -71,6 +71,31 @@ export const registrUserFn = (email, password, name) => async (dispatch) => {
     console.log(err)
   }
 }
+export const checkFn = () => async (dispatch) => {
+  if (localStorage.getItem('accessToken')) {
+    dispatch(loginSystem(true))
+  }
+
+  try {
+    const response = await fetch(`${BASE_URL}auth/user`, {
+      method: 'GET',
+      headers: {
+        authorization: localStorage.getItem('accessToken'),
+        'Content-Type': 'application/json',
+      },
+    })
+
+    const data = await checkResponse(response)
+
+    const name = data.user.name
+    const email = data.user.email
+    const password = data.user.password
+
+    dispatch(setMainProfileInitialState({ email, password, name }))
+  } catch (err) {
+    console.log(err)
+  }
+}
 export const loginUserFn = (email, password) => async (dispatch) => {
   try {
     const response = await fetch(`${BASE_URL}auth/login`, {
@@ -87,9 +112,7 @@ export const loginUserFn = (email, password) => async (dispatch) => {
     console.log(email, password)
     localStorage.setItem('accessToken', data.accessToken)
     localStorage.setItem('refreshToken', data.refreshToken)
-    dispatch(
-      loginSystem({ success: data.success, email: email, password: password })
-    )
+    dispatch(loginSystem(data.success))
   } catch (err) {
     console.log(err)
   }
@@ -110,6 +133,9 @@ export const loginUserFn = (email, password) => async (dispatch) => {
   } catch (err) {
     console.log(err)
   }
+  if (localStorage.getItem('accessToken')) {
+    dispatch(loginSystem(true))
+  }
 }
 export const logoutUserFn = () => async (dispatch) => {
   try {
@@ -127,6 +153,8 @@ export const logoutUserFn = () => async (dispatch) => {
     const data = await checkResponse(response)
     console.log(data)
     dispatch(loginSystem(false))
+    localStorage.removeItem('accessToken')
+    localStorage.removeItem('refreshToken')
     dispatch(setMainProfileInitialState({}))
   } catch (err) {
     console.log(err)

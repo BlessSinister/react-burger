@@ -5,8 +5,12 @@ import {
   ProfileIcon,
   Logo,
 } from '@ya.praktikum/react-developer-burger-ui-components'
+import { useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 export default function AppHeader() {
+  const authUser = useSelector((state) => state.authUser)
+    ? '/profile'
+    : '/login'
   return (
     <nav>
       <div className={`${header_style.btn_wrapper}`}>
@@ -49,7 +53,7 @@ export default function AppHeader() {
 
           <p className={`ml-2`}>
             <NavLink
-              to="/login"
+              to={authUser}
               className={`text text_type_main-default ${(isActive) =>
                 !isActive ? header_style.a1 : header_style.active}`}
             >
