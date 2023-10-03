@@ -1,28 +1,27 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useNavigate, useParams } from 'react-router-dom'
 import { getBurgerIngridientList } from '../services/actions'
 import styles from './ingridients-info.module.css'
 import IngredientDetails from '../components/ingredient-details/ingredient-details'
 import Modal from '../components/modal/modal'
-import { modalFlag, modalOrderFlag } from '../services/reducer'
+import { modalFlag, refreshModalState } from '../services/reducer'
 
-export default function IngridientsInfo() {
+export default function IngridientsInfo({ onCloseModal }) {
+  const dispatch = useDispatch()
   let id = localStorage.getItem('targetElem')
   const modalIng = useSelector((state) => state.modalIngridientFlag)
-  const ingridient = useSelector((state) => state.burgerIngridients).filter(
+  let ingridient = useSelector((state) => state.burgerIngridients).filter(
     (item) => item._id === id
   )
-  const navigate = useNavigate()
-  const onCloseModal = () => {
-    dispatch(modalOrderFlag(false))
-    dispatch(modalFlag(false))
-    navigate('/')
-  }
-  const dispatch = useDispatch()
+  localStorage.setItem('Ing', JSON.stringify(ingridient))
+
   useEffect(() => {
     dispatch(getBurgerIngridientList())
-  }, [dispatch])
+    if (localStorage.getItem('modalIng')) {
+      dispatch(modalFlag(true))
+    }
+  }, [])
+
   if (ingridient.length === 0) {
     return null
   }

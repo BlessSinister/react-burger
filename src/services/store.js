@@ -10,6 +10,7 @@ import {
   keyGenerateIngridientsReducer,
   loginReducer,
   mainProfileInitialStateReducer,
+  modalIngridientRefresh,
   modalIngridientsReducer,
   modalOrderFlagReducer,
   modalingFlagReducer,
@@ -38,6 +39,7 @@ export const store = configureStore({
     resetPass: resetPasswordReducer.reducer,
     initialProfileInfo: profileInitialStateReducer.reducer,
     mainProfileInfo: mainProfileInitialStateReducer.reducer,
+    inst: modalIngridientRefresh.reducer,
   },
 
   devTools: true,
@@ -52,6 +54,7 @@ export const store = configureStore({
     dropTargetElem: [],
     counterState: [],
     bunState: [],
+    inst: JSON.parse(localStorage.getItem('Ing')),
     keyIngridientsGenerate: [],
     keyBunGenerate: [],
     registerAcc: false,

@@ -39,7 +39,6 @@ export const modalIngridientsReducer = createSlice({
         if (localStorage.getItem('targetElem')) {
           localStorage.removeItem('targetElem')
         }
-
         return action.payload.data.filter((item) => {
           localStorage.setItem('targetElem', action.payload.id)
           return item._id === action.payload.id
@@ -258,3 +257,16 @@ export const profileInitialStateReducer = createSlice({
   },
 })
 export const { resetProfileInitialState } = profileInitialStateReducer.actions
+
+export const modalIngridientRefresh = createSlice({
+  name: 'refreshModal',
+  initialState: [],
+  reducers: {
+    refreshModalState: {
+      reducer: (state, action) => {
+        return action.payload
+      },
+    },
+  },
+})
+export const { refreshModalState } = modalIngridientRefresh.actions

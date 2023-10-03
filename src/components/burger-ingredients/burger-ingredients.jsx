@@ -7,7 +7,11 @@ import Modal from '../modal/modal'
 import { useSelector, useDispatch } from 'react-redux'
 import { getBurgerIngridientList } from '../../services/actions'
 import IngredientDetails from '../ingredient-details/ingredient-details'
-import { modalFlag, modalOrderFlag } from '../../services/reducer'
+import {
+  modalFlag,
+  modalOrderFlag,
+  refreshModalState,
+} from '../../services/reducer'
 import { useNavigate } from 'react-router-dom'
 
 export default function BurgerIngredients() {
@@ -25,8 +29,10 @@ export default function BurgerIngredients() {
   const [current, setCurrent] = useState('one')
   useEffect(() => {
     dispatch(getBurgerIngridientList())
+    dispatch(refreshModalState(JSON.parse(localStorage.getItem('Ing'))))
     if (modalIng) {
       navigate(`ingridients/${localStorage.getItem('targetElem')}`)
+      localStorage.setItem('modalIng', true)
     }
   }, [modalIng, dispatch])
   let titlePlace = document.getElementById('main_bun')
