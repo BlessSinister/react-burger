@@ -13,6 +13,7 @@ import Orders from '../../pages/orders'
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { checkFn } from '../../services/actions'
+import Orderlent from '../../pages/orderlent'
 export default function App() {
   const dispatch = useDispatch()
   useEffect(() => {
@@ -26,11 +27,7 @@ export default function App() {
       </header>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route
-          path="*"
-          element={<p className={app_style.not_found}>Страница в разработке</p>}
-        />
-        {/* <Route path="/login" element={<Login />} /> */}
+        <Route path="*" element={<p className={app_style.not_found}>404</p>} />
 
         <Route element={<ProtectedAuth />}>
           <Route path="/profile" element={<Profile />} />
@@ -42,7 +39,8 @@ export default function App() {
           <Route path="/forgotpass" element={<ForgotPass />} />
           <Route path="/resetpass" element={<ResetPass />} />
         </Route>
-        <Route path="/:id" element={<IngridientsInfo />} />
+        <Route path="/ingridients/:id" element={<IngridientsInfo />} />
+        <Route path="/orderlent" element={<Orderlent />} />
       </Routes>
     </>
   )

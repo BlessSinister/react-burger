@@ -48,7 +48,7 @@ export const store = configureStore({
     currentIngridient: { id: 1, data: [] },
     modalIngridientFlag: false,
     modalOrderFlag: false,
-    order: 'Add Ingridients',
+    order: 'Wait order number',
     dropTargetElem: [],
     counterState: [],
     bunState: [],

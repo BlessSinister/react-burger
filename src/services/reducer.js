@@ -55,7 +55,9 @@ export const modalingFlagReducer = createSlice({
   initialState: false,
   reducers: {
     modalFlag: {
-      reducer: (state, action) => action.payload,
+      reducer: (state, action) => {
+        return action.payload
+      },
     },
   },
 })

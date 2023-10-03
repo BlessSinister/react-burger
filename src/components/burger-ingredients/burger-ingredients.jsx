@@ -8,6 +8,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { getBurgerIngridientList } from '../../services/actions'
 import IngredientDetails from '../ingredient-details/ingredient-details'
 import { modalFlag, modalOrderFlag } from '../../services/reducer'
+import { useNavigate } from 'react-router-dom'
 
 export default function BurgerIngredients() {
   const modalIng = useSelector((state) => state.modalIngridientFlag)
@@ -15,7 +16,7 @@ export default function BurgerIngredients() {
   const data = useSelector((state) => state.burgerIngridients)
 
   const id = data.map((item) => item._id)
-
+  const navigate = useNavigate()
   const dispatch = useDispatch()
   const onCloseModal = () => {
     dispatch(modalOrderFlag(false))
@@ -24,7 +25,10 @@ export default function BurgerIngredients() {
   const [current, setCurrent] = useState('one')
   useEffect(() => {
     dispatch(getBurgerIngridientList())
-  }, [dispatch])
+    if (modalIng) {
+      navigate(`ingridients/${localStorage.getItem('targetElem')}`)
+    }
+  }, [modalIng, dispatch])
   let titlePlace = document.getElementById('main_bun')
 
   const tabScrollChanger = () => {
@@ -54,12 +58,6 @@ export default function BurgerIngredients() {
       </h1>
       <Tabs tabChanger={tabScrollChanger} current={current} />
       <IngrList data={data} tabScrollChanger={tabScrollChanger} id={id} />
-
-      {modalIng && (
-        <Modal modalIng={modalIng} onCloseModal={onCloseModal}>
-          <IngredientDetails />
-        </Modal>
-      )}
     </section>
   )
 }

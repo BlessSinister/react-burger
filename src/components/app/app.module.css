@@ -70,5 +70,8 @@ main {
 }
 .not_found {
   margin-top: 200px;
-  font-size: 54px;
+  font-size: 300px;
+  background: linear-gradient(to top right, #ff0000 0%, #7c00fa 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
