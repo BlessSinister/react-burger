@@ -18,7 +18,7 @@ export default function IngrItems({ image, name, price, id, dropElements }) {
   return (
     <div onClick={() => dispatch(modalFlag(true))} ref={drag}>
       <div
-        className={`${ing_items_style.card} mr-6 mb-8`}
+        className={`${ing_items_style.card} mb-8`}
         onClick={() => dispatch(modalChanger({ id: id, data: data }))}
         id={id}
       >
