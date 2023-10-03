@@ -1,0 +1,80 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+}
+.wrapper {
+  width: 640px;
+  height: 575px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.h2 {
+  display: flex;
+  width: 640px;
+  height: 64px;
+  flex-direction: column;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--text-primary-light-standart-text, #f2f2f3);
+  text-align: center;
+
+  /* desktop/display large */
+  font-family: Jet Brains Mono;
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 40px; /* 111.111% */
+}
+.img_wrapper {
+  width: 480px;
+  height: 240px;
+}
+.info_wrapper {
+  width: 520px;
+  height: 118px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+.p {
+  color: var(--text-primary-light-standart-text, #f2f2f3);
+  text-align: center;
+
+  /* desktop/display small */
+  font-family: Jet Brains Mono;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 30px; /* 125% */
+}
+.calorie_wrapper {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+.ccal_wrapper {
+  color: var(--text-dark-grey-secondary-text, #8585ad);
+  text-align: center;
+
+  /* desktop/text */
+  font-family: Jet Brains Mono;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px; /* 150% */
+}
+.ccal_elem {
+  color: var(--text-dark-grey-secondary-text, #8585ad);
+  text-align: center;
+
+  /* desktop/digits small */
+  font-family: Iceland;
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px; /* 85.714% */
+}

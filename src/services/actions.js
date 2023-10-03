@@ -9,7 +9,6 @@ import {
   setMainProfileInitialState,
 } from './reducer'
 import { BASE_URL, url } from '../utils/api'
-import { useSelector } from 'react-redux'
 
 const checkResponse = (response) => {
   if (response.ok) {
@@ -89,7 +88,7 @@ export const checkFn = () => async (dispatch) => {
 
     const name = data.user.name
     const email = data.user.email
-    const password = data.user.password
+    const password = data.user.password || 'qwerty'
 
     dispatch(setMainProfileInitialState({ email, password, name }))
   } catch (err) {

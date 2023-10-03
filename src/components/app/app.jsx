@@ -42,7 +42,7 @@ export default function App() {
           <Route path="/forgotpass" element={<ForgotPass />} />
           <Route path="/resetpass" element={<ResetPass />} />
         </Route>
-        <Route path="/ingridients-info" element={<IngridientsInfo />} />
+        <Route path="/:id" element={<IngridientsInfo />} />
       </Routes>
     </>
   )

@@ -36,9 +36,14 @@ export const modalIngridientsReducer = createSlice({
   reducers: {
     modalChanger: {
       reducer: (state, action) => {
-        return action.payload.data.filter(
-          (item) => item._id === action.payload.id
-        )
+        if (localStorage.getItem('targetElem')) {
+          localStorage.removeItem('targetElem')
+        }
+
+        return action.payload.data.filter((item) => {
+          localStorage.setItem('targetElem', action.payload.id)
+          return item._id === action.payload.id
+        })
       },
     },
   },
