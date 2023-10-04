@@ -17,6 +17,32 @@ const checkResponse = (response) => {
   return Promise.reject(`Ошибка ${response.status}`)
 }
 
+export const refreshToken = () => {
+  return fetch(`${BASE_URL}auth/token`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json;charset=utf-8',
+    },
+    body: JSON.stringify({
+      token: localStorage.getItem('refreshToken'),
+    }),
+  }).then(checkResponse)
+}
+const fetchWithRefresh = async (err, url, options) => {
+  if (err.message === 'jwt expired') {
+    const refreshData = await refreshToken()
+    if (!refreshData.success) {
+      return Promise.reject(refreshData)
+    }
+    localStorage.setItem('refreshToken', refreshData.refreshToken)
+    localStorage.setItem('accessToken', refreshData.accessToken)
+    options.headers.authorization = refreshData.accessToken
+    const res = await fetch(url, options)
+    return await checkResponse(res)
+  }
+}
+// ======================================================
+
 export const getBurgerIngridientList = () => async (dispatch) => {
   try {
     const response = await fetch(url)
@@ -74,15 +100,16 @@ export const checkFn = () => async (dispatch) => {
   if (localStorage.getItem('accessToken')) {
     dispatch(loginSystem(true))
   }
-
-  try {
-    const response = await fetch(`${BASE_URL}auth/user`, {
+  let options = {
       method: 'GET',
       headers: {
         authorization: localStorage.getItem('accessToken'),
         'Content-Type': 'application/json',
       },
-    })
+    },
+    url = `${BASE_URL}auth/user`
+  try {
+    const response = await fetch(url, options)
 
     const data = await checkResponse(response)
 
@@ -92,28 +119,32 @@ export const checkFn = () => async (dispatch) => {
 
     dispatch(setMainProfileInitialState({ email, password, name }))
   } catch (err) {
-    console.log(err)
+    fetchWithRefresh(err, url, options)
   }
 }
 export const loginUserFn = (email, password) => async (dispatch) => {
+  let options, url
   try {
-    const response = await fetch(`${BASE_URL}auth/login`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json; charger=utf-8',
-      },
-      body: JSON.stringify({
-        email: email,
-        password: password,
-      }),
-    })
+    const response = await fetch(
+      (url = `${BASE_URL}auth/login`),
+      (options = {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json; charger=utf-8',
+        },
+        body: JSON.stringify({
+          email: email,
+          password: password,
+        }),
+      })
+    )
     const data = await checkResponse(response)
     console.log(email, password)
     localStorage.setItem('accessToken', data.accessToken)
     localStorage.setItem('refreshToken', data.refreshToken)
     dispatch(loginSystem(data.success))
   } catch (err) {
-    console.log(err)
+    fetchWithRefresh(err, url, options)
   }
   try {
     const response = await fetch(`${BASE_URL}auth/user`, {
@@ -130,24 +161,28 @@ export const loginUserFn = (email, password) => async (dispatch) => {
 
     dispatch(setMainProfileInitialState({ email, password, name }))
   } catch (err) {
-    console.log(err)
+    fetchWithRefresh(err, url, options)
   }
   if (localStorage.getItem('accessToken')) {
     dispatch(loginSystem(true))
   }
 }
 export const logoutUserFn = () => async (dispatch) => {
+  let options, url
   try {
-    const response = await fetch(`${BASE_URL}auth/logout`, {
-      method: 'post',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        token: localStorage.getItem('refreshToken'),
-      }),
-    })
+    const response = await fetch(
+      (url = `${BASE_URL}auth/logout`),
+      (options = {
+        method: 'post',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          token: localStorage.getItem('refreshToken'),
+        }),
+      })
+    )
 
     const data = await checkResponse(response)
     console.log(data)
@@ -156,7 +191,7 @@ export const logoutUserFn = () => async (dispatch) => {
     localStorage.removeItem('refreshToken')
     dispatch(setMainProfileInitialState({}))
   } catch (err) {
-    console.log(err)
+    fetchWithRefresh(err, url, options)
   }
 }
 
@@ -181,43 +216,51 @@ export const forgotPassFn = (email) => async (dispatch) => {
 }
 
 export const resetPassFn = (password, token) => async (dispatch) => {
+  let options, url
   try {
-    const response = await fetch(`${BASE_URL}password-reset/reset`, {
-      method: 'post',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        password: password,
-        token: token,
-      }),
-    })
+    const response = await fetch(
+      (url = `${BASE_URL}password-reset/reset`),
+      (options = {
+        method: 'post',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          password: password,
+          token: token,
+        }),
+      })
+    )
 
     const data = await checkResponse(response)
     console.log(data)
     dispatch(resetPass(data.success))
   } catch (err) {
-    console.log(err)
+    fetchWithRefresh(err, url, options)
   }
 }
 export const setProfileInfo = (name, password, email) => async (dispatch) => {
+  let options, url
   try {
-    const response = await fetch(`${BASE_URL}auth/user`, {
-      method: 'PATCH',
-      headers: {
-        authorization: localStorage.getItem('accessToken'),
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        name: name,
-      }),
-    })
+    const response = await fetch(
+      (url = `${BASE_URL}auth/user`),
+      (options = {
+        method: 'PATCH',
+        headers: {
+          authorization: localStorage.getItem('accessToken'),
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: name,
+        }),
+      })
+    )
 
     const data = await checkResponse(response)
     console.log(data)
     dispatch(setMainProfileInitialState({ name, password, email }))
   } catch (err) {
-    console.log(err)
+    fetchWithRefresh(err, url, options)
   }
 }
