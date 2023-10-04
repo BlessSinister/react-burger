@@ -7,31 +7,22 @@ import Modal from '../modal/modal'
 import { useSelector, useDispatch } from 'react-redux'
 import { getBurgerIngridientList } from '../../services/actions'
 import IngredientDetails from '../ingredient-details/ingredient-details'
-import {
-  modalFlag,
-  modalOrderFlag,
-  refreshModalState,
-} from '../../services/reducer'
-import { useNavigate } from 'react-router-dom'
 
-export default function BurgerIngredients() {
+export default function BurgerIngredients({ onCloseModal }) {
   const modalIng = useSelector((state) => state.modalIngridientFlag)
 
   const data = useSelector((state) => state.burgerIngridients)
 
   const id = data.map((item) => item._id)
-  const navigate = useNavigate()
+
   const dispatch = useDispatch()
-  const onCloseModal = () => {
-    dispatch(modalOrderFlag(false))
-    dispatch(modalFlag(false))
-  }
+
   const [current, setCurrent] = useState('one')
   useEffect(() => {
     dispatch(getBurgerIngridientList())
-    dispatch(refreshModalState(JSON.parse(localStorage.getItem('Ing'))))
+    // dispatch(refreshModalState(JSON.parse(localStorage.getItem('Ing'))))
     if (modalIng) {
-      navigate(`ingridients/${localStorage.getItem('targetElem')}`)
+      // navigate(`ingridients/${localStorage.getItem('targetElem')}`)
       localStorage.setItem('modalIng', true)
     }
   }, [modalIng, dispatch])
@@ -64,6 +55,11 @@ export default function BurgerIngredients() {
       </h1>
       <Tabs tabChanger={tabScrollChanger} current={current} />
       <IngrList data={data} tabScrollChanger={tabScrollChanger} id={id} />
+      {modalIng && (
+        <Modal modalIng={modalIng} onCloseModal={onCloseModal}>
+          <IngredientDetails />
+        </Modal>
+      )}
     </section>
   )
 }

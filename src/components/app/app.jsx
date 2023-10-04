@@ -1,6 +1,6 @@
 import app_style from './app.module.css'
 import AppHeader from '../app-header/app-header'
-import { Route, Routes, useNavigate } from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom'
 import Home from '../../pages/home'
 import Login from '../../pages/login'
 import Registr from '../../pages/registr'
@@ -11,23 +11,30 @@ import IngridientsInfo from '../../pages/ingridients-info'
 import { ProtectedAuth, ProtectedUnAuth } from './protected-route'
 import Orders from '../../pages/orders'
 import { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
-import { checkFn } from '../../services/actions'
+import { useDispatch, useSelector } from 'react-redux'
+import { checkFn, getBurgerIngridientList } from '../../services/actions'
 import Orderlent from '../../pages/orderlent'
-import { modalFlag, modalOrderFlag } from '../../services/reducer'
+import { modalFlag } from '../../services/reducer'
 export default function App() {
   const dispatch = useDispatch()
-  const navigate = useNavigate()
+  let id = localStorage.getItem('targetElem')
+  const modalIng = useSelector((state) => state.modalIngridientFlag)
+  let ingridient = useSelector((state) => state.burgerIngridients).filter(
+    (item) => item._id === id
+  )
+  localStorage.setItem('Ing', JSON.stringify(ingridient))
+
+  useEffect(() => {
+    dispatch(getBurgerIngridientList())
+    if (localStorage.getItem('modalIng')) {
+      dispatch(modalFlag(true))
+    }
+  }, [])
+
   useEffect(() => {
     dispatch(checkFn())
   }, [])
 
-  const onCloseModal = () => {
-    dispatch(modalOrderFlag(false))
-    dispatch(modalFlag(false))
-    navigate('/')
-    localStorage.removeItem('modalIng')
-  }
   return (
     <>
       <header className={app_style.header}>
@@ -49,7 +56,9 @@ export default function App() {
         </Route>
         <Route
           path="/ingridients/:id"
-          element={<IngridientsInfo onCloseModal={onCloseModal} />}
+          element={
+            <IngridientsInfo modalIng={modalIng} ingridient={ingridient} />
+          }
         />
         <Route path="/orderlent" element={<Orderlent />} />
       </Routes>

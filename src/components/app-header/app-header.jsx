@@ -15,11 +15,11 @@ export default function AppHeader() {
     isActive
       ? `text text_type_main-default ${header_style.active}`
       : `text text_type_main-default ${header_style.a}`
-  const setIconTypeConstr =
+  let setIconTypeConstr =
     window.location.pathname === '/' ? 'primary' : 'secondary'
-  const setIconTypeOrder =
+  let setIconTypeOrder =
     window.location.pathname === '/orderlent' ? 'primary' : 'secondary'
-  const setIconTypeProfile =
+  let setIconTypeProfile =
     window.location.pathname === '/profile' ||
     window.location.pathname === '/login' ||
     window.location.pathname === '/profile/orders'

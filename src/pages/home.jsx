@@ -10,6 +10,7 @@ export default function Home() {
   const onCloseModal = () => {
     dispatch(modalOrderFlag(false))
     dispatch(modalFlag(false))
+    localStorage.removeItem('modalIng')
   }
 
   return (
