@@ -26,6 +26,7 @@ export default function Profile() {
     setEmail(emailState)
     setPass(password)
   }
+
   useEffect(() => {
     setValue(editName)
     setPass(editPass)
@@ -34,6 +35,10 @@ export default function Profile() {
   }, [editEmail, editName, editPass, navigate])
   const dispatch = useDispatch()
 
+  let handleSubmitForm = (event) => {
+    dispatch(setProfileInfo(value, pass, email))
+    event.preventDefault()
+  }
   return (
     <div className={styles.container}>
       <div className={`${styles.wrapper_navigation} mt-30`}>
@@ -55,45 +60,48 @@ export default function Profile() {
         </p>
       </div>
       <div className={`${styles.wrapper_edit} mt-30 ml-95`}>
-        <Input
-          onChange={(e) => setValue(e.target.value)}
-          value={value}
-          placeholder="Имя"
-          icon="EditIcon"
-          extraClass="mb-6"
-        />
-        <EmailInput
-          onChange={(e) => setEmail(e.target.value)}
-          value={email}
-          name={'email'}
-          placeholder="Логин"
-          isIcon={true}
-          extraClass="mb-6"
-        />
-        <PasswordInput
-          onChange={(e) => setPass(e.target.value)}
-          value={pass}
-          name={'password'}
-          icon="EditIcon"
-        />
-        <Button
-          htmlType="button"
-          type="secondary"
-          size="medium"
-          extraClass="mt-6"
-          onClick={() => dispatch(setProfileInfo(value, pass, email))}
-        >
-          Сохранить
-        </Button>
-        <Button
-          htmlType="button"
-          type="secondary"
-          size="medium"
-          extraClass="mt-6"
-          onClick={restoreProfileFn}
-        >
-          Отменить
-        </Button>
+        <form onSubmit={handleSubmitForm}>
+          <Input
+            onChange={(e) => setValue(e.target.value)}
+            value={value}
+            name="name"
+            placeholder="Имя"
+            icon="EditIcon"
+            extraClass="mb-6"
+          />
+          <EmailInput
+            onChange={(e) => setEmail(e.target.value)}
+            value={email}
+            name={'email'}
+            placeholder="Логин"
+            isIcon={true}
+            extraClass="mb-6"
+          />
+          <PasswordInput
+            onChange={(e) => setPass(e.target.value)}
+            value={pass}
+            name={'password'}
+            icon="EditIcon"
+          />
+          <Button
+            htmlType="button"
+            type="secondary"
+            size="medium"
+            extraClass="mt-6"
+            onClick={() => dispatch(setProfileInfo(value, pass, email))}
+          >
+            Сохранить
+          </Button>
+          <Button
+            htmlType="button"
+            type="secondary"
+            size="medium"
+            extraClass="mt-6"
+            onClick={restoreProfileFn}
+          >
+            Отменить
+          </Button>
+        </form>
       </div>
     </div>
   )
