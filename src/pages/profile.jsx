@@ -6,7 +6,7 @@ import {
   Input,
   PasswordInput,
 } from '@ya.praktikum/react-developer-burger-ui-components'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { logoutUserFn, setProfileInfo } from '../services/actions'
 
@@ -20,6 +20,7 @@ export default function Profile() {
   const [value, setValue] = useState(name)
   const [email, setEmail] = useState(emailState)
   const [pass, setPass] = useState(password)
+  const navigate = useNavigate()
   const restoreProfileFn = () => {
     setValue(name)
     setEmail(emailState)
@@ -29,7 +30,8 @@ export default function Profile() {
     setValue(editName)
     setPass(editPass)
     setEmail(editEmail)
-  }, [editEmail, editName, editPass])
+    localStorage.getItem('accessToken') ? navigate('/profile') : navigate('/')
+  }, [editEmail, editName, editPass, navigate])
   const dispatch = useDispatch()
 
   return (
