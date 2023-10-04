@@ -22,9 +22,8 @@ export default function ResetPass() {
     }
   }, [redirect])
 
-  const [pass, setPass] = useState()
-  const [token, setToken] = useState()
-  console.log(token)
+  const [pass, setPass] = useState('')
+  const [token, setToken] = useState('')
   const inputRef = useRef(null)
   return (
     <div className={styles.container}>

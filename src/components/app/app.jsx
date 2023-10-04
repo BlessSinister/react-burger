@@ -14,17 +14,13 @@ import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { checkFn } from '../../services/actions'
 import Orderlent from '../../pages/orderlent'
-import {
-  modalFlag,
-  modalOrderFlag,
-  refreshModalState,
-} from '../../services/reducer'
+import { modalFlag, modalOrderFlag } from '../../services/reducer'
 export default function App() {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   useEffect(() => {
     dispatch(checkFn())
-  })
+  }, [])
 
   const onCloseModal = () => {
     dispatch(modalOrderFlag(false))

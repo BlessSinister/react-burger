@@ -30,13 +30,13 @@ nav {
 
 .a {
   text-decoration: none;
-  color: rgba(242, 242, 243, 1);
+  color: rgba(133, 133, 173, 1);
 }
 .btn_item2 {
   max-width: 207px;
   width: 100%;
 }
-.a1 {
+.active {
   text-decoration: none;
-  color: rgba(133, 133, 173, 1);
+  color: rgb(255, 255, 255);
 }

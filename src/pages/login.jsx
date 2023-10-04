@@ -5,7 +5,7 @@ import {
 } from '@ya.praktikum/react-developer-burger-ui-components'
 import { useRef, useState, useEffect } from 'react'
 import styles from './login.module.css'
-import { NavLink, useNavigate } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { loginUserFn } from '../services/actions'
 import { useDispatch } from 'react-redux'
 export default function Login() {

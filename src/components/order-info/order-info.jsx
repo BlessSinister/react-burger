@@ -7,9 +7,12 @@ import {
 import { useDispatch, useSelector } from 'react-redux'
 import { modalOrderFlag } from '../../services/reducer'
 import { getOrderInfo } from '../../services/actions'
+import { useNavigate } from 'react-router-dom'
 
 export default function OrderInfo() {
   const dispatch = useDispatch()
+  const authCheckerOrder = useSelector((state) => state.authUser)
+  const navigate = useNavigate()
   const orderButonOn = useSelector((state) => state.dropTargetElem)
   const dropList = useSelector((state) => state.dropTargetElem)
   const bunPrice =
@@ -30,7 +33,9 @@ export default function OrderInfo() {
       </div>
       <div
         onClick={() =>
-          orderButonOn.length ? dispatch(modalOrderFlag(true)) : null
+          orderButonOn.length && authCheckerOrder
+            ? dispatch(modalOrderFlag(true))
+            : navigate('/login')
         }
       >
         <Button
@@ -38,7 +43,9 @@ export default function OrderInfo() {
           type="primary"
           size="large"
           onClick={() =>
-            orderButonOn.length ? dispatch(getOrderInfo(id)) : null
+            orderButonOn.length && authCheckerOrder
+              ? dispatch(getOrderInfo(id))
+              : null
           }
         >
           Оформить заказ

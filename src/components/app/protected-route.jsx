@@ -9,5 +9,5 @@ export const ProtectedAuth = () => {
 export const ProtectedUnAuth = () => {
   const user = useSelector((state) => state.authUser)
 
-  return !user ? <Outlet /> : <Navigate to={'/profile'} />
+  return !user ? <Outlet /> : <Navigate to={'/'} />
 }

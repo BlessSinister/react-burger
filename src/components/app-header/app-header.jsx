@@ -11,18 +11,32 @@ export default function AppHeader() {
   const authUser = useSelector((state) => state.authUser)
     ? '/profile'
     : '/login'
+  const setActive = ({ isActive }) =>
+    isActive
+      ? `text text_type_main-default ${header_style.active}`
+      : `text text_type_main-default ${header_style.a}`
+  const setIconTypeConstr =
+    window.location.pathname === '/' ? 'primary' : 'secondary'
+  const setIconTypeOrder =
+    window.location.pathname === '/orderlent' ? 'primary' : 'secondary'
+  const setIconTypeProfile =
+    window.location.pathname === '/profile' ||
+    window.location.pathname === '/login' ||
+    window.location.pathname === '/profile/orders'
+      ? 'primary'
+      : 'secondary'
   return (
     <nav>
       <div className={`${header_style.btn_wrapper}`}>
         <div
           className={`${header_style.btn_block_item} pl-5 pr-5 pt-4 pb-4 mr-2`}
         >
-          <BurgerIcon type="primary" className={`${header_style.item1_ico} `} />
+          <BurgerIcon
+            type={setIconTypeConstr}
+            className={`${header_style.item1_ico} `}
+          />
           <p className={`ml-2`}>
-            <NavLink
-              to="/"
-              className={`text text_type_main-default ${header_style.a}`}
-            >
+            <NavLink to="/" className={setActive}>
               Конструктор
             </NavLink>
           </p>
@@ -30,12 +44,9 @@ export default function AppHeader() {
         <div
           className={`${header_style.btn_block_item} ${header_style.btn_item2} pl-5 pr-5 pt-4 pb-4 mr-2`}
         >
-          <ListIcon type="secondary" />
+          <ListIcon type={setIconTypeOrder} />
           <p className={`ml-2`}>
-            <NavLink
-              to="/orderlent"
-              className={`text text_type_main-default ${header_style.a1}`}
-            >
+            <NavLink to="/orderlent" className={setActive}>
               Лента заказов
             </NavLink>
           </p>
@@ -47,16 +58,12 @@ export default function AppHeader() {
           className={`${header_style.btn_block_item} ${header_style.btn_item2}  pl-5 pr-5 pt-4 pb-4 mr-2`}
         >
           <ProfileIcon
-            type="secondary"
+            type={setIconTypeProfile}
             className={`${header_style.item1_ico} `}
           />
 
           <p className={`ml-2`}>
-            <NavLink
-              to={authUser}
-              className={`text text_type_main-default ${(isActive) =>
-                !isActive ? header_style.a1 : header_style.active}`}
-            >
+            <NavLink to={authUser} className={setActive}>
               Личный кабинет
             </NavLink>
           </p>

@@ -1,9 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux'
 import style from './ingredient-details.module.css'
-import { refreshModalState } from '../../services/reducer'
-import { useEffect } from 'react'
+
 export default function IngredientDetails() {
-  const dispatch = useDispatch()
   let data = useSelector((state) => state.currentIngridient)
 
   const data1 = useSelector((state) => state.inst)
