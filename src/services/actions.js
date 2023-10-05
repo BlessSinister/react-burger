@@ -123,21 +123,19 @@ export const checkFn = () => async (dispatch) => {
   }
 }
 export const loginUserFn = (email, password) => async (dispatch) => {
-  let options, url
+  let options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json; charger=utf-8',
+      },
+      body: JSON.stringify({
+        email: email,
+        password: password,
+      }),
+    },
+    url = `${BASE_URL}auth/login`
   try {
-    const response = await fetch(
-      (url = `${BASE_URL}auth/login`),
-      (options = {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json; charger=utf-8',
-        },
-        body: JSON.stringify({
-          email: email,
-          password: password,
-        }),
-      })
-    )
+    const response = await fetch(url, options)
     const data = await checkResponse(response)
     console.log(email, password)
     localStorage.setItem('accessToken', data.accessToken)
@@ -168,21 +166,19 @@ export const loginUserFn = (email, password) => async (dispatch) => {
   }
 }
 export const logoutUserFn = () => async (dispatch) => {
-  let options, url
+  let options = {
+      method: 'post',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        token: localStorage.getItem('refreshToken'),
+      }),
+    },
+    url = `${BASE_URL}auth/logout`
   try {
-    const response = await fetch(
-      (url = `${BASE_URL}auth/logout`),
-      (options = {
-        method: 'post',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          token: localStorage.getItem('refreshToken'),
-        }),
-      })
-    )
+    const response = await fetch(url, options)
 
     const data = await checkResponse(response)
     console.log(data)
@@ -216,22 +212,20 @@ export const forgotPassFn = (email) => async (dispatch) => {
 }
 
 export const resetPassFn = (password, token) => async (dispatch) => {
-  let options, url
+  let options = {
+      method: 'post',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        password: password,
+        token: token,
+      }),
+    },
+    url = `${BASE_URL}password-reset/reset`
   try {
-    const response = await fetch(
-      (url = `${BASE_URL}password-reset/reset`),
-      (options = {
-        method: 'post',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          password: password,
-          token: token,
-        }),
-      })
-    )
+    const response = await fetch(url, options)
 
     const data = await checkResponse(response)
     console.log(data)
@@ -241,21 +235,19 @@ export const resetPassFn = (password, token) => async (dispatch) => {
   }
 }
 export const setProfileInfo = (name, password, email) => async (dispatch) => {
-  let options, url
+  let options = {
+      method: 'PATCH',
+      headers: {
+        authorization: localStorage.getItem('accessToken'),
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        name: name,
+      }),
+    },
+    url = `${BASE_URL}auth/user`
   try {
-    const response = await fetch(
-      (url = `${BASE_URL}auth/user`),
-      (options = {
-        method: 'PATCH',
-        headers: {
-          authorization: localStorage.getItem('accessToken'),
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          name: name,
-        }),
-      })
-    )
+    const response = await fetch(url, options)
 
     const data = await checkResponse(response)
     console.log(data)
