@@ -11,6 +11,7 @@ import {
 } from '../../services/reducer'
 
 export default function BurgerConstructor() {
+  //@ts-ignore
   const modal = useSelector((state) => state.modalOrderFlag)
   const dispatch = useDispatch()
   const onCloseModal = () => {
