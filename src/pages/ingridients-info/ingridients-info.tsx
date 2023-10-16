@@ -1,6 +1,27 @@
 import styles from './ingridients-info.module.css'
 
-export default function IngridientsInfo({ ingridient }) {
+interface Iingridient {
+  ingridient:
+    | [
+        {
+          calories: number
+          carbohydrates: number
+          fat: number
+          image: string
+          image_large: string
+          image_mobile: string
+          name: string
+          price: number
+          proteins: number
+          type: string
+          __v: number
+          _id: string
+        }
+      ]
+    | []
+}
+
+export default function IngridientsInfo({ ingridient }: Iingridient) {
   if (ingridient.length === 0) {
     return null
   }

@@ -7,7 +7,7 @@ import { modalFlag, modalOrderFlag } from '../../services/reducer'
 
 export default function Home() {
   const dispatch = useDispatch()
-  const onCloseModal = () => {
+  const onCloseModal = (): void => {
     dispatch(modalOrderFlag(false))
     dispatch(modalFlag(false))
     localStorage.removeItem('modalIng')
@@ -17,7 +17,11 @@ export default function Home() {
     <main>
       <DndProvider backend={HTML5Backend}>
         <BurgerIngredients onCloseModal={onCloseModal} />
-        <BurgerConstructor onCloseModal={onCloseModal} />
+
+        <BurgerConstructor
+          //@ts-ignore
+          onCloseModal={onCloseModal}
+        />
       </DndProvider>
     </main>
   )

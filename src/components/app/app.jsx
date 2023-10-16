@@ -23,7 +23,7 @@ export default function App() {
     (item) => item._id === id
   )
   localStorage.setItem('Ing', JSON.stringify(ingridient))
-
+  console.log(ingridient)
   useEffect(() => {
     dispatch(getBurgerIngridientList())
     if (localStorage.getItem('modalIng')) {
@@ -56,9 +56,7 @@ export default function App() {
         </Route>
         <Route
           path="/ingridients/:id"
-          element={
-            <IngridientsInfo modalIng={modalIng} ingridient={ingridient} />
-          }
+          element={<IngridientsInfo ingridient={ingridient} />}
         />
         <Route path="/orderlent" element={<Orderlent />} />
       </Routes>
