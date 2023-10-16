@@ -8,12 +8,14 @@ import {
 import { Link, useNavigate } from 'react-router-dom'
 import { registrUserFn } from '../../services/actions'
 import { useDispatch, useSelector } from 'react-redux'
+
 export default function Registr() {
-  const [name, setName] = useState('')
-  const [pass, setPass] = useState('')
-  const [email, setEmail] = useState('')
+  const [name, setName] = useState<string>('')
+  const [pass, setPass] = useState<string>('')
+  const [email, setEmail] = useState<string>('')
   const dispatch = useDispatch()
   const inputRef = useRef(null)
+  //@ts-ignore
   const redirect = useSelector((state) => state.registerAcc)
   const navigate = useNavigate()
   useEffect(() => {
@@ -61,6 +63,7 @@ export default function Registr() {
             htmlType="button"
             type="primary"
             size="medium"
+            //@ts-ignore
             onClick={() => dispatch(registrUserFn(email, pass, name))}
           >
             Зарегистрироваться
