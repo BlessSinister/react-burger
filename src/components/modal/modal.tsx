@@ -1,14 +1,25 @@
+import { ReactNode } from 'react'
 import style from './modal.module.css'
-import propTypes from '../../utils/props-types'
 import { useEffect } from 'react'
 import { createPortal } from 'react-dom'
 import ModalOverlay from '../modal-overlay/modal-overlay'
-import PropTypes from 'prop-types'
 import { CloseIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 
-export default function Modal({ modalIng, children, modal, onCloseModal }) {
+interface Imodal {
+  modalIng?: any
+  children: ReactNode
+  modal?: any
+  onCloseModal: () => void
+}
+
+export default function Modal({
+  modalIng,
+  children,
+  modal,
+  onCloseModal,
+}: Imodal): JSX.Element | null {
   useEffect(() => {
-    const keyCloseModal = (e) => {
+    const keyCloseModal = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
         onCloseModal()
       }
@@ -24,7 +35,7 @@ export default function Modal({ modalIng, children, modal, onCloseModal }) {
     ? `${style.modal__content_ingr}`
     : modal
     ? `${style.modal__content}`
-    : null
+    : undefined
 
   return createPortal(
     <div className={setActiveClass}>
@@ -36,13 +47,6 @@ export default function Modal({ modalIng, children, modal, onCloseModal }) {
       </div>
       <ModalOverlay onCloseModal={onCloseModal} />
     </div>,
-    document.getElementById('modal-root')
+    document.getElementById('modal-root')!
   )
-}
-propTypes(Modal)
-
-Modal.propTypes = {
-  modal: PropTypes.bool,
-  modalIng: PropTypes.bool,
-  onCloseModal: PropTypes.func,
 }

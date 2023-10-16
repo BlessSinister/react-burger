@@ -1,11 +1,12 @@
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import style from './ingredient-details.module.css'
 
 export default function IngredientDetails() {
+  //@ts-ignore
   let data = useSelector((state) => state.currentIngridient)
-
+  //@ts-ignore
   const data1 = useSelector((state) => state.inst)
-  console.log(data1)
+
   if (data.length === 0) {
     return null
   }
