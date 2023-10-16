@@ -6,11 +6,13 @@ import {
   PasswordInput,
 } from '@ya.praktikum/react-developer-burger-ui-components'
 import { Link, useNavigate } from 'react-router-dom'
-import { resetPassFn } from '../services/actions'
+import { resetPassFn } from '../../services/actions'
 import { useDispatch, useSelector } from 'react-redux'
 export default function ResetPass() {
   const dispatch = useDispatch()
+  //@ts-ignore
   const redirect = useSelector((state) => state.resetPass)
+  //@ts-ignore
   const forgotRedirect = useSelector((state) => state.forgotPass)
   const navigate = useNavigate()
   useEffect(() => {
@@ -22,8 +24,8 @@ export default function ResetPass() {
     }
   }, [redirect])
 
-  const [pass, setPass] = useState('')
-  const [token, setToken] = useState('')
+  const [pass, setPass] = useState<string>('')
+  const [token, setToken] = useState<string>('')
   const inputRef = useRef(null)
   return (
     <div className={styles.container}>
@@ -52,6 +54,7 @@ export default function ResetPass() {
           htmlType="button"
           type="primary"
           size="medium"
+          //@ts-ignore
           onClick={() => dispatch(resetPassFn(pass, token))}
         >
           Сохранить

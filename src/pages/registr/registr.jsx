@@ -6,7 +6,7 @@ import {
   PasswordInput,
 } from '@ya.praktikum/react-developer-burger-ui-components'
 import { Link, useNavigate } from 'react-router-dom'
-import { registrUserFn } from '../services/actions'
+import { registrUserFn } from '../../services/actions'
 import { useDispatch, useSelector } from 'react-redux'
 export default function Registr() {
   const [name, setName] = useState('')

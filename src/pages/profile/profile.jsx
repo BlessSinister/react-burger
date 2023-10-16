@@ -8,7 +8,7 @@ import {
 } from '@ya.praktikum/react-developer-burger-ui-components'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { logoutUserFn, setProfileInfo } from '../services/actions'
+import { logoutUserFn, setProfileInfo } from '../../services/actions'
 
 export default function Profile() {
   const name = useSelector((state) => state.initialProfileInfo.name)
