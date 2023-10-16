@@ -1,13 +1,26 @@
 import ing_items_style from './ingr-items.module.css'
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components'
-import PropTypes from 'prop-types'
+
 import { modalChanger, modalFlag } from '../../services/reducer'
 import { useDispatch, useSelector } from 'react-redux'
 import { useDrag } from 'react-dnd'
 
-export default function IngrItems({ image, name, price, id, dropElements }) {
+interface IingrItems {
+  image: string
+  name: string
+  price: number
+  id: string
+  dropElements: object[]
+}
+export default function IngrItems({
+  image,
+  name,
+  price,
+  id,
+  dropElements,
+}: IingrItems) {
+  //@ts-ignore
   const data = useSelector((state) => state.burgerIngridients)
-
   const [, drag] = useDrag(() => ({
     type: 'ingridients',
     item: { id, data, dropElements },
@@ -37,13 +50,4 @@ export default function IngrItems({ image, name, price, id, dropElements }) {
       </div>
     </div>
   )
-}
-
-IngrItems.propTypes = {
-  _id: PropTypes.string,
-  price: PropTypes.number,
-  image: PropTypes.string,
-  name: PropTypes.string,
-  type: PropTypes.string,
-  modalIngFn: PropTypes.func,
 }

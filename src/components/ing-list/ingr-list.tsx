@@ -1,23 +1,65 @@
 import IngrItems from '../ingr-items/ingr-items'
 import ingr_list_style from './ingr-list.module.css'
 import app_style from '../app/app.module.css'
-import PropTypes from 'prop-types'
 import { Counter } from '@ya.praktikum/react-developer-burger-ui-components'
 import { useSelector } from 'react-redux'
 
-export default function IngrList({ data, modalIngFn, tabScrollChanger }) {
-  let bun, sauce, main
+interface IingrListProps {
+  data: [
+    {
+      calories: number
+      carbohydrates: number
+      fat: number
+      image: string
+      image_large: string
+      image_mobile: string
+      name: string
+      price: number
+      proteins: number
+      type: string
+      __v: number
+      _id: string
+    }
+  ]
+  tabScrollChanger: () => void
+}
+
+interface idata {
+  calories: number
+  carbohydrates: number
+  fat: number
+  image: string
+  image_large: string
+  image_mobile: string
+  name: string
+  price: number
+  proteins: number
+  type: string
+  __v: number
+  _id: string
+}
+export default function IngrList({
+  data,
+
+  tabScrollChanger,
+}: IingrListProps): JSX.Element | null {
+  let bun: idata[], sauce: idata[], main: idata[]
+  //@ts-ignore
   let dropElements = useSelector((state) => state.dropTargetElem)
   if (data) {
     bun = data.filter((item) => item.type === 'bun')
+
     sauce = data.filter((item) => item.type === 'sauce')
+
     main = data.filter((item) => item.type === 'main')
   } else {
-    return
+    return null
   }
+  //@ts-ignore
   const targetCounter = (arr) => {
     let tagetCount = []
     for (let key of arr) {
+      //@ts-ignore
       tagetCount.push(dropElements.filter((item) => item._id === key._id))
     }
     return tagetCount.map((item) => item.length)
@@ -62,7 +104,6 @@ export default function IngrList({ data, modalIngFn, tabScrollChanger }) {
                 price={item.price}
                 image={item.image}
                 name={item.name}
-                modalIngFn={modalIngFn}
                 id={item._id}
                 dropElements={dropElements}
               />
@@ -86,7 +127,6 @@ export default function IngrList({ data, modalIngFn, tabScrollChanger }) {
                 price={item.price}
                 image={item.image}
                 name={item.name}
-                modalIngFn={modalIngFn}
                 id={item._id}
                 dropElements={dropElements}
               />
@@ -96,15 +136,4 @@ export default function IngrList({ data, modalIngFn, tabScrollChanger }) {
       </div>
     </div>
   )
-}
-
-IngrList.propTypes = {
-  _id: PropTypes.string,
-  price: PropTypes.number,
-  image: PropTypes.string,
-  name: PropTypes.string,
-  type: PropTypes.string,
-  modalIngFn: PropTypes.func,
-  data: PropTypes.array,
-  tabScrollChanger: PropTypes.func,
 }
