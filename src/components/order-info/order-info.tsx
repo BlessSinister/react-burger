@@ -25,7 +25,6 @@ export default function OrderInfo() {
     ) * 2
   //@ts-ignore
   const id: string[] = dropList.map((item: object[]) => item._id)
-  console.log(id)
 
   let sumPrice =
     //@ts-ignore

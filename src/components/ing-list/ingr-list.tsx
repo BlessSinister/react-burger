@@ -4,7 +4,7 @@ import app_style from '../app/app.module.css'
 import { Counter } from '@ya.praktikum/react-developer-burger-ui-components'
 import { useSelector } from 'react-redux'
 
-interface Idata {
+export interface Idata {
   calories: number
   carbohydrates: number
   fat: number

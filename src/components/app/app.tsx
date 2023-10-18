@@ -25,7 +25,7 @@ export default function App() {
     (item: { _id: string }) => item._id === id
   )
   localStorage.setItem('Ing', JSON.stringify(ingridient))
-  console.log(ingridient)
+
   useEffect(() => {
     //@ts-ignore
     dispatch(getBurgerIngridientList())
