@@ -11,16 +11,24 @@ import { useNavigate } from 'react-router-dom'
 
 export default function OrderInfo() {
   const dispatch = useDispatch()
+  //@ts-ignore
   const authCheckerOrder = useSelector((state) => state.authUser)
   const navigate = useNavigate()
+  //@ts-ignore
   const orderButonOn = useSelector((state) => state.dropTargetElem)
+  //@ts-ignore
   const dropList = useSelector((state) => state.dropTargetElem)
+  //@ts-ignore
   const bunPrice =
-    useSelector((state) =>
+    useSelector((state: any) =>
       state.bunState.length ? state.bunState[0].price : 0
     ) * 2
-  const id = dropList.map((item) => item._id)
+  //@ts-ignore
+  const id: string[] = dropList.map((item: object[]) => item._id)
+  console.log(id)
+
   let sumPrice =
+    //@ts-ignore
     dropList.map((item) => item.price).reduce((a, b) => a + b, 0) + bunPrice
 
   return (
@@ -44,7 +52,8 @@ export default function OrderInfo() {
           size="large"
           onClick={() =>
             orderButonOn.length && authCheckerOrder
-              ? dispatch(getOrderInfo(id))
+              ? //@ts-ignore
+                dispatch(getOrderInfo(id))
               : null
           }
         >

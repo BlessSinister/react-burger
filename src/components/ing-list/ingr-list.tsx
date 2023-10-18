@@ -4,27 +4,7 @@ import app_style from '../app/app.module.css'
 import { Counter } from '@ya.praktikum/react-developer-burger-ui-components'
 import { useSelector } from 'react-redux'
 
-interface IingrListProps {
-  data: [
-    {
-      calories: number
-      carbohydrates: number
-      fat: number
-      image: string
-      image_large: string
-      image_mobile: string
-      name: string
-      price: number
-      proteins: number
-      type: string
-      __v: number
-      _id: string
-    }
-  ]
-  tabScrollChanger: () => void
-}
-
-interface idata {
+interface Idata {
   calories: number
   carbohydrates: number
   fat: number
@@ -38,12 +18,17 @@ interface idata {
   __v: number
   _id: string
 }
+
+interface IingrListProps {
+  data: Idata[]
+  tabScrollChanger: () => void
+}
+
 export default function IngrList({
   data,
-
   tabScrollChanger,
 }: IingrListProps): JSX.Element | null {
-  let bun: idata[], sauce: idata[], main: idata[]
+  let bun: Idata[], sauce: Idata[], main: Idata[]
   //@ts-ignore
   let dropElements = useSelector((state) => state.dropTargetElem)
   if (data) {

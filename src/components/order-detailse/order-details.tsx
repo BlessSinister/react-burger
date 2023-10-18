@@ -2,6 +2,7 @@ import { useSelector } from 'react-redux'
 import style from './order-details.module.css'
 
 export default function OrderDetails() {
+  //@ts-ignore
   const orderNumber = useSelector((state) => state.order)
   return (
     <div className={style.modal}>
