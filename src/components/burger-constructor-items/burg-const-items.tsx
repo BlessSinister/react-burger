@@ -14,6 +14,14 @@ import {
 } from '../../services/reducer'
 import BoxDndController from './box-dnd-controller'
 import { v4 } from 'uuid'
+import { Idata } from '../ing-list/ingr-list'
+
+interface IBurgConstItems {
+  data: Idata[]
+  dropElements: []
+  id: string
+}
+
 export default function BurgConstItems() {
   const dispatch = useDispatch()
   //@ts-ignore
@@ -22,11 +30,10 @@ export default function BurgConstItems() {
   const keyBun = useSelector((state) => state.keyBunGenerate)
   const [, DropTargetRef] = useDrop(() => ({
     accept: 'ingridients',
-    drop(itemId) {
+    drop(itemId: IBurgConstItems) {
+      console.log(itemId)
       if (
-        //@ts-ignore
         itemId.id !== '643d69a5c3f7b9001cfa093c' &&
-        //@ts-ignore
         itemId.id !== '643d69a5c3f7b9001cfa093d'
       ) {
         dispatch(dropTargetSetter(itemId))
