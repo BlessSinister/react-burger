@@ -9,8 +9,8 @@ import {
   setMainProfileInitialState,
 } from './reducer'
 import { BASE_URL, url } from '../utils/api'
-//@ts-ignore
-const checkResponse = (response) => {
+
+const checkResponse = (response: any): Promise<any> => {
   console.log(response)
   if (response.ok) {
     return response.json()

@@ -1,24 +1,8 @@
+import { Idata } from '../../components/ing-list/ingr-list'
 import styles from './ingridients-info.module.css'
 
 interface Iingridient {
-  ingridient:
-    | [
-        {
-          calories: number
-          carbohydrates: number
-          fat: number
-          image: string
-          image_large: string
-          image_mobile: string
-          name: string
-          price: number
-          proteins: number
-          type: string
-          __v: number
-          _id: string
-        }
-      ]
-    | []
+  ingridient: Idata[]
 }
 
 export default function IngridientsInfo({ ingridient }: Iingridient) {
