@@ -22,12 +22,20 @@ export default function BurgerIngredients({
 
   const dispatch = useDispatch()
 
-  const [current, setCurrent] = useState('one')
+  const [current, setCurrent] = useState<string>('one')
   useEffect(() => {
     //@ts-ignore
     dispatch(getBurgerIngridientList())
     // dispatch(refreshModalState(JSON.parse(localStorage.getItem('Ing'))))
     if (modalIng) {
+      // //@ts-ignore
+      // window.history.pushState(
+      //   null,
+      //   //@ts-ignore
+      //   null,
+      //   `/${'ingridients/' + localStorage.getItem('targetElem')}`
+      // )
+
       // navigate(`ingridients/${localStorage.getItem('targetElem')}`)
       localStorage.setItem('modalIng', 'true')
     }
