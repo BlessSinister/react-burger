@@ -11,23 +11,20 @@ import IngridientsInfo from '../../pages/ingridients-info/ingridients-info'
 import { ProtectedAuth, ProtectedUnAuth } from './protected-route'
 import Orders from '../../pages/orders/orders'
 import { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
 import { checkFn, getBurgerIngridientList } from '../../services/actions'
 import Orderlent from '../../pages/orderlent/orderlent'
 import { modalFlag } from '../../services/reducer'
+import { useAppDispatch, useAppSelector } from '../../services/redux-hooks'
 export default function App() {
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
   let id = localStorage.getItem('targetElem')
-  //@ts-ignore
-  const modalIng = useSelector((state) => state.modalIngridientFlag)
-  //@ts-ignore
-  let ingridient = useSelector((state) => state.burgerIngridients).filter(
+  const modalIng = useAppSelector((state) => state.modalIngridientFlag)
+  let ingridient = useAppSelector((state) => state.burgerIngridients).filter(
     (item: { _id: string }) => item._id === id
   )
   localStorage.setItem('Ing', JSON.stringify(ingridient))
 
   useEffect(() => {
-    //@ts-ignore
     dispatch(getBurgerIngridientList())
     if (localStorage.getItem('modalIng')) {
       dispatch(modalFlag(true))
@@ -35,7 +32,6 @@ export default function App() {
   }, [])
 
   useEffect(() => {
-    //@ts-ignore
     dispatch(checkFn())
   }, [])
 
