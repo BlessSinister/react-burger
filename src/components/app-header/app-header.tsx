@@ -53,7 +53,7 @@ export default function AppHeader() {
             type={setIconTypeOrder}
           />
           <p className={`ml-2`}>
-            <NavLink to="/orderlent" className={setActive}>
+            <NavLink to="/feed" className={setActive}>
               Лента заказов
             </NavLink>
           </p>
