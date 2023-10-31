@@ -59,22 +59,19 @@ export default function BurgConstItems() {
       <div className={burg_items_style.content_container}>
         {bunInfo.length ? (
           <div className={burg_items_style.decor_wrap}>
-            {bunInfo.map(
-              //@ts-ignore
-              (item, index) => (
-                <ConstructorElement
-                  type="top"
-                  isLocked={true}
-                  //@ts-ignore
-                  text={`${item.name}  (верх)`}
-                  //@ts-ignore
-                  price={item.price}
-                  //@ts-ignore
-                  thumbnail={item.image}
-                  key={keyBun[index]}
-                />
-              )
-            )}
+            {bunInfo.map((item, index) => (
+              <ConstructorElement
+                type="top"
+                isLocked={true}
+                //@ts-ignore
+                text={`${item.name}  (верх)`}
+                //@ts-ignore
+                price={item.price}
+                //@ts-ignore
+                thumbnail={item.image}
+                key={keyBun[index]}
+              />
+            ))}
           </div>
         ) : null}
 

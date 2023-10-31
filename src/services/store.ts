@@ -43,29 +43,32 @@ export const store = configureStore({
   },
 
   devTools: true,
+  //@ts-ignore
   middleware: (defaultMiddleWare) => defaultMiddleWare(),
   preloadedState: {
     burgerIngridients: [],
     ingridietnConstructor: [],
-    currentIngridient: { id: 1, data: [] },
+    //@ts-ignore
+    currentIngridient: { data: [] },
     modalIngridientFlag: false,
     modalOrderFlag: false,
-    // order: 'Wait order number',
+    order: 'Wait order number',
     dropTargetElem: [],
     counterState: [],
     bunState: [],
-    // inst: JSON.parse(localStorage.getItem('Ing')),
+    //@ts-ignore
+    inst: JSON.parse(localStorage.getItem('Ing')),
     keyIngridientsGenerate: [],
     keyBunGenerate: [],
     registerAcc: false,
     forgotPass: false,
-    // authUser: false,
+    authUser: false,
     resetPass: false,
-    // initialProfileInfo: {
-    //   name: '',
-    //   email: '',
-    //   password: '',
-    // },
+    initialProfileInfo: {
+      name: 'Igor',
+      email: 'ig.mar@yandex.ru',
+      password: 'qwerty',
+    },
     mainProfileInfo: [
       {
         name: '',

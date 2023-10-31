@@ -4,15 +4,9 @@ export const burgerIngridientsReducer = createSlice({
   name: 'burgerIngReducer',
   initialState: [] as Idata[],
   reducers: {
-    //@ts-ignore
-    addIngridientsList: {
-      reducer: (state, action: PayloadAction<Idata[]>) => {
-        console.log(action.payload)
-        return action.payload
-      },
+    addIngridientsList: (state, action: PayloadAction<Idata[]>) => {
+      return action.payload
     },
-    //@ts-ignore
-    payload: [] as Idata[],
   },
 })
 
@@ -20,53 +14,50 @@ export const { addIngridientsList } = burgerIngridientsReducer.actions
 
 export const burgerConstructorReducer = createSlice({
   name: 'burgerconstructor',
-  initialState: [],
+  initialState: [] as Idata[],
   reducers: {
-    //@ts-ignore
-    addBurgerConstructorList: {
-      reducer: (state, action) => {
-        if (action.payload.length > 1) {
-          return action.payload.slice(0, 8)
-        }
-      },
+    addBurgerConstructorList: (state, action: PayloadAction<Idata[]>) => {
+      if (action.payload.length > 1) {
+        console.log(action.payload.slice(0, 8))
+        return action.payload.slice(0, 8)
+      }
     },
-    //@ts-ignore
-    payload: [],
   },
 })
 
 export const { addBurgerConstructorList } = burgerConstructorReducer.actions
 
+// ==========================================================================
+interface TcurrentItem {
+  id: string
+  data: Idata[]
+}
 export const modalIngridientsReducer = createSlice({
   name: 'item',
-  initialState: { id: 1, data: [] as Idata[] },
+  initialState: [] as Idata[],
   reducers: {
-    //@ts-ignore
-    modalChanger: {
-      reducer: (state, action) => {
-        if (localStorage.getItem('targetElem')) {
-          localStorage.removeItem('targetElem')
-        }
-        //@ts-ignore
-        return action.payload.data.filter((item) => {
-          localStorage.setItem('targetElem', action.payload.id)
-          return item._id === action.payload.id
-        })
-      },
+    modalChanger: (state, action: PayloadAction<TcurrentItem>) => {
+      if (localStorage.getItem('targetElem')) {
+        localStorage.removeItem('targetElem')
+      }
+      console.log(action.payload)
+
+      return action.payload.data.filter((item: Idata) => {
+        localStorage.setItem('targetElem', action.payload.id)
+        return item._id === action.payload.id
+      })
     },
   },
 })
 export const { modalChanger } = modalIngridientsReducer.actions
+// ==========================================================================
 
 export const modalingFlagReducer = createSlice({
   name: 'modaling',
-  initialState: false,
+  initialState: false as boolean,
   reducers: {
-    //@ts-ignore
-    modalFlag: {
-      reducer: (state, action: PayloadAction<boolean>) => {
-        return action.payload
-      },
+    modalFlag: (state, action: PayloadAction<boolean>) => {
+      return action.payload
     },
   },
 })
@@ -74,27 +65,24 @@ export const { modalFlag } = modalingFlagReducer.actions
 
 export const modalOrderFlagReducer = createSlice({
   name: 'modal',
-  initialState: false,
+  initialState: false as boolean,
   reducers: {
-    //@ts-ignore
-    modalOrderFlag: {
-      reducer: (state, action) => action.payload,
-    },
+    modalOrderFlag: (state, action: PayloadAction<boolean>) => action.payload,
   },
 })
 export const { modalOrderFlag } = modalOrderFlagReducer.actions
 
 export const orderConstructorInfo = createSlice({
   name: 'orderInfo',
-  initialState: 0,
+  initialState: 0 as number | string,
   reducers: {
-    //@ts-ignore
-    orderInfoGetter: {
-      reducer: (state, action) => action.payload,
-    },
+    orderInfoGetter: (state, action: PayloadAction<number | string>) =>
+      action.payload,
   },
 })
 export const { orderInfoGetter } = orderConstructorInfo.actions
+
+// ==========================================================================
 
 export const dropTargetReducer = createSlice({
   name: 'dropTarget',
@@ -103,6 +91,7 @@ export const dropTargetReducer = createSlice({
     //@ts-ignore
     dropTargetSetter: {
       reducer: (state, action) => {
+        console.log(action.payload)
         state.push(
           //@ts-ignore
           ...action.payload.data.filter(
@@ -130,46 +119,47 @@ export const dropTargetReducer = createSlice({
 export const { dropTargetSetter, mixConstructorItems, deleteItems } =
   dropTargetReducer.actions
 
+// ==========================================================================
+
+interface IbunInfo {
+  id: string
+  data: Idata[]
+  dropElements: []
+}
 export const bunInfo = createSlice({
   name: 'bunInfo',
-  initialState: [{}],
+  initialState: [] as IbunInfo[],
   reducers: {
-    //@ts-ignore
-    bunChanger: {
-      reducer: (state, action) => {
-        if (
-          '643d69a5c3f7b9001cfa093c' === action.payload.id ||
-          '643d69a5c3f7b9001cfa093d' === action.payload.id
-        ) {
-          state.shift()
-        }
-
-        state.push(
-          ...action.payload.data.filter(
-            //@ts-ignore
-            (item) =>
-              (item._id === '643d69a5c3f7b9001cfa093c' &&
-                '643d69a5c3f7b9001cfa093c' === action.payload.id) ||
-              (item._id === '643d69a5c3f7b9001cfa093d' &&
-                '643d69a5c3f7b9001cfa093d' === action.payload.id)
-          )
+    bunChanger: (state, action) => {
+      if (
+        '643d69a5c3f7b9001cfa093c' === action.payload.id ||
+        '643d69a5c3f7b9001cfa093d' === action.payload.id
+      ) {
+        state.shift()
+      }
+      console.log(action.payload)
+      state.push(
+        ...action.payload.data.filter(
+          (item: Idata) =>
+            (item._id === '643d69a5c3f7b9001cfa093c' &&
+              '643d69a5c3f7b9001cfa093c' === action.payload.id) ||
+            (item._id === '643d69a5c3f7b9001cfa093d' &&
+              '643d69a5c3f7b9001cfa093d' === action.payload.id)
         )
-      },
+      )
     },
   },
 })
 export const { bunChanger } = bunInfo.actions
 
+// ==========================================================================
+
 export const getCounterReducer = createSlice({
   name: 'counter',
-  initialState: [],
+  initialState: [] as string[],
   reducers: {
-    //@ts-ignore
-    checkFlag: {
-      reducer: (state, action) => {
-        //@ts-ignore
-        state.push(action.payload.id)
-      },
+    checkFlag: (state, action: PayloadAction<IbunInfo>) => {
+      state.push(action.payload.id)
     },
   },
 })
@@ -177,14 +167,10 @@ export const { checkFlag } = getCounterReducer.actions
 
 export const keyGenerateIngridientsReducer = createSlice({
   name: 'keyIngridients',
-  initialState: [],
+  initialState: [] as string[],
   reducers: {
-    //@ts-ignore
-    setKeyIngrId: {
-      reducer: (state, action) => {
-        //@ts-ignore
-        state.push(action.payload)
-      },
+    setKeyIngrId: (state, action: PayloadAction<string>) => {
+      state.push(action.payload)
     },
   },
 })
@@ -192,14 +178,10 @@ export const { setKeyIngrId } = keyGenerateIngridientsReducer.actions
 
 export const keyGenerateBunReducer = createSlice({
   name: 'keyIngridients',
-  initialState: [],
+  initialState: [] as string[],
   reducers: {
-    //@ts-ignore
-    setKeyBunId: {
-      reducer: (state, action) => {
-        //@ts-ignore
-        state.push(action.payload)
-      },
+    setKeyBunId: (state, action: PayloadAction<string>) => {
+      state.push(action.payload)
     },
   },
 })
@@ -207,27 +189,24 @@ export const { setKeyBunId } = keyGenerateBunReducer.actions
 
 export const registerAccountReducer = createSlice({
   name: 'registerAcc',
-  initialState: {},
+  initialState: false as boolean,
   reducers: {
-    //@ts-ignore
-    registerAccount: {
-      reducer: (state, action) => {
-        return action.payload
-      },
+    registerAccount: (state, action: PayloadAction<boolean>) => {
+      console.log(action.payload)
+      return action.payload
     },
   },
 })
 export const { registerAccount } = registerAccountReducer.actions
 
+// ==========================================================================
+
 export const forgotPasswordReducer = createSlice({
   name: 'forgotPass',
   initialState: false,
   reducers: {
-    //@ts-ignore
-    forgotPass: {
-      reducer: (state, action) => {
-        return action.payload
-      },
+    forgotPass: (state, action: PayloadAction<boolean>) => {
+      return action.payload
     },
   },
 })
@@ -237,11 +216,8 @@ export const resetPasswordReducer = createSlice({
   name: 'forgotPass',
   initialState: false,
   reducers: {
-    //@ts-ignore
-    resetPass: {
-      reducer: (state, action) => {
-        return action.payload
-      },
+    resetPass: (state, action: PayloadAction<boolean>) => {
+      return action.payload
     },
   },
 })
@@ -249,13 +225,10 @@ export const { resetPass } = resetPasswordReducer.actions
 
 export const loginReducer = createSlice({
   name: 'login',
-  initialState: [],
+  initialState: false as boolean,
   reducers: {
-    //@ts-ignore
-    loginSystem: {
-      reducer: (state, action) => {
-        return action.payload
-      },
+    loginSystem: (state, action: PayloadAction<boolean>) => {
+      return action.payload
     },
   },
 })
@@ -263,28 +236,42 @@ export const { loginSystem } = loginReducer.actions
 
 export const mainProfileInitialStateReducer = createSlice({
   name: 'mainProfileInitialState',
-  initialState: [{ name: '', email: '', password: '' }],
+  initialState: [{ name: '', email: '', password: '' }] as [
+    { name: string; email: string; password: string }
+  ],
   reducers: {
-    //@ts-ignore
-    setMainProfileInitialState: {
-      reducer: (state, action) => {
-        state[0] = action.payload
-      },
+    setMainProfileInitialState: (
+      state,
+      action
+      // action: PayloadAction<{ name: string; email: string; password: string }>
+    ) => {
+      console.log(action.payload)
+      state[0] = action.payload
     },
   },
 })
 export const { setMainProfileInitialState } =
   mainProfileInitialStateReducer.actions
 
+interface IprofileFields {
+  name: string
+  email: string
+  password: string
+}
+
 export const profileInitialStateReducer = createSlice({
   name: 'profileInitialState',
-  initialState: [],
+  initialState: {
+    name: 'Igor',
+    email: 'ig.mar@yandex.ru',
+    password: 'qwerty',
+  } as IprofileFields,
   reducers: {
-    //@ts-ignore
-    resetProfileInitialState: {
-      reducer: (state, action) => {
-        return action.payload
-      },
+    resetProfileInitialState: (
+      state,
+      action: PayloadAction<IprofileFields>
+    ) => {
+      return action.payload
     },
   },
 })
@@ -294,11 +281,9 @@ export const modalIngridientRefresh = createSlice({
   name: 'refreshModal',
   initialState: [] as Idata[],
   reducers: {
-    //@ts-ignore
-    refreshModalState: {
-      reducer: (state, action) => {
-        return action.payload
-      },
+    refreshModalState: (state, action: PayloadAction<Idata[]>) => {
+      console.log(action.payload)
+      return action.payload
     },
   },
 })

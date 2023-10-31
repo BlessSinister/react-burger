@@ -1,12 +1,12 @@
-import { useSelector } from 'react-redux'
 import style from './ingredient-details.module.css'
+import { useAppSelector } from '../../services/redux-hooks'
 
 export default function IngredientDetails() {
-  //@ts-ignore
-  let data = useSelector((state) => state.currentIngridient)
-  //@ts-ignore
-  const data1 = useSelector((state) => state.inst)
+  let data = useAppSelector((state) => state.currentIngridient)
 
+  const data1 = useAppSelector((state) => state.inst)
+
+  console.log(data1)
   if (data.length === 0) {
     return null
   }

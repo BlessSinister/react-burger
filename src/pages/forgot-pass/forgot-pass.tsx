@@ -6,7 +6,6 @@ import styles from './forgot-pass.module.css'
 import { useRef, useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { forgotPassFn } from '../../services/actions'
-import { useDispatch, useSelector } from 'react-redux'
 import { useAppDispatch, useAppSelector } from '../../services/redux-hooks'
 
 export default function ForgotPass() {
