@@ -4,9 +4,9 @@ import IngrList from '../ing-list/ingr-list'
 
 import { useEffect, useState } from 'react'
 import Modal from '../modal/modal'
-import { useSelector, useDispatch } from 'react-redux'
 import { getBurgerIngridientList } from '../../services/actions'
 import IngredientDetails from '../ingredient-details/ingredient-details'
+import { useAppDispatch, useAppSelector } from '../../services/redux-hooks'
 
 interface IburgerIngredientsProps {
   onCloseModal: () => void
@@ -15,16 +15,14 @@ interface IburgerIngredientsProps {
 export default function BurgerIngredients({
   onCloseModal,
 }: IburgerIngredientsProps) {
-  //@ts-ignore
-  const modalIng = useSelector((state) => state.modalIngridientFlag)
-  //@ts-ignore
-  const data = useSelector((state) => state.burgerIngridients)
+  const modalIng = useAppSelector((state) => state.modalIngridientFlag)
 
-  const dispatch = useDispatch()
+  const data = useAppSelector((state) => state.burgerIngridients)
+
+  const dispatch = useAppDispatch()
 
   const [current, setCurrent] = useState<string>('one')
   useEffect(() => {
-    //@ts-ignore
     dispatch(getBurgerIngridientList())
     // dispatch(refreshModalState(JSON.parse(localStorage.getItem('Ing'))))
     if (modalIng) {

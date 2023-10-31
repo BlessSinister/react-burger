@@ -39,7 +39,7 @@ export const { addBurgerConstructorList } = burgerConstructorReducer.actions
 
 export const modalIngridientsReducer = createSlice({
   name: 'item',
-  initialState: { id: 1, data: [] },
+  initialState: { id: 1, data: [] as Idata[] },
   reducers: {
     //@ts-ignore
     modalChanger: {
@@ -292,7 +292,7 @@ export const { resetProfileInitialState } = profileInitialStateReducer.actions
 
 export const modalIngridientRefresh = createSlice({
   name: 'refreshModal',
-  initialState: [],
+  initialState: [] as Idata[],
   reducers: {
     //@ts-ignore
     refreshModalState: {

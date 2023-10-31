@@ -1,15 +1,13 @@
-import { useSelector } from 'react-redux'
 import { Navigate, Outlet } from 'react-router-dom'
+import { useAppSelector } from '../../services/redux-hooks'
 
 export const ProtectedAuth = () => {
-  //@ts-ignore
-  const user = useSelector((state) => state.authUser)
+  const user = useAppSelector((state) => state.authUser)
 
   return user ? <Outlet /> : <Navigate to={'/login'} />
 }
 export const ProtectedUnAuth = () => {
-  //@ts-ignore
-  const user = useSelector((state) => state.authUser)
+  const user = useAppSelector((state) => state.authUser)
 
   return !user ? <Outlet /> : <Navigate to={'/'} />
 }

@@ -1,9 +1,8 @@
 import ing_items_style from './ingr-items.module.css'
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components'
-
 import { modalChanger, modalFlag } from '../../services/reducer'
-import { useDispatch, useSelector } from 'react-redux'
 import { useDrag } from 'react-dnd'
+import { useAppDispatch, useAppSelector } from '../../services/redux-hooks'
 
 interface IingrItems {
   image: string
@@ -19,14 +18,13 @@ export default function IngrItems({
   id,
   dropElements,
 }: IingrItems) {
-  //@ts-ignore
-  const data = useSelector((state) => state.burgerIngridients)
+  const data = useAppSelector((state) => state.burgerIngridients)
   const [, drag] = useDrag(() => ({
     type: 'ingridients',
     item: { id, data, dropElements },
   }))
 
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
 
   return (
     <div onClick={() => dispatch(modalFlag(true))} ref={drag}>

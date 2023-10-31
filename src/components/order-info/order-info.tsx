@@ -4,31 +4,33 @@ import {
   CurrencyIcon,
   Button,
 } from '@ya.praktikum/react-developer-burger-ui-components'
-import { useDispatch, useSelector } from 'react-redux'
+
 import { modalOrderFlag } from '../../services/reducer'
 import { getOrderInfo } from '../../services/actions'
 import { useNavigate } from 'react-router-dom'
+import { useAppDispatch, useAppSelector } from '../../services/redux-hooks'
+import { Idata } from '../../utils/data'
 
 export default function OrderInfo() {
-  const dispatch = useDispatch()
-  //@ts-ignore
-  const authCheckerOrder = useSelector((state) => state.authUser)
+  const dispatch = useAppDispatch()
+
+  const authCheckerOrder = useAppSelector((state) => state.authUser)
   const navigate = useNavigate()
-  //@ts-ignore
-  const orderButonOn = useSelector((state) => state.dropTargetElem)
-  //@ts-ignore
-  const dropList = useSelector((state) => state.dropTargetElem)
-  //@ts-ignore
+
+  const orderButonOn = useAppSelector((state) => state.dropTargetElem)
+
+  const dropList = useAppSelector((state) => state.dropTargetElem)
+
   const bunPrice =
-    useSelector((state: any) =>
+    useAppSelector((state: any) =>
       state.bunState.length ? state.bunState[0].price : 0
     ) * 2
-  //@ts-ignore
-  const id: string[] = dropList.map((item: object[]) => item._id)
+
+  const id: string[] = dropList.map((item: Idata) => item._id)
 
   let sumPrice =
-    //@ts-ignore
-    dropList.map((item) => item.price).reduce((a, b) => a + b, 0) + bunPrice
+    dropList.map((item: Idata) => item.price).reduce((a, b) => a + b, 0) +
+    bunPrice
 
   return (
     <div className={style.wrapper}>

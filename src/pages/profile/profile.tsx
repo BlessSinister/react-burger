@@ -9,6 +9,7 @@ import {
 import { NavLink, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { logoutUserFn, setProfileInfo } from '../../services/actions'
+import { useAppDispatch } from '../../services/redux-hooks'
 
 export default function Profile() {
   //@ts-ignore
@@ -39,10 +40,9 @@ export default function Profile() {
     setEmail(editEmail)
     localStorage.getItem('accessToken') ? navigate('/profile') : navigate('/')
   }, [editEmail, editName, editPass, navigate])
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
 
   let handleSubmitForm = (event: React.FormEvent<HTMLInputElement>) => {
-    //@ts-ignore
     dispatch(setProfileInfo(value, pass, email))
     event.preventDefault()
   }
@@ -58,7 +58,6 @@ export default function Profile() {
         <NavLink
           to="/profile"
           className={styles.link}
-          //@ts-ignore
           onClick={() => dispatch(logoutUserFn())}
         >
           <p className={`${styles.p} mb-20`}>Выход</p>
@@ -99,7 +98,6 @@ export default function Profile() {
             type="secondary"
             size="medium"
             extraClass="mt-6"
-            //@ts-ignore
             onClick={() => dispatch(setProfileInfo(value, pass, email))}
           >
             Сохранить

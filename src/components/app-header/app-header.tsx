@@ -5,18 +5,19 @@ import {
   ProfileIcon,
   Logo,
 } from '@ya.praktikum/react-developer-burger-ui-components'
-import { useSelector } from 'react-redux'
+
 import { NavLink } from 'react-router-dom'
+import { useAppSelector } from '../../services/redux-hooks'
 export default function AppHeader() {
-  //@ts-ignore
-  const authUser = useSelector((state) => state.authUser)
+  const authUser = useAppSelector((state) => state.authUser)
     ? '/profile'
     : '/login'
-  //@ts-ignore
-  const setActive = ({ isActive }): string =>
+
+  const setActive = ({ isActive }: any): string =>
     isActive
       ? `text text_type_main-default ${header_style.active}`
       : `text text_type_main-default ${header_style.a}`
+
   let setIconTypeConstr: string =
     window.location.pathname === '/' ? 'primary' : 'secondary'
   let setIconTypeOrder: string =

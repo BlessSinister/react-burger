@@ -1,9 +1,8 @@
-import { useSelector } from 'react-redux'
 import style from './order-details.module.css'
+import { useAppSelector } from '../../services/redux-hooks'
 
 export default function OrderDetails() {
-  //@ts-ignore
-  const orderNumber = useSelector((state) => state.order)
+  const orderNumber = useAppSelector((state) => state.order)
   return (
     <div className={style.modal}>
       <div

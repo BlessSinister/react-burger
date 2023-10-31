@@ -15,6 +15,7 @@ import {
 import BoxDndController from './box-dnd-controller'
 import { v4 } from 'uuid'
 import { Idata } from '../ing-list/ingr-list'
+import { useAppDispatch, useAppSelector } from '../../services/redux-hooks'
 
 interface IBurgConstItems {
   data: Idata[]
@@ -23,11 +24,11 @@ interface IBurgConstItems {
 }
 
 export default function BurgConstItems() {
-  const dispatch = useDispatch()
-  //@ts-ignore
-  const keyIngridients = useSelector((state) => state.keyIngridientsGenerate)
-  //@ts-ignore
-  const keyBun = useSelector((state) => state.keyBunGenerate)
+  const dispatch = useAppDispatch()
+
+  const keyIngridients = useAppSelector((state) => state.keyIngridientsGenerate)
+
+  const keyBun = useAppSelector((state) => state.keyBunGenerate)
   const [, DropTargetRef] = useDrop(() => ({
     accept: 'ingridients',
     drop(itemId: IBurgConstItems) {
@@ -45,10 +46,10 @@ export default function BurgConstItems() {
       }
     },
   }))
-  //@ts-ignore
-  let dropElements = useSelector((state) => state.dropTargetElem)
-  //@ts-ignore
-  let bunInfo = useSelector((state) => state.bunState)
+
+  let dropElements = useAppSelector((state) => state.dropTargetElem)
+
+  let bunInfo = useAppSelector((state) => state.bunState)
 
   return (
     <div
@@ -64,8 +65,11 @@ export default function BurgConstItems() {
                 <ConstructorElement
                   type="top"
                   isLocked={true}
+                  //@ts-ignore
                   text={`${item.name}  (верх)`}
+                  //@ts-ignore
                   price={item.price}
+                  //@ts-ignore
                   thumbnail={item.image}
                   key={keyBun[index]}
                 />
@@ -91,8 +95,11 @@ export default function BurgConstItems() {
                 ></div>
                 <DragIcon type="primary" />
                 <ConstructorElement
+                  //@ts-ignore
                   text={item.name}
+                  //@ts-ignore
                   price={item.price}
+                  //@ts-ignore
                   thumbnail={item.image}
                 />
               </div>
@@ -102,19 +109,19 @@ export default function BurgConstItems() {
 
         {bunInfo.length || dropElements.length ? (
           <div className={burg_items_style.decor_wrap}>
-            {bunInfo.map(
-              //@ts-ignore
-              (item, index) => (
-                <ConstructorElement
-                  key={keyBun[index]}
-                  type="bottom"
-                  isLocked={true}
-                  text={`${item.name}  (низ)`}
-                  price={item.price}
-                  thumbnail={item.image}
-                />
-              )
-            )}
+            {bunInfo.map((item, index) => (
+              <ConstructorElement
+                key={keyBun[index]}
+                type="bottom"
+                isLocked={true}
+                //@ts-ignore
+                text={`${item.name}  (низ)`}
+                //@ts-ignore
+                price={item.price}
+                //@ts-ignore
+                thumbnail={item.image}
+              />
+            ))}
           </div>
         ) : (
           <h2>

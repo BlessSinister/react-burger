@@ -44,36 +44,36 @@ export const store = configureStore({
 
   devTools: true,
   middleware: (defaultMiddleWare) => defaultMiddleWare(),
-  // preloadedState: {
-  //   burgerIngridients: [],
-  //   ingridietnConstructor: [],
-  //   currentIngridient: { id: 1, data: [] },
-  //   modalIngridientFlag: false,
-  //   modalOrderFlag: false,
-  //   // order: 'Wait order number',
-  //   dropTargetElem: [],
-  //   counterState: [],
-  //   bunState: [],
-  //   // inst: JSON.parse(localStorage.getItem('Ing')),
-  //   keyIngridientsGenerate: [],
-  //   keyBunGenerate: [],
-  //   registerAcc: false,
-  //   forgotPass: false,
-  //   // authUser: false,
-  //   resetPass: false,
-  //   // initialProfileInfo: {
-  //   //   name: '',
-  //   //   email: '',
-  //   //   password: '',
-  //   // },
-  //   mainProfileInfo: [
-  //     {
-  //       name: '',
-  //       email: '',
-  //       password: '',
-  //     },
-  //   ],
-  // },
+  preloadedState: {
+    burgerIngridients: [],
+    ingridietnConstructor: [],
+    currentIngridient: { id: 1, data: [] },
+    modalIngridientFlag: false,
+    modalOrderFlag: false,
+    // order: 'Wait order number',
+    dropTargetElem: [],
+    counterState: [],
+    bunState: [],
+    // inst: JSON.parse(localStorage.getItem('Ing')),
+    keyIngridientsGenerate: [],
+    keyBunGenerate: [],
+    registerAcc: false,
+    forgotPass: false,
+    // authUser: false,
+    resetPass: false,
+    // initialProfileInfo: {
+    //   name: '',
+    //   email: '',
+    //   password: '',
+    // },
+    mainProfileInfo: [
+      {
+        name: '',
+        email: '',
+        password: '',
+      },
+    ],
+  },
 })
 
 export type RootState = ReturnType<typeof store.getState>

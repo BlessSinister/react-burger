@@ -7,16 +7,16 @@ import {
 } from '@ya.praktikum/react-developer-burger-ui-components'
 import { Link, useNavigate } from 'react-router-dom'
 import { registrUserFn } from '../../services/actions'
-import { useDispatch, useSelector } from 'react-redux'
+import { useAppDispatch, useAppSelector } from '../../services/redux-hooks'
 
 export default function Registr() {
   const [name, setName] = useState<string>('')
   const [pass, setPass] = useState<string>('')
   const [email, setEmail] = useState<string>('')
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
   const inputRef = useRef(null)
-  //@ts-ignore
-  const redirect = useSelector((state) => state.registerAcc)
+
+  const redirect = useAppSelector((state) => state.registerAcc)
   const navigate = useNavigate()
   useEffect(() => {
     if (redirect) {
@@ -63,7 +63,6 @@ export default function Registr() {
             htmlType="button"
             type="primary"
             size="medium"
-            //@ts-ignore
             onClick={() => dispatch(registrUserFn(email, pass, name))}
           >
             Зарегистрироваться

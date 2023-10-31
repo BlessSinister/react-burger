@@ -7,13 +7,14 @@ import { useRef, useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { forgotPassFn } from '../../services/actions'
 import { useDispatch, useSelector } from 'react-redux'
+import { useAppDispatch, useAppSelector } from '../../services/redux-hooks'
 
 export default function ForgotPass() {
   const [email, setEmail] = useState<string>('')
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
   const inputRef = useRef(null)
-  //@ts-ignore
-  const redirect = useSelector((state) => state.forgotPass)
+
+  const redirect = useAppSelector((state) => state.forgotPass)
   const navigate = useNavigate()
   useEffect(() => {
     if (redirect) {
@@ -43,8 +44,7 @@ export default function ForgotPass() {
           size="medium"
           onClick={() =>
             email.length
-              ? //@ts-ignore
-                dispatch(forgotPassFn(email))
+              ? dispatch(forgotPassFn(email))
               : alert('Введите имеил')
           }
         >

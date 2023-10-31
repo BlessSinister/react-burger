@@ -2,7 +2,7 @@ import IngrItems from '../ingr-items/ingr-items'
 import ingr_list_style from './ingr-list.module.css'
 import app_style from '../app/app.module.css'
 import { Counter } from '@ya.praktikum/react-developer-burger-ui-components'
-import { useSelector } from 'react-redux'
+import { useAppSelector } from '../../services/redux-hooks'
 
 export interface Idata {
   calories: number
@@ -29,8 +29,8 @@ export default function IngrList({
   tabScrollChanger,
 }: IingrListProps): JSX.Element | null {
   let bun: Idata[], sauce: Idata[], main: Idata[]
-  //@ts-ignore
-  let dropElements = useSelector((state) => state.dropTargetElem)
+
+  let dropElements = useAppSelector((state) => state.dropTargetElem)
   if (data) {
     bun = data.filter((item) => item.type === 'bun')
 
@@ -40,12 +40,13 @@ export default function IngrList({
   } else {
     return null
   }
-  //@ts-ignore
-  const targetCounter = (arr) => {
+
+  const targetCounter = (arr: Array<Idata>) => {
     let tagetCount = []
     for (let key of arr) {
-      //@ts-ignore
-      tagetCount.push(dropElements.filter((item) => item._id === key._id))
+      tagetCount.push(
+        dropElements.filter((item: Idata) => item._id === key._id)
+      )
     }
     return tagetCount.map((item) => item.length)
   }

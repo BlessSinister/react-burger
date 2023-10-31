@@ -7,15 +7,14 @@ import { useRef, useState } from 'react'
 import styles from './login.module.css'
 import { NavLink } from 'react-router-dom'
 import { loginUserFn } from '../../services/actions'
-import { useDispatch } from 'react-redux'
+import { useAppDispatch } from '../../services/redux-hooks'
 export default function Login() {
   const [email, setEmail] = useState<string>('')
   const inputRef = useRef(null)
   const [pass, setPass] = useState<string>('')
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
   const handleSbubmit = (e: React.FormEvent<HTMLInputElement>) => {
     e.preventDefault()
-    //@ts-ignore
     dispatch(loginUserFn(email, pass))
   }
   return (
@@ -47,7 +46,6 @@ export default function Login() {
             htmlType="button"
             type="primary"
             size="medium"
-            //@ts-ignore
             onClick={() => dispatch(loginUserFn(email, pass))}
           >
             Войти
