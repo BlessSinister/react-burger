@@ -1,3 +1,7 @@
+import {
+  CurrencyIcon,
+  FormattedDate,
+} from '@ya.praktikum/react-developer-burger-ui-components'
 import styles from './orderlent.module.css'
 export default function Orderlent() {
   return (
@@ -8,11 +12,251 @@ export default function Orderlent() {
           <div
             className={`${styles.order_numbers_block} ${styles.scroll} mr-15`}
           >
-            <div className={`${styles.order_compopnents_wrapper} mb-4`}></div>
-            <div className={`${styles.order_compopnents_wrapper} mb-4`}></div>
-            <div className={`${styles.order_compopnents_wrapper} mb-4`}></div>
-            <div className={`${styles.order_compopnents_wrapper} mb-4`}></div>
-            <div className={`${styles.order_compopnents_wrapper} mb-4`}></div>
+            <div className={`${styles.order_compopnents_wrapper} mb-4 p-6`}>
+              <div className={`${styles.title_wrapper} mb-6`}>
+                <p>#034535</p>
+                <FormattedDate date={new Date('2023-11-01')} />
+              </div>
+              <p className={`${styles.title_burger} mb-6`}>
+                Death Star Starship Main бургер
+              </p>
+              <div className={styles.ingridients_wrapper}>
+                <div className={`${styles.ingridients_container} mr-6`}>
+                  <div
+                    className={`${styles.ingridient_item_container} ${styles.ingridient_item_container1}`}
+                  >
+                    <div
+                      className={`${styles.ingridient_item_img} ${styles.ingridient_item_img5}`}
+                    ></div>
+                  </div>
+                  <div
+                    className={`${styles.ingridient_item_container} ${styles.ingridient_item_container2}`}
+                  >
+                    <div
+                      className={`${styles.ingridient_item_img} ${styles.ingridient_item_img4}`}
+                    ></div>
+                  </div>
+                  <div
+                    className={`${styles.ingridient_item_container} ${styles.ingridient_item_container3}`}
+                  >
+                    <div
+                      className={`${styles.ingridient_item_img} ${styles.ingridient_item_img3}`}
+                    ></div>
+                  </div>
+                  <div
+                    className={`${styles.ingridient_item_container} ${styles.ingridient_item_container4}`}
+                  >
+                    <div className={`${styles.ingridient_item_img}`}></div>
+                  </div>
+                  <div className={`${styles.ingridient_item_container}`}>
+                    <div
+                      className={`${styles.ingridient_item_img} ${styles.ingridient_item_img1}`}
+                    ></div>
+                  </div>
+                </div>
+
+                <div className={`${styles.ingridients_price_container}`}>
+                  <p className={`${styles.ingridients_price} mr-2`}>480</p>
+                  <CurrencyIcon type="primary" />
+                </div>
+              </div>
+            </div>
+            <div className={`${styles.order_compopnents_wrapper} mb-4 p-6`}>
+              <div className={`${styles.title_wrapper} mb-6`}>
+                <p>#034535</p>
+                <FormattedDate date={new Date('2023-11-01')} />
+              </div>
+              <p className={`${styles.title_burger} mb-6`}>
+                Death Star Starship Main бургер
+              </p>
+              <div className={styles.ingridients_wrapper}>
+                <div className={`${styles.ingridients_container} mr-6`}>
+                  <div
+                    className={`${styles.ingridient_item_container} ${styles.ingridient_item_container1}`}
+                  >
+                    <div
+                      className={`${styles.ingridient_item_img} ${styles.ingridient_item_img5}`}
+                    ></div>
+                  </div>
+                  <div
+                    className={`${styles.ingridient_item_container} ${styles.ingridient_item_container2}`}
+                  >
+                    <div
+                      className={`${styles.ingridient_item_img} ${styles.ingridient_item_img4}`}
+                    ></div>
+                  </div>
+                  <div
+                    className={`${styles.ingridient_item_container} ${styles.ingridient_item_container3}`}
+                  >
+                    <div
+                      className={`${styles.ingridient_item_img} ${styles.ingridient_item_img3}`}
+                    ></div>
+                  </div>
+                  <div
+                    className={`${styles.ingridient_item_container} ${styles.ingridient_item_container4}`}
+                  >
+                    <div className={`${styles.ingridient_item_img}`}></div>
+                  </div>
+                  <div className={`${styles.ingridient_item_container}`}>
+                    <div
+                      className={`${styles.ingridient_item_img} ${styles.ingridient_item_img1}`}
+                    ></div>
+                  </div>
+                </div>
+
+                <div className={`${styles.ingridients_price_container}`}>
+                  <p className={`${styles.ingridients_price} mr-2`}>480</p>
+                  <CurrencyIcon type="primary" />
+                </div>
+              </div>
+            </div>
+            <div className={`${styles.order_compopnents_wrapper} mb-4 p-6`}>
+              <div className={`${styles.title_wrapper} mb-6`}>
+                <p>#034535</p>
+                <FormattedDate date={new Date('2023-11-01')} />
+              </div>
+              <p className={`${styles.title_burger} mb-6`}>
+                Death Star Starship Main бургер
+              </p>
+              <div className={styles.ingridients_wrapper}>
+                <div className={`${styles.ingridients_container} mr-6`}>
+                  <div
+                    className={`${styles.ingridient_item_container} ${styles.ingridient_item_container1}`}
+                  >
+                    <div
+                      className={`${styles.ingridient_item_img} ${styles.ingridient_item_img5}`}
+                    ></div>
+                  </div>
+                  <div
+                    className={`${styles.ingridient_item_container} ${styles.ingridient_item_container2}`}
+                  >
+                    <div
+                      className={`${styles.ingridient_item_img} ${styles.ingridient_item_img4}`}
+                    ></div>
+                  </div>
+                  <div
+                    className={`${styles.ingridient_item_container} ${styles.ingridient_item_container3}`}
+                  >
+                    <div
+                      className={`${styles.ingridient_item_img} ${styles.ingridient_item_img3}`}
+                    ></div>
+                  </div>
+                  <div
+                    className={`${styles.ingridient_item_container} ${styles.ingridient_item_container4}`}
+                  >
+                    <div className={`${styles.ingridient_item_img}`}></div>
+                  </div>
+                  <div className={`${styles.ingridient_item_container}`}>
+                    <div
+                      className={`${styles.ingridient_item_img} ${styles.ingridient_item_img1}`}
+                    ></div>
+                  </div>
+                </div>
+
+                <div className={`${styles.ingridients_price_container}`}>
+                  <p className={`${styles.ingridients_price} mr-2`}>480</p>
+                  <CurrencyIcon type="primary" />
+                </div>
+              </div>
+            </div>
+            <div className={`${styles.order_compopnents_wrapper} mb-4 p-6`}>
+              <div className={`${styles.title_wrapper} mb-6`}>
+                <p>#034535</p>
+                <FormattedDate date={new Date('2023-11-01')} />
+              </div>
+              <p className={`${styles.title_burger} mb-6`}>
+                Death Star Starship Main бургер
+              </p>
+              <div className={styles.ingridients_wrapper}>
+                <div className={`${styles.ingridients_container} mr-6`}>
+                  <div
+                    className={`${styles.ingridient_item_container} ${styles.ingridient_item_container1}`}
+                  >
+                    <div
+                      className={`${styles.ingridient_item_img} ${styles.ingridient_item_img5}`}
+                    ></div>
+                  </div>
+                  <div
+                    className={`${styles.ingridient_item_container} ${styles.ingridient_item_container2}`}
+                  >
+                    <div
+                      className={`${styles.ingridient_item_img} ${styles.ingridient_item_img4}`}
+                    ></div>
+                  </div>
+                  <div
+                    className={`${styles.ingridient_item_container} ${styles.ingridient_item_container3}`}
+                  >
+                    <div
+                      className={`${styles.ingridient_item_img} ${styles.ingridient_item_img3}`}
+                    ></div>
+                  </div>
+                  <div
+                    className={`${styles.ingridient_item_container} ${styles.ingridient_item_container4}`}
+                  >
+                    <div className={`${styles.ingridient_item_img}`}></div>
+                  </div>
+                  <div className={`${styles.ingridient_item_container}`}>
+                    <div
+                      className={`${styles.ingridient_item_img} ${styles.ingridient_item_img1}`}
+                    ></div>
+                  </div>
+                </div>
+
+                <div className={`${styles.ingridients_price_container}`}>
+                  <p className={`${styles.ingridients_price} mr-2`}>480</p>
+                  <CurrencyIcon type="primary" />
+                </div>
+              </div>
+            </div>
+            <div className={`${styles.order_compopnents_wrapper} mb-4 p-6`}>
+              <div className={`${styles.title_wrapper} mb-6`}>
+                <p>#034535</p>
+                <FormattedDate date={new Date('2023-11-01')} />
+              </div>
+              <p className={`${styles.title_burger} mb-6`}>
+                Death Star Starship Main бургер
+              </p>
+              <div className={styles.ingridients_wrapper}>
+                <div className={`${styles.ingridients_container} mr-6`}>
+                  <div
+                    className={`${styles.ingridient_item_container} ${styles.ingridient_item_container1}`}
+                  >
+                    <div
+                      className={`${styles.ingridient_item_img} ${styles.ingridient_item_img5}`}
+                    ></div>
+                  </div>
+                  <div
+                    className={`${styles.ingridient_item_container} ${styles.ingridient_item_container2}`}
+                  >
+                    <div
+                      className={`${styles.ingridient_item_img} ${styles.ingridient_item_img4}`}
+                    ></div>
+                  </div>
+                  <div
+                    className={`${styles.ingridient_item_container} ${styles.ingridient_item_container3}`}
+                  >
+                    <div
+                      className={`${styles.ingridient_item_img} ${styles.ingridient_item_img3}`}
+                    ></div>
+                  </div>
+                  <div
+                    className={`${styles.ingridient_item_container} ${styles.ingridient_item_container4}`}
+                  >
+                    <div className={`${styles.ingridient_item_img}`}></div>
+                  </div>
+                  <div className={`${styles.ingridient_item_container}`}>
+                    <div
+                      className={`${styles.ingridient_item_img} ${styles.ingridient_item_img1}`}
+                    ></div>
+                  </div>
+                </div>
+
+                <div className={`${styles.ingridients_price_container}`}>
+                  <p className={`${styles.ingridients_price} mr-2`}>480</p>
+                  <CurrencyIcon type="primary" />
+                </div>
+              </div>
+            </div>
           </div>
           <div className={`${styles.order_info_block}`}>
             <div className={`${styles.order_status_blocks_wrapper} mb-15`}>
