@@ -15,6 +15,7 @@ import { checkFn, getBurgerIngridientList } from '../../services/actions'
 import Orderlent from '../../pages/orderlent/orderlent'
 import { modalFlag } from '../../services/reducer'
 import { useAppDispatch, useAppSelector } from '../../services/redux-hooks'
+import OrderlentInfo from '../../pages/orderlent-info/orderllent-info'
 export default function App() {
   const dispatch = useAppDispatch()
   let id = localStorage.getItem('targetElem')
@@ -59,6 +60,7 @@ export default function App() {
           element={<IngridientsInfo ingridient={ingridient} />}
         />
         <Route path="/feed" element={<Orderlent />} />
+        <Route path="/feed/info" element={<OrderlentInfo />} />
       </Routes>
     </>
   )

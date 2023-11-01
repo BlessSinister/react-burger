@@ -68,7 +68,7 @@
   max-width: 64px;
   position: absolute;
   width: 100%;
-  height: 56px;
+  height: 60px;
   border: 2px solid var(--button-normal, #801ab2);
   background: #131316;
   border-radius: 50%;
