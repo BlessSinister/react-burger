@@ -16,6 +16,8 @@ import Orderlent from '../../pages/orderlent/orderlent'
 import { modalFlag } from '../../services/reducer'
 import { useAppDispatch, useAppSelector } from '../../services/redux-hooks'
 import OrderlentInfo from '../../pages/orderlent-info/orderllent-info'
+import ProfileOrdersInfo from '../../pages/profile-orders-info/profile-orders-info'
+
 export default function App() {
   const dispatch = useAppDispatch()
   let id = localStorage.getItem('targetElem')
@@ -48,6 +50,7 @@ export default function App() {
         <Route element={<ProtectedAuth />}>
           <Route path="/profile" element={<Profile />} />
           <Route path="/profile/orders" element={<Orders />} />
+          <Route path="/profile/orders/1" element={<ProfileOrdersInfo />} />
         </Route>
         <Route element={<ProtectedUnAuth />}>
           <Route path="/login" element={<Login />} />

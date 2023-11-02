@@ -258,6 +258,7 @@ export default function Orderlent() {
               </div>
             </div>
           </div>
+     
           <div className={`${styles.order_info_block}`}>
             <div className={`${styles.order_status_blocks_wrapper} mb-15`}>
               <div className={`${styles.order_status_ready_block} mr-9`}>
