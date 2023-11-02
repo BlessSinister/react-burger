@@ -3,7 +3,16 @@ import {
   FormattedDate,
 } from '@ya.praktikum/react-developer-burger-ui-components'
 import styles from './orders.module.css'
+import { useNavigate } from 'react-router-dom'
+import { useAppDispatch } from '../../services/redux-hooks'
+import { modalFlagProfileOrderLent } from '../../services/reducer'
 export default function Orders() {
+  const navigate = useNavigate()
+  const dispatch = useAppDispatch()
+  const handleClick = () => {
+    navigate('/profile/orders/1')
+    dispatch(modalFlagProfileOrderLent(true))
+  }
   return (
     <div className={styles.container}>
       <div className={`${styles.wrapper}`}>
@@ -17,8 +26,11 @@ export default function Orders() {
             В этом разделе вы можете <br /> просмотреть свою историю заказов
           </div>
         </div>
-        <div className={`${styles.order_numbers_block} ${styles.scroll}`}>
-          <div className={`${styles.order_compopnents_wrapper} mb-4 p-6`}>
+        <div className={`${styles.order_numbers_block} ${styles.scroll} `}>
+          <div
+            className={`${styles.order_compopnents_wrapper} mb-4 p-6`}
+            onClick={handleClick}
+          >
             <div className={`${styles.title_wrapper} mb-6`}>
               <p>#034535</p>
               <FormattedDate date={new Date('2023-11-01')} />

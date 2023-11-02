@@ -1,36 +1,21 @@
-import React from 'react'
-import styles from './profile-orders-info.module.css'
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components'
-import { useAppDispatch, useAppSelector } from '../../services/redux-hooks'
-import Modal from '../../components/modal/modal'
-import {
-  modalFlag,
-  modalFlagOrderLent,
-  modalFlagProfileOrderLent,
-  modalOrderFlag,
-  orderInfoGetter,
-} from '../../services/reducer'
-import ProfileOrdersInfoDetailse from '../profile-orders-info-detailse/profile-orders-info-detailse'
-export default function ProfileOrdersInfo() {
-  const modalProfileOrderLent = useAppSelector(
-    (state) => state.modalProfileOrderLentFlag
-  )
-  const dispatch = useAppDispatch()
-  const onCloseModal = () => {
-    dispatch(modalOrderFlag(false))
-    dispatch(modalFlag(false))
-    dispatch(orderInfoGetter('Wait order number'))
-    dispatch(modalFlagOrderLent(false))
-    dispatch(modalFlagProfileOrderLent(false))
-  }
-  return modalProfileOrderLent ? (
-    <Modal
-      modalProfileOrderLent={modalProfileOrderLent}
-      onCloseModal={onCloseModal}
-    >
-      {modalProfileOrderLent && <ProfileOrdersInfoDetailse />}
-    </Modal>
-  ) : (
+import React from 'react'
+import styles from './profile-orders-info-detailse.module.css'
+
+// ,
+// ,-.       _,---._ __  / \
+// /  )    .-'       `./ /   \
+// (  (   ,'            `/    /|
+// \  `-"             \'\   / |
+// `.              ,  \ \ /  |
+//  /`.          ,'-`----Y   |
+// (            ;        |   '
+// |  ,-.    ,-'         |  /
+// |  | (   |React+TS=<3 | /
+// )  |  \  `.___________|/
+// `--'   `--'
+export default function ProfileOrdersInfoDetailse() {
+  return (
     <div className={styles.container}>
       <div className={styles.wrapper}>
         <p className={`${styles.order_number} mb-10`}>#034533</p>

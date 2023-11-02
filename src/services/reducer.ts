@@ -301,3 +301,15 @@ export const modalingFlagOrderLentReducer = createSlice({
   },
 })
 export const { modalFlagOrderLent } = modalingFlagOrderLentReducer.actions
+
+export const modalingFlagProfileOrderLentReducer = createSlice({
+  name: 'modaling',
+  initialState: false as boolean,
+  reducers: {
+    modalFlagProfileOrderLent: (state, action: PayloadAction<boolean>) => {
+      return action.payload
+    },
+  },
+})
+export const { modalFlagProfileOrderLent } =
+  modalingFlagProfileOrderLentReducer.actions

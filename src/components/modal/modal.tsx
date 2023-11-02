@@ -11,6 +11,7 @@ interface Imodal {
   modal?: boolean
   onCloseModal: () => void
   modalOrderLent?: boolean
+  modalProfileOrderLent?: boolean
 }
 
 export default function Modal({
@@ -18,6 +19,7 @@ export default function Modal({
   children,
   modal,
   modalOrderLent,
+  modalProfileOrderLent,
   onCloseModal,
 }: Imodal): JSX.Element | null {
   useEffect(() => {
@@ -33,12 +35,16 @@ export default function Modal({
     }
   }, [])
   let setActiveClass =
-    modal || modalIng || modalOrderLent ? `${style.active}` : `${style.modal}`
+    modal || modalIng || modalOrderLent || modalProfileOrderLent
+      ? `${style.active}`
+      : `${style.modal}`
   let setModalIngContenClass = modalIng
     ? `${style.modal__content_ingr}`
     : modal
     ? `${style.modal__content}`
     : modalOrderLent
+    ? `${style.modal__content}`
+    : modalProfileOrderLent
     ? `${style.modal__content}`
     : undefined
 

@@ -14,6 +14,7 @@ import {
   modalIngridientsReducer,
   modalOrderFlagReducer,
   modalingFlagOrderLentReducer,
+  modalingFlagProfileOrderLentReducer,
   modalingFlagReducer,
   orderConstructorInfo,
   profileInitialStateReducer,
@@ -42,6 +43,7 @@ export const store = configureStore({
     mainProfileInfo: mainProfileInitialStateReducer.reducer,
     inst: modalIngridientRefresh.reducer,
     modalOrderLentFlag: modalingFlagOrderLentReducer.reducer,
+    modalProfileOrderLentFlag: modalingFlagProfileOrderLentReducer.reducer,
   },
 
   devTools: true,
@@ -79,6 +81,7 @@ export const store = configureStore({
       },
     ],
     modalOrderLentFlag: false,
+    modalProfileOrderLentFlag: false,
   },
 })
 
