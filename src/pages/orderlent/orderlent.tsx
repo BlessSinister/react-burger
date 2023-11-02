@@ -3,7 +3,16 @@ import {
   FormattedDate,
 } from '@ya.praktikum/react-developer-burger-ui-components'
 import styles from './orderlent.module.css'
+import { useNavigate } from 'react-router-dom'
+import { useAppDispatch } from '../../services/redux-hooks'
+import { modalFlagOrderLent } from '../../services/reducer'
 export default function Orderlent() {
+  const navigate = useNavigate()
+  const dispatch = useAppDispatch()
+  const hadleClick = () => {
+    navigate('info')
+    dispatch(modalFlagOrderLent(true))
+  }
   return (
     <div className={styles.container}>
       <div className={styles.wrapper}>
@@ -12,7 +21,10 @@ export default function Orderlent() {
           <div
             className={`${styles.order_numbers_block} ${styles.scroll} mr-15`}
           >
-            <div className={`${styles.order_compopnents_wrapper} mb-4 p-6`}>
+            <div
+              className={`${styles.order_compopnents_wrapper} mb-4 p-6`}
+              onClick={hadleClick}
+            >
               <div className={`${styles.title_wrapper} mb-6`}>
                 <p>#034535</p>
                 <FormattedDate date={new Date('2023-11-01')} />
@@ -258,7 +270,7 @@ export default function Orderlent() {
               </div>
             </div>
           </div>
-     
+
           <div className={`${styles.order_info_block}`}>
             <div className={`${styles.order_status_blocks_wrapper} mb-15`}>
               <div className={`${styles.order_status_ready_block} mr-9`}>

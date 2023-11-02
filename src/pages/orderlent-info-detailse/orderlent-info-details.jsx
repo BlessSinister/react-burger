@@ -1,31 +1,8 @@
 import React from 'react'
-import styles from './orderlent-info.module.css'
+import styles from './orderlent-info-detailse.module.css'
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components'
-import Modal from '../../components/modal/modal'
-import { useAppDispatch, useAppSelector } from '../../services/redux-hooks'
-import {
-  modalFlag,
-  modalFlagOrderLent,
-  modalOrderFlag,
-  orderInfoGetter,
-} from '../../services/reducer'
-import OrderlentInfoDetails from '../orderlent-info-detailse/orderlent-info-details'
-
-export default function OrderlentInfo() {
-  const modalOrderLent = useAppSelector((state) => state.modalOrderLentFlag)
-  const dispatch = useAppDispatch()
-  const onCloseModal = () => {
-    dispatch(modalOrderFlag(false))
-    dispatch(modalFlag(false))
-    dispatch(orderInfoGetter('Wait order number'))
-    dispatch(modalFlagOrderLent(false))
-  }
-
-  return modalOrderLent ? (
-    <Modal modalOrderLent={modalOrderLent} onCloseModal={onCloseModal}>
-      {modalOrderLent && <OrderlentInfoDetails />}
-    </Modal>
-  ) : (
+export default function OrderlentInfoDetails() {
+  return (
     <div className={styles.container}>
       <div className={styles.wrapper}>
         <p className={`${styles.order_number} mb-10`}>#034533</p>

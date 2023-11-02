@@ -6,16 +6,18 @@ import ModalOverlay from '../modal-overlay/modal-overlay'
 import { CloseIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 
 interface Imodal {
-  modalIng?: any
+  modalIng?: boolean
   children: ReactNode
-  modal?: any
+  modal?: boolean
   onCloseModal: () => void
+  modalOrderLent?: boolean
 }
 
 export default function Modal({
   modalIng,
   children,
   modal,
+  modalOrderLent,
   onCloseModal,
 }: Imodal): JSX.Element | null {
   useEffect(() => {
@@ -30,10 +32,13 @@ export default function Modal({
       document.removeEventListener('keydown', keyCloseModal)
     }
   }, [])
-  let setActiveClass = modal || modalIng ? `${style.active}` : `${style.modal}`
+  let setActiveClass =
+    modal || modalIng || modalOrderLent ? `${style.active}` : `${style.modal}`
   let setModalIngContenClass = modalIng
     ? `${style.modal__content_ingr}`
     : modal
+    ? `${style.modal__content}`
+    : modalOrderLent
     ? `${style.modal__content}`
     : undefined
 

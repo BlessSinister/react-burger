@@ -288,3 +288,16 @@ export const modalIngridientRefresh = createSlice({
   },
 })
 export const { refreshModalState } = modalIngridientRefresh.actions
+
+// ============================================================= order lent modal
+
+export const modalingFlagOrderLentReducer = createSlice({
+  name: 'modaling',
+  initialState: false as boolean,
+  reducers: {
+    modalFlagOrderLent: (state, action: PayloadAction<boolean>) => {
+      return action.payload
+    },
+  },
+})
+export const { modalFlagOrderLent } = modalingFlagOrderLentReducer.actions

@@ -6,7 +6,6 @@ export default function IngredientDetails() {
 
   const data1 = useAppSelector((state) => state.inst)
 
-  console.log(data1)
   if (data.length === 0) {
     return null
   }
