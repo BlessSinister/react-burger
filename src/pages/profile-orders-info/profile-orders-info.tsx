@@ -11,6 +11,7 @@ import {
   orderInfoGetter,
 } from '../../services/reducer'
 import ProfileOrdersInfoDetailse from '../profile-orders-info-detailse/profile-orders-info-detailse'
+import { useNavigate } from 'react-router-dom'
 export default function ProfileOrdersInfo() {
   const modalProfileOrderLent = useAppSelector(
     (state) => state.modalProfileOrderLentFlag
@@ -23,6 +24,8 @@ export default function ProfileOrdersInfo() {
     dispatch(modalFlagOrderLent(false))
     dispatch(modalFlagProfileOrderLent(false))
   }
+  // const navigate = useNavigate()   // navigate('/profile/orders/') в случае необходимости возврата в историю заказов
+  //Вынеси отдельно в компонент модалку с юзнавигейтом, чтобы можно было использовать текущую страницу в протектед роутс
   return modalProfileOrderLent ? (
     <Modal
       modalProfileOrderLent={modalProfileOrderLent}

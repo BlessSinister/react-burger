@@ -3,6 +3,7 @@ import {
   forgotPass,
   loginSystem,
   orderInfoGetter,
+  orderLentStateFn,
   registerAccount,
   resetPass,
   resetProfileInitialState,
@@ -291,3 +292,16 @@ export const setProfileInfo =
       fetchWithRefresh(err, url, options)
     }
   }
+// ======================================================================== websocket
+//@ts-ignore
+export const getOrderLentInfo = () => async (dispatch) => {
+  try {
+    const response = new WebSocket('wss://norma.nomoreparties.space/orders/all')
+    console.log(response)
+    response.onmessage = (event) => {
+      dispatch(orderLentStateFn(JSON.parse(event.data).orders))
+    }
+  } catch (err) {
+    console.log(err)
+  }
+}

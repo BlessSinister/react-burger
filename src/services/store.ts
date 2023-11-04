@@ -17,6 +17,7 @@ import {
   modalingFlagProfileOrderLentReducer,
   modalingFlagReducer,
   orderConstructorInfo,
+  orderLentStateReducer,
   profileInitialStateReducer,
   registerAccountReducer,
   resetPasswordReducer,
@@ -44,6 +45,7 @@ export const store = configureStore({
     inst: modalIngridientRefresh.reducer,
     modalOrderLentFlag: modalingFlagOrderLentReducer.reducer,
     modalProfileOrderLentFlag: modalingFlagProfileOrderLentReducer.reducer,
+    orderLentState: orderLentStateReducer.reducer,
   },
 
   devTools: true,
@@ -82,6 +84,7 @@ export const store = configureStore({
     ],
     modalOrderLentFlag: false,
     modalProfileOrderLentFlag: false,
+    orderLentState: [],
   },
 })
 
