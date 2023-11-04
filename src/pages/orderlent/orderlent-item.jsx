@@ -5,10 +5,32 @@ import {
   FormattedDate,
 } from '@ya.praktikum/react-developer-burger-ui-components'
 import { useNavigate } from 'react-router-dom'
-import { useAppDispatch } from '../../services/redux-hooks'
+import { useAppDispatch, useAppSelector } from '../../services/redux-hooks'
 import { modalFlagOrderLent } from '../../services/reducer'
+import img1 from '../../images/bun-01.png'
 
-export default function OrderlentItem({ number, createdAt, name }) {
+export default function OrderlentItem({
+  number,
+  createdAt,
+  name,
+  ingredients,
+}) {
+  const orderIngridients = useAppSelector((state) => state.burgerIngridients)
+  let arrImage = ingredients.map((item) =>
+    orderIngridients
+      .filter((item1) => item1._id === item)
+      .map((item, i) => item.image_mobile)
+  )
+  let arrPrice = ingredients.map((item) =>
+    orderIngridients
+      .filter((item1) => item1._id === item)
+      .map((item, i) => item.price)
+      .reduce((a, b) => a + b, 0)
+  )
+  arrPrice = arrPrice.reduce((a, b) => a + b, 0)
+  arrImage = arrImage.filter((item, i) => (i <= 3 ? item : false))
+  console.log(arrPrice)
+
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
   const setHeight =
@@ -30,41 +52,17 @@ export default function OrderlentItem({ number, createdAt, name }) {
       <p className={`${styles.title_burger} mb-6`}>{name}</p>
       <div className={styles.ingridients_wrapper}>
         <div className={`${styles.ingridients_container} mr-6`}>
-          <div
-            className={`${styles.ingridient_item_container} ${styles.ingridient_item_container1}`}
-          >
-            <div
-              className={`${styles.ingridient_item_img} ${styles.ingridient_item_img5}`}
-            ></div>
-          </div>
-          <div
-            className={`${styles.ingridient_item_container} ${styles.ingridient_item_container2}`}
-          >
-            <div
-              className={`${styles.ingridient_item_img} ${styles.ingridient_item_img4}`}
-            ></div>
-          </div>
-          <div
-            className={`${styles.ingridient_item_container} ${styles.ingridient_item_container3}`}
-          >
-            <div
-              className={`${styles.ingridient_item_img} ${styles.ingridient_item_img3}`}
-            ></div>
-          </div>
-          <div
-            className={`${styles.ingridient_item_container} ${styles.ingridient_item_container4}`}
-          >
-            <div className={`${styles.ingridient_item_img}`}></div>
-          </div>
-          <div className={`${styles.ingridient_item_container}`}>
-            <div
-              className={`${styles.ingridient_item_img} ${styles.ingridient_item_img1}`}
-            ></div>
-          </div>
+          {arrImage.map((item, i) => (
+            <div className={`${styles.ingridient_item_container} ml-${10 * i}`}>
+              <div className={`${styles.ingridient_item_img} `}>
+                <img src={item} alt="" />
+              </div>
+            </div>
+          ))}
         </div>
 
         <div className={`${styles.ingridients_price_container}`}>
-          <p className={`${styles.ingridients_price} mr-2`}>480</p>
+          <p className={`${styles.ingridients_price} mr-2`}>{arrPrice}</p>
           <CurrencyIcon type="primary" />
         </div>
       </div>

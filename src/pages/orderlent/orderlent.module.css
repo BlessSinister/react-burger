@@ -68,31 +68,34 @@
 .ingridient_item_container {
   max-width: 64px;
   position: absolute;
+
   width: 100%;
   height: 60px;
   border: 2px solid var(--button-normal, #801ab2);
   background: #131316;
   border-radius: 50%;
 }
-.ingridient_item_container1 {
+/* .ingridient_item_container0 {
   margin-left: 188px;
 }
-.ingridient_item_container2 {
+.ingridient_item_container1 {
   margin-left: 141px;
 }
-.ingridient_item_container3 {
+.ingridient_item_container2 {
   margin-left: 94px;
 }
-.ingridient_item_container4 {
+.ingridient_item_container3 {
   margin-left: 47px;
-}
+} */
 
 .ingridient_item_img {
-  background: url('../../images/meat-03.png') no-repeat center;
+  /* background: url('../../images/meat-03.png') no-repeat center; */
   width: 60px;
   height: 56px;
+  display: flex;
+  justify-content: center;
 }
-.ingridient_item_img1 {
+/* .ingridient_item_img1 {
   background: url('../../images/bun-01.png') no-repeat center;
 }
 .ingridient_item_img3 {
@@ -103,12 +106,12 @@
 }
 .ingridient_item_img5 {
   background: url('../../images/sauce-03.png') no-repeat center;
-}
+} */
 .ingridients_price_container {
-  max-width: 76px;
   width: 100%;
   display: flex;
   align-items: center;
+  justify-content: flex-end;
   height: 64px;
 }
 .ingridients_price {

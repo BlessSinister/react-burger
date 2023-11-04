@@ -1,12 +1,8 @@
-import {
-  CurrencyIcon,
-  FormattedDate,
-} from '@ya.praktikum/react-developer-burger-ui-components'
 import styles from './orderlent.module.css'
-import { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useEffect } from 'react'
+
 import { useAppDispatch, useAppSelector } from '../../services/redux-hooks'
-import { modalFlagOrderLent } from '../../services/reducer'
+
 import { getOrderLentInfo } from '../../services/actions'
 import OrderlentItem from './orderlent-item'
 
@@ -17,7 +13,6 @@ export default function Orderlent() {
   }, [])
   const orderLentInfo = useAppSelector((state) => state.orderLentState)
 
-  console.log(orderLentInfo)
   return (
     <div className={styles.container}>
       <div className={styles.wrapper}>
@@ -32,6 +27,7 @@ export default function Orderlent() {
                   number={item.number}
                   name={item.name}
                   createdAt={item.createdAt}
+                  ingredients={item.ingredients}
                 />
               ))}
             </div>

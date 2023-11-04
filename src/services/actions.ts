@@ -297,7 +297,7 @@ export const setProfileInfo =
 export const getOrderLentInfo = () => async (dispatch) => {
   try {
     const response = new WebSocket('wss://norma.nomoreparties.space/orders/all')
-    console.log(response)
+
     response.onmessage = (event) => {
       dispatch(orderLentStateFn(JSON.parse(event.data).orders))
     }
