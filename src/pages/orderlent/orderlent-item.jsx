@@ -7,7 +7,6 @@ import {
 import { useNavigate } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../services/redux-hooks'
 import { modalFlagOrderLent } from '../../services/reducer'
-import img1 from '../../images/bun-01.png'
 
 export default function OrderlentItem({
   number,
@@ -16,6 +15,7 @@ export default function OrderlentItem({
   ingredients,
 }) {
   const orderIngridients = useAppSelector((state) => state.burgerIngridients)
+
   let arrImage = ingredients.map((item) =>
     orderIngridients
       .filter((item1) => item1._id === item)
@@ -29,22 +29,19 @@ export default function OrderlentItem({
   )
   arrPrice = arrPrice.reduce((a, b) => a + b, 0)
   arrImage = arrImage.filter((item, i) => (i <= 3 ? item : false))
-  console.log(arrPrice)
 
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
-  const setHeight =
-    name.length <= 34
-      ? `${styles.order_compopnents_wrapper}`
-      : name.length >= 77
-      ? `${styles.order_compopnents_wrapper_plus_two}`
-      : `${styles.order_compopnents_wrapper_plus}`
+
   const hadleClick = () => {
     navigate('info')
     dispatch(modalFlagOrderLent(true))
   }
   return (
-    <div className={`${setHeight} mb-4 p-6`} onClick={hadleClick}>
+    <div
+      className={`${styles.order_compopnents_wrapper} mb-4 p-6`}
+      onClick={hadleClick}
+    >
       <div className={`${styles.title_wrapper} mb-6`}>
         <p>#{number}</p>
         <FormattedDate date={new Date(createdAt)} />

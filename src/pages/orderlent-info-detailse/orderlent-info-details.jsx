@@ -1,7 +1,8 @@
-import React from 'react'
+import { useAppSelector } from '../../services/redux-hooks'
 import styles from './orderlent-info-detailse.module.css'
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components'
-export default function OrderlentInfoDetails() {
+export default function OrderlentInfoDetails({ orderLentInfo }) {
+  console.log(orderLentInfo)
   return (
     <div className={styles.container}>
       <div className={styles.wrapper}>
@@ -89,7 +90,7 @@ export default function OrderlentInfoDetails() {
           {' '}
           <p className={`${styles.date_time}`}>Вчера, 13:50 i-GMT+3</p>
           <div className={`${styles.summary_price_block}`}>
-            <p className={`${styles.price} mr-2`}>510</p>
+            <p className={`${styles.price} mr-2`}>{12}</p>
             <CurrencyIcon type="primary" />
           </div>
         </div>

@@ -12,6 +12,16 @@ export interface Idata {
   __v: number
   _id: string
 }
+
+export interface IOrder {
+  _id: string
+  status: string
+  name: string
+  createdAt: string
+  updatedAt: string
+  number: number
+  orders: []
+}
 export const data = [
   {
     _id: '60666c42cc7b410027a1a9b1',

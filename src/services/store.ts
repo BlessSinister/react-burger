@@ -19,8 +19,10 @@ import {
   orderConstructorInfo,
   orderLentStateReducer,
   profileInitialStateReducer,
+  profileOrderLentStateReducer,
   registerAccountReducer,
   resetPasswordReducer,
+  totalOrderReducer,
 } from './reducer'
 
 export const store = configureStore({
@@ -46,6 +48,8 @@ export const store = configureStore({
     modalOrderLentFlag: modalingFlagOrderLentReducer.reducer,
     modalProfileOrderLentFlag: modalingFlagProfileOrderLentReducer.reducer,
     orderLentState: orderLentStateReducer.reducer,
+    totalOrder: totalOrderReducer.reducer,
+    profileOrderLentState: profileOrderLentStateReducer.reducer,
   },
 
   devTools: true,
@@ -85,6 +89,8 @@ export const store = configureStore({
     modalOrderLentFlag: false,
     modalProfileOrderLentFlag: false,
     orderLentState: [],
+    totalOrder: 1,
+    profileOrderLentState: [],
   },
 })
 

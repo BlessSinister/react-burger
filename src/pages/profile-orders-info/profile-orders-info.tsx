@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styles from './profile-orders-info.module.css'
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 import { useAppDispatch, useAppSelector } from '../../services/redux-hooks'
@@ -16,6 +16,7 @@ export default function ProfileOrdersInfo() {
   const modalProfileOrderLent = useAppSelector(
     (state) => state.modalProfileOrderLentFlag
   )
+
   const dispatch = useAppDispatch()
   const onCloseModal = () => {
     dispatch(modalOrderFlag(false))
@@ -24,6 +25,7 @@ export default function ProfileOrdersInfo() {
     dispatch(modalFlagOrderLent(false))
     dispatch(modalFlagProfileOrderLent(false))
   }
+
   // const navigate = useNavigate()   // navigate('/profile/orders/') в случае необходимости возврата в историю заказов
   //Вынеси отдельно в компонент модалку с юзнавигейтом, чтобы можно было использовать текущую страницу в протектед роутс
   return modalProfileOrderLent ? (

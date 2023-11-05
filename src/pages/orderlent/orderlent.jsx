@@ -1,18 +1,19 @@
 import styles from './orderlent.module.css'
-import { useEffect } from 'react'
 
-import { useAppDispatch, useAppSelector } from '../../services/redux-hooks'
+import { useAppSelector } from '../../services/redux-hooks'
 
-import { getOrderLentInfo } from '../../services/actions'
 import OrderlentItem from './orderlent-item'
 
 export default function Orderlent() {
-  const dispatch = useAppDispatch()
-  useEffect(() => {
-    dispatch(getOrderLentInfo())
-  }, [])
-  const orderLentInfo = useAppSelector((state) => state.orderLentState)
+  const totalOrder = useAppSelector((state) => state.totalOrder.total)
+  const totalToday = useAppSelector((state) => state.totalOrder.totalToday)
 
+  const orderLentInfo = useAppSelector((state) => state.orderLentState)
+  // useEffect(() => {
+  //   dispatch(getOrderLentInfo())
+  // }, [getOrderLentInfo])
+  //Открытие вебсокета ленты, думаю, что лучше будет сделать открытие, когда человек заходит на главную,
+  //Тогда когда он будет входить на страницу ленты, она будет уже загружена
   return (
     <div className={styles.container}>
       <div className={styles.wrapper}>
@@ -37,23 +38,30 @@ export default function Orderlent() {
             <div className={`${styles.order_status_blocks_wrapper} mb-15`}>
               <div className={`${styles.order_status_ready_block} mr-9`}>
                 <h3 className={`${styles.h3} mb-6`}>Готовы:</h3>
-                <p className={`${styles.order_ready_number} mb-2`}>034533</p>
-                <p className={`${styles.order_ready_number} mb-2`}>034532</p>
-                <p className={`${styles.order_ready_number} mb-2`}>034530</p>
-                <p className={`${styles.order_ready_number} mb-2`}>034527</p>
-                <p className={`${styles.order_ready_number} mb-2`}>034525</p>
+
+                {orderLentInfo.map((item, i) =>
+                  item.status === 'done' && i <= 12 ? (
+                    <p className={`${styles.order_ready_number} mb-2`}>
+                      {item.number}
+                    </p>
+                  ) : null
+                )}
               </div>
               <div className={styles.order_status_process_block}>
                 <h3 className={`${styles.h3} mb-6`}>В работе:</h3>
-                <p className={`${styles.order_process_number} mb-2`}>034538</p>
-                <p className={`${styles.order_process_number} mb-2`}>034541</p>
-                <p className={`${styles.order_process_number} mb-2`}>034542</p>
+                {orderLentInfo.map((item, i) =>
+                  item.status !== 'done' && i <= 4 ? (
+                    <p className={`${styles.order_process_number} mb-2`}>
+                      {item.number}
+                    </p>
+                  ) : null
+                )}
               </div>
             </div>
             <h3 className={`${styles.h3} mb-6`}>Выполнено за все время:</h3>
-            <p className={`${styles.all_orders_numbers} mb-15`}>28 752</p>
+            <p className={`${styles.all_orders_numbers} mb-15`}>{totalOrder}</p>
             <h3 className={`${styles.h3}`}>Выполнено сегодня:</h3>
-            <p className={`${styles.all_orders_numbers}`}>138</p>
+            <p className={`${styles.all_orders_numbers}`}>{totalToday}</p>
           </div>
         </main>
       </div>

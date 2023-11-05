@@ -4,10 +4,12 @@ import {
   loginSystem,
   orderInfoGetter,
   orderLentStateFn,
+  profileOrderLentStateFn,
   registerAccount,
   resetPass,
   resetProfileInitialState,
   setMainProfileInitialState,
+  totalOrderFn,
 } from './reducer'
 import { BASE_URL, url } from '../utils/api'
 
@@ -53,26 +55,6 @@ export const getBurgerIngridientList = () => async (dispatch) => {
     const response = await fetch(url)
     const data = await checkResponse(response)
     dispatch(addIngridientsList(data.data))
-  } catch (err) {
-    console.log(err)
-  }
-}
-//@ts-ignore
-export const getOrderInfo = (id: string) => async (dispatch) => {
-  try {
-    const response = await fetch(`${BASE_URL}orders`, {
-      method: 'post',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        ingredients: id,
-      }),
-    })
-
-    const data = await checkResponse(response)
-    dispatch(orderInfoGetter(data.order.number))
   } catch (err) {
     console.log(err)
   }
@@ -300,7 +282,73 @@ export const getOrderLentInfo = () => async (dispatch) => {
 
     response.onmessage = (event) => {
       dispatch(orderLentStateFn(JSON.parse(event.data).orders))
+      dispatch(totalOrderFn(JSON.parse(event.data)))
     }
+  } catch (err) {
+    console.log(err)
+  }
+}
+
+//@ts-ignore
+export const getProfileOrderLentInfo = () => async (dispatch) => {
+  try {
+    //@ts-ignore
+    let x = localStorage.getItem('accessToken').split('Bearer ')[1]
+    const response = new WebSocket(
+      `wss://norma.nomoreparties.space/orders?token=${x}`
+    )
+
+    response.onmessage = (event) => {
+      //@ts-ignore
+      dispatch(profileOrderLentStateFn(JSON.parse(event.data)))
+    }
+  } catch (err) {
+    console.log(err)
+  }
+}
+
+const x = async () => {
+  let options = {
+      method: 'post',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        authorization:
+          'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1MTI5MmYyNmQyOTk3MDAxY2FhYWUzYSIsImlhdCI6MTY5OTIxMTcxMSwiZXhwIjoxNjk5MjEyOTExfQ.jHOpogKJ51LwTYTC2R2PeyyFsnJFABDrvYVBjQXxWms',
+      },
+      body: JSON.stringify({
+        ingredients: ['643d69a5c3f7b9001cfa093c', '643d69a5c3f7b9001cfa093e'],
+      }),
+    },
+    url = `https://norma.nomoreparties.space/api/orders`
+  try {
+    const response = await fetch(url, options)
+    const data = response.json()
+
+    console.log(data)
+  } catch (err) {
+    console.log(err)
+  }
+}
+
+//@ts-ignore
+export const getOrderInfo = (id: string) => async (dispatch) => {
+  try {
+    const response = await fetch(`${BASE_URL}orders`, {
+      method: 'post',
+      //@ts-ignore
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        authorization: localStorage.getItem('accessToken'),
+      },
+      body: JSON.stringify({
+        ingredients: id,
+      }),
+    })
+
+    const data = await checkResponse(response)
+    dispatch(orderInfoGetter(data.order.number))
   } catch (err) {
     console.log(err)
   }

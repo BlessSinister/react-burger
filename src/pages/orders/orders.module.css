@@ -59,6 +59,7 @@
 /* =================================== перенос стилей из ленты заказов */
 .order_numbers_block {
   max-width: 796px;
+  height: 804px;
   width: 100%;
   overflow-y: auto;
   overflow-x: hidden;
@@ -101,6 +102,7 @@
   border: 2px solid var(--button-normal, #801ab2);
   background: #131316;
   border-radius: 50%;
+  display: flex;
 }
 .ingridient_item_container1 {
   margin-left: 188px;
@@ -116,11 +118,13 @@
 }
 
 .ingridient_item_img {
-  background: url('../../images/meat-03.png') no-repeat center;
+  /* background: url('../../images/meat-03.png') no-repeat center; */
   width: 60px;
   height: 56px;
+  display: flex;
+  justify-content: center;
 }
-.ingridient_item_img1 {
+/* .ingridient_item_img1 {
   background: url('../../images/bun-01.png') no-repeat center;
 }
 .ingridient_item_img3 {
@@ -131,12 +135,12 @@
 }
 .ingridient_item_img5 {
   background: url('../../images/sauce-03.png') no-repeat center;
-}
+} */
 .ingridients_price_container {
-  max-width: 76px;
   width: 100%;
   display: flex;
   align-items: center;
+  justify-content: flex-end;
   height: 64px;
 }
 .ingridients_price {
@@ -163,11 +167,42 @@
 .order_compopnents_wrapper {
   max-width: 738px;
   width: 100%;
-  height: 214px;
+
   border-radius: 40px;
   background: #1c1c21;
 
   /* /card/base */
   box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.04),
     0px 0px 2px 0px rgba(0, 0, 0, 0.06), 0px 4px 8px 0px rgba(0, 0, 0, 0.04);
+}
+
+.status_success {
+  color: #0cc;
+
+  /* desktop/text */
+  font-family: 'Jet Brains Mono';
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px; /* 150% */
+}
+.status_simple {
+  color: white;
+}
+.number_style {
+  color: #f2f2f3;
+
+  /* desktop/digits small */
+  font-family: Iceland;
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px; /* 85.714% */
+}
+
+.link {
+  text-decoration: none;
+}
+.active {
+  color: #f2f2f3;
 }

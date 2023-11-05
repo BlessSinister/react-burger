@@ -5,6 +5,8 @@ import BurgerConstructor from '../../components/burger-constructor/burger-constr
 
 import { modalFlag, modalOrderFlag } from '../../services/reducer'
 import { useAppDispatch } from '../../services/redux-hooks'
+import { getOrderLentInfo } from '../../services/actions'
+import { useEffect } from 'react'
 
 export default function Home() {
   const dispatch = useAppDispatch()
@@ -13,6 +15,9 @@ export default function Home() {
     dispatch(modalFlag(false))
     localStorage.removeItem('modalIng')
   }
+  useEffect(() => {
+    dispatch(getOrderLentInfo())
+  }, [getOrderLentInfo])
 
   return (
     <main>
