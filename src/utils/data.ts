@@ -20,7 +20,13 @@ export interface IOrder {
   createdAt: string
   updatedAt: string
   number: number
-  orders: []
+  ingredients: string[]
+}
+export interface IOrderLentObj {
+  orders: IOrder[]
+  success: boolean
+  total: number
+  totalToday: number
 }
 export const data = [
   {

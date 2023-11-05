@@ -4,12 +4,10 @@ import { useAppDispatch, useAppSelector } from '../../services/redux-hooks'
 import { modalFlagProfileOrderLent } from '../../services/reducer'
 import { logoutUserFn } from '../../services/actions'
 import OrderProfileItem from './order-profile-item'
-import { IOrder } from '../../utils/data'
 
 export default function Orders() {
   const navigate = useNavigate()
 
-  // arrImage = arrImage.filter((item, i) => (i <= 3 ? item : false))
   let orderLent = useAppSelector((state) => state.profileOrderLentState)
   const dispatch = useAppDispatch()
 
@@ -17,7 +15,7 @@ export default function Orders() {
     navigate('/profile/orders/1')
     dispatch(modalFlagProfileOrderLent(true))
   }
-  console.log(orderLent)
+  console.log(orderLent.orders)
   return (
     <div className={styles.container}>
       <div className={`${styles.wrapper}`}>
@@ -45,7 +43,7 @@ export default function Orders() {
           </div>
         </div>
         <div className={`${styles.order_numbers_block} ${styles.scroll} `}>
-          {orderLent.orders.map<IOrder[]>((item) => (
+          {orderLent.orders.map((item) => (
             <OrderProfileItem
               handleClick={handleClick}
               number={item.number}

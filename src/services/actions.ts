@@ -24,8 +24,10 @@ const checkResponse = (response: any): Promise<any> => {
 export const refreshToken = () => {
   return fetch(`${BASE_URL}auth/token`, {
     method: 'POST',
+    //@ts-ignore
     headers: {
       'Content-Type': 'application/json;charset=utf-8',
+      authorization: localStorage.getItem('accessToken'),
     },
     body: JSON.stringify({
       token: localStorage.getItem('refreshToken'),
@@ -302,30 +304,6 @@ export const getProfileOrderLentInfo = () => async (dispatch) => {
       //@ts-ignore
       dispatch(profileOrderLentStateFn(JSON.parse(event.data)))
     }
-  } catch (err) {
-    console.log(err)
-  }
-}
-
-const x = async () => {
-  let options = {
-      method: 'post',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-        authorization:
-          'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1MTI5MmYyNmQyOTk3MDAxY2FhYWUzYSIsImlhdCI6MTY5OTIxMTcxMSwiZXhwIjoxNjk5MjEyOTExfQ.jHOpogKJ51LwTYTC2R2PeyyFsnJFABDrvYVBjQXxWms',
-      },
-      body: JSON.stringify({
-        ingredients: ['643d69a5c3f7b9001cfa093c', '643d69a5c3f7b9001cfa093e'],
-      }),
-    },
-    url = `https://norma.nomoreparties.space/api/orders`
-  try {
-    const response = await fetch(url, options)
-    const data = response.json()
-
-    console.log(data)
   } catch (err) {
     console.log(err)
   }

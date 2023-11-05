@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { Idata } from '../components/ing-list/ingr-list'
-import { IOrder } from '../utils/data'
+import { IOrder, IOrderLentObj } from '../utils/data'
 export const burgerIngridientsReducer = createSlice({
   name: 'burgerIngReducer',
   initialState: [] as Idata[],
@@ -340,7 +340,7 @@ export const { totalOrderFn } = totalOrderReducer.actions
 
 export const profileOrderLentStateReducer = createSlice({
   name: 'profileOrderLentState',
-  initialState: [] as IOrder[],
+  initialState: {} as IOrderLentObj,
   reducers: {
     profileOrderLentStateFn: (state, action) => {
       return action.payload

@@ -5,6 +5,16 @@ import {
   FormattedDate,
 } from '@ya.praktikum/react-developer-burger-ui-components'
 import { useAppSelector } from '../../services/redux-hooks'
+
+interface IOrderProfileItemProps {
+  handleClick: () => void
+  name: string
+  number: number
+  createdAt: string
+  ingredients: string[]
+  status: string
+}
+
 export default function OrderProfileItem({
   handleClick,
   name,
@@ -12,32 +22,26 @@ export default function OrderProfileItem({
   createdAt,
   ingredients,
   status,
-}) {
+}: IOrderProfileItemProps) {
   console.log(ingredients)
   const orderIngridients = useAppSelector((state) => state.burgerIngridients)
 
-  let arrPrice = ingredients.map((item) =>
-    //@ts-ignore
+  let arrPrice: number[] = ingredients.map((item) =>
     orderIngridients
       .filter((item1) => item1._id === item)
-      //@ts-ignore
       .map((item, i) => item.price)
-      //@ts-ignore
       .reduce((a, b) => a + b, 0)
   )
-  arrPrice = arrPrice.reduce((a, b) => a + b, 0)
 
-  let arrImage = ingredients.map(
-    (item) =>
-      //@ts-ignore
-      orderIngridients
-        .filter((item1) => item1._id === item)
-        //@ts-ignore
-        .map((item, i) => item.image_mobile)
-        .reduce((a, b) => a + b)
-    //@ts-ignore
+  let price = arrPrice.reduce((a, b) => a + b, 0)
+  console.log(arrPrice)
+  let arrImage = ingredients.map((item) =>
+    orderIngridients
+      .filter((item1) => item1._id === item)
+      .map((item, i) => item.image_mobile)
+      .reduce((a, b) => a + b)
   )
-  console.log(arrImage)
+
   let statusSuccess =
     status === 'done' ? `${styles.status_success}` : `${styles.status_simple}`
   let statusName =
@@ -74,7 +78,7 @@ export default function OrderProfileItem({
           </div>
 
           <div className={`${styles.ingridients_price_container}`}>
-            <p className={`${styles.ingridients_price} mr-2`}>{arrPrice}</p>
+            <p className={`${styles.ingridients_price} mr-2`}>{price}</p>
             <CurrencyIcon type="primary" />
           </div>
         </div>
