@@ -1,27 +1,20 @@
-import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components'
-import React from 'react'
-import styles from './profile-orders-info-detailse.module.css'
 import { useAppSelector } from '../../services/redux-hooks'
+import { IOrder } from '../../utils/data'
+import styles from './orderlent-info-detailse.module.css'
+import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 
-// ,
-// ,-.       _,---._ __  / \
-// /  )    .-'       `./ /   \
-// (  (   ,'            `/    /|
-// \  `-"             \'\   / |
-// `.              ,  \ \ /  |
-//  /`.          ,'-`----Y   |
-// (            ;        |   '
-// |  ,-.    ,-'         |  /
-// |  | (   |React+TS=<3 | /
-// )  |  \  `.___________|/
-// `--'   `--'
-export default function ProfileOrdersInfoDetailse({ orderLentInfo }) {
-  let targetElem = orderLentInfo.orders.filter(
-    (item) => item._id === localStorage.getItem('setIdTargetOrderProfile')
+interface IOrderlentInfoDetails {
+  orderLentInfo: IOrder[]
+}
+
+export default function OrderlentInfoDetails({
+  orderLentInfo,
+}: IOrderlentInfoDetails) {
+  let orderLentItem = orderLentInfo.filter(
+    (item) => item._id === localStorage.getItem('orderLentIdElem')
   )
-
   const orderIngridients = useAppSelector((state) => state.burgerIngridients)
-  let ingredients = targetElem[0].ingredients
+  let ingredients = orderLentItem[0].ingredients
   let arrImage = ingredients.map((item) =>
     orderIngridients
       .filter((item1) => item1._id === item)
@@ -41,11 +34,9 @@ export default function ProfileOrdersInfoDetailse({ orderLentInfo }) {
       .reduce((a, b) => a + b)
   )
   let summaryPrice = priceItem.reduce((a, b) => a + b, 0)
-
-  console.log(arrImage)
   return (
     <div className={styles.container}>
-      {targetElem.map((item, i) => (
+      {orderLentItem.map((item) => (
         <div className={styles.wrapper}>
           <p className={`${styles.order_number} mb-10`}>#{item.number}</p>
           <h2 className={`${styles.h2} mb-3`}>{item.name}</h2>
@@ -58,7 +49,7 @@ export default function ProfileOrdersInfoDetailse({ orderLentInfo }) {
           </p>
           <p className={`${styles.order_compound}  mb-6`}>Состав:</p>
           <div
-            className={`${styles.order_compound_elements_wrapper} ${styles.scroll} mb-5`}
+            className={`${styles.order_compound_elements_wrapper} ${styles.scroll} mb-10`}
           >
             {arrImage.map((item, i) => (
               <div className={`${styles.order_compound_item_wrapper} mb-4`}>
@@ -67,15 +58,14 @@ export default function ProfileOrdersInfoDetailse({ orderLentInfo }) {
                     <img src={item} alt="" />
                   </div>
                 </div>
+
                 <p className={`${styles.ingridient_item_description}`}>
                   {nameItem[i]}
                 </p>
-                <div className={styles.price_container}>
-                  <p className={`${styles.ingridient_item_count} ml-4 mr-2`}>
-                    1 x {priceItem[i]}
-                  </p>
-                  <CurrencyIcon type="primary" />
-                </div>
+                <p className={`${styles.ingridient_item_count} ml-4 mr-2`}>
+                  1 x {priceItem[i]}
+                </p>
+                <CurrencyIcon type="primary" />
               </div>
             ))}
           </div>

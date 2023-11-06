@@ -8,7 +8,7 @@ import OrderProfileItem from './order-profile-item'
 export default function Orders() {
   const navigate = useNavigate()
   const modal = useAppSelector((state) => state.modalProfileOrderLentFlag)
-  let orderLent = useAppSelector((state) => state.profileOrderLentState)
+  let orderLent = useAppSelector((state) => state.profileOrderLentState) || []
   const dispatch = useAppDispatch()
 
   const handleClick = () => {
