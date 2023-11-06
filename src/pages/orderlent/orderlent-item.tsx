@@ -46,9 +46,10 @@ export default function OrderlentItem({
   const dispatch = useAppDispatch()
 
   const hadleClick = () => {
-    navigate('info')
     dispatch(modalFlagOrderLent(true))
     localStorage.setItem('orderLentIdElem', id)
+
+    navigate(`/feed/${localStorage.getItem('orderLentIdElem')}`)
   }
   return (
     <div

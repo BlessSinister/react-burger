@@ -7,15 +7,24 @@ import OrderProfileItem from './order-profile-item'
 
 export default function Orders() {
   const navigate = useNavigate()
-
+  const modal = useAppSelector((state) => state.modalProfileOrderLentFlag)
   let orderLent = useAppSelector((state) => state.profileOrderLentState)
   const dispatch = useAppDispatch()
 
   const handleClick = () => {
-    navigate('/profile/orders/1')
+    if (modal) {
+      //@ts-ignore
+      window.history.pushState(
+        null,
+        //@ts-ignore
+        null,
+        `/profile/order/${localStorage.getItem('orderLentIdElem')}`
+      )
+    }
     dispatch(modalFlagProfileOrderLent(true))
+    navigate(`/profile/orders/${localStorage.getItem('orderLentIdElem')}`)
   }
-  console.log(orderLent.orders)
+
   return (
     <div className={styles.container}>
       <div className={`${styles.wrapper}`}>
@@ -51,6 +60,7 @@ export default function Orders() {
               name={item.name}
               ingredients={item.ingredients}
               status={item.status}
+              id={item._id}
             />
           ))}
         </div>

@@ -18,12 +18,19 @@ export default function ProfileOrdersInfo() {
   )
 
   const dispatch = useAppDispatch()
+  const navigate = useNavigate()
   const onCloseModal = () => {
     dispatch(modalOrderFlag(false))
     dispatch(modalFlag(false))
     dispatch(orderInfoGetter('Wait order number'))
     dispatch(modalFlagOrderLent(false))
     dispatch(modalFlagProfileOrderLent(false))
+    if (
+      window.location.pathname ===
+      `/profile/orders/${localStorage.getItem('orderLentIdElem')}`
+    ) {
+      navigate('/profile/orders')
+    }
   }
 
   // const navigate = useNavigate()   // navigate('/profile/orders/') в случае необходимости возврата в историю заказов

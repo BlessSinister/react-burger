@@ -10,12 +10,11 @@ import {
   orderInfoGetter,
 } from '../../services/reducer'
 import OrderlentInfoDetails from '../orderlent-info-detailse/orderlent-info-details'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 export default function OrderlentInfo() {
   const navigate = useNavigate()
-  const id = useParams()
-  console.log(id)
+
   const modalOrderLent = useAppSelector((state) => state.modalOrderLentFlag)
   const dispatch = useAppDispatch()
   const onCloseModal = () => {
@@ -32,15 +31,6 @@ export default function OrderlentInfo() {
     }
   }
 
-  if (modalOrderLent) {
-    //@ts-ignore
-    window.history.pushState(
-      null,
-      //@ts-ignore
-      null,
-      `/feed/${localStorage.getItem('orderLentIdElem')}`
-    )
-  }
   const orderLentInfo = useAppSelector((state) => state.orderLentState)
 
   return modalOrderLent ? (

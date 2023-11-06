@@ -4,7 +4,8 @@ import {
   CurrencyIcon,
   FormattedDate,
 } from '@ya.praktikum/react-developer-burger-ui-components'
-import { useAppSelector } from '../../services/redux-hooks'
+import { useAppDispatch, useAppSelector } from '../../services/redux-hooks'
+import { modalFlagProfileOrderLent } from '../../services/reducer'
 
 interface IOrderProfileItemProps {
   handleClick: () => void
@@ -13,17 +14,22 @@ interface IOrderProfileItemProps {
   createdAt: string
   ingredients: string[]
   status: string
+  id: string
 }
 
 export default function OrderProfileItem({
-  handleClick,
   name,
   number,
   createdAt,
   ingredients,
   status,
+  id,
+  handleClick,
 }: IOrderProfileItemProps) {
   console.log(ingredients)
+  const targetOrderElem = () => {
+    localStorage.setItem('targetOrderElem', id)
+  }
   const orderIngridients = useAppSelector((state) => state.burgerIngridients)
 
   let arrPrice: number[] = ingredients.map((item) =>
@@ -50,13 +56,21 @@ export default function OrderProfileItem({
       : status === 'created'
       ? 'Создано'
       : 'Готовится'
+
+  const setIdTarget = () => {
+    localStorage.setItem('setIdTargetOrderProfile', id)
+  }
+
   return (
-    <>
+    <div onClick={setIdTarget}>
       <div
         className={`${styles.order_compopnents_wrapper} mb-4 p-6`}
         onClick={handleClick}
       >
-        <div className={`${styles.title_wrapper} mb-6`}>
+        <div
+          className={`${styles.title_wrapper} mb-6`}
+          onClick={targetOrderElem}
+        >
           <p className={styles.number_style}>#{number}</p>
           <FormattedDate date={new Date(createdAt)} />
         </div>
@@ -83,6 +97,6 @@ export default function OrderProfileItem({
           </div>
         </div>
       </div>
-    </>
+    </div>
   )
 }

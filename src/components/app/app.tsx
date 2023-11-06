@@ -50,7 +50,7 @@ export default function App() {
         <Route element={<ProtectedAuth />}>
           <Route path="/profile" element={<Profile />} />
           <Route path="/profile/orders" element={<Orders />} />
-          <Route path="/profile/orders/1" element={<ProfileOrdersInfo />} />
+          <Route path="/profile/orders/:id" element={<ProfileOrdersInfo />} />
         </Route>
         <Route element={<ProtectedUnAuth />}>
           <Route path="/login" element={<Login />} />
