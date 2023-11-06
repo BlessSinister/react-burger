@@ -348,3 +348,14 @@ export const profileOrderLentStateReducer = createSlice({
   },
 })
 export const { profileOrderLentStateFn } = profileOrderLentStateReducer.actions
+
+export const orderLentCurrentStateReducer = createSlice({
+  name: 'profileOrderLentState',
+  initialState: [] as Idata[],
+  reducers: {
+    orderLentCurrentStateFn: (state, action) => {
+      return action.payload
+    },
+  },
+})
+export const { orderLentCurrentStateFn } = orderLentCurrentStateReducer.actions

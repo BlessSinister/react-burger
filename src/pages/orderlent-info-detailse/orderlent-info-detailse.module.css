@@ -10,7 +10,6 @@
 .wrapper {
   max-width: 640px;
   width: 100%;
-  height: 620px;
 }
 .order_number {
   text-align: center;
@@ -64,7 +63,6 @@
   border: 3px solid rgba(133, 133, 173, 1); /* отступ вокруг бегунка */
 }
 .order_compound_item_wrapper {
-  max-width: 608px;
   width: 100%;
   height: 64px;
   display: flex;
@@ -78,12 +76,14 @@
   background: #131316;
   border-radius: 50%;
 }
-.ingridient_item_img1 {
-  background: url('../../images/bun-01.png') no-repeat center;
+.ingridient_item_img {
+  /* background: url('../../images/bun-01.png') no-repeat center; */
   width: 60px;
   height: 56px;
+  display: flex;
+  justify-content: center;
 }
-.ingridient_item_img2 {
+/* .ingridient_item_img2 {
   background: url('../../images/meat-03.png') no-repeat center;
   width: 60px;
   height: 56px;
@@ -97,7 +97,7 @@
   background: url('../../images/mineral_rings.png') no-repeat center;
   width: 60px;
   height: 56px;
-}
+} */
 .ingridient_item_description {
   font-family: 'Jet Brains Mono';
   font-size: 16px;

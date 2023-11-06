@@ -38,9 +38,7 @@ export default function OrderlentItem({
 
   let price = arrPrice.reduce((a, b) => a + b, 0)
 
-  let imgItem = arrImage
-    .map((item, i) => item[i])
-    .filter((item, i) => (i <= 3 ? item : false))
+  let imgItem = arrImage.filter((item, i) => (i <= 3 ? item : false))
 
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
