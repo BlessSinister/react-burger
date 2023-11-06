@@ -11,6 +11,8 @@ export default function Orders() {
   let orderLent = useAppSelector((state) => state.profileOrderLentState) || []
   const dispatch = useAppDispatch()
 
+  const orderLentInfo = useAppSelector((state) => state.profileOrderLentState)
+
   const handleClick = () => {
     if (modal) {
       //@ts-ignore

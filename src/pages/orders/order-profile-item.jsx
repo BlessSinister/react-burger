@@ -7,15 +7,15 @@ import {
 import { useAppDispatch, useAppSelector } from '../../services/redux-hooks'
 import { modalFlagProfileOrderLent } from '../../services/reducer'
 
-interface IOrderProfileItemProps {
-  handleClick: () => void
-  name: string
-  number: number
-  createdAt: string
-  ingredients: string[]
-  status: string
-  id: string
-}
+// interface IOrderProfileItemProps {
+//   handleClick: () => void
+//   name: string
+//   number: number
+//   createdAt: string
+//   ingredients: string[]
+//   status: string
+//   id: string
+// }
 
 export default function OrderProfileItem({
   name,
@@ -25,13 +25,15 @@ export default function OrderProfileItem({
   status,
   id,
   handleClick,
-}: IOrderProfileItemProps) {
+}) {
   const targetOrderElem = () => {
     localStorage.setItem('targetOrderElem', id)
   }
   const orderIngridients = useAppSelector((state) => state.burgerIngridients)
 
-  let arrPrice: number[] = ingredients.map((item) =>
+  const orderLentInfo = useAppSelector((state) => state.profileOrderLentState)
+
+  let arrPrice = ingredients.map((item) =>
     orderIngridients
       .filter((item1) => item1._id === item)
       .map((item, i) => item.price)
@@ -58,6 +60,14 @@ export default function OrderProfileItem({
 
   const setIdTarget = () => {
     localStorage.setItem('setIdTargetOrderProfile', id)
+    localStorage.setItem(
+      'setTargetOrderProfile',
+      JSON.stringify(
+        orderLentInfo.orders.filter(
+          (item) => item._id === localStorage.getItem('setIdTargetOrderProfile')
+        )
+      )
+    )
   }
 
   return (

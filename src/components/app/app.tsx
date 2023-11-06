@@ -26,7 +26,7 @@ export default function App() {
     (item: { _id: string }) => item._id === id
   )
   localStorage.setItem('Ing', JSON.stringify(ingridient))
-
+  const orderLentInfo = useAppSelector((state) => state.orderLentState)
   useEffect(() => {
     dispatch(getBurgerIngridientList())
     if (localStorage.getItem('modalIng')) {
