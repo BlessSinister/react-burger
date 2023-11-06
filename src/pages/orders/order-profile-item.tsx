@@ -26,7 +26,6 @@ export default function OrderProfileItem({
   id,
   handleClick,
 }: IOrderProfileItemProps) {
-  console.log(ingredients)
   const targetOrderElem = () => {
     localStorage.setItem('targetOrderElem', id)
   }
@@ -40,7 +39,7 @@ export default function OrderProfileItem({
   )
 
   let price = arrPrice.reduce((a, b) => a + b, 0)
-  console.log(arrPrice)
+
   let arrImage = ingredients.map((item) =>
     orderIngridients
       .filter((item1) => item1._id === item)

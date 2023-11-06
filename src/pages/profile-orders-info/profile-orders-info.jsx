@@ -1,21 +1,51 @@
+import React, { useEffect } from 'react'
+import styles from './profile-orders-info.module.css'
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components'
-import React from 'react'
-import styles from './profile-orders-info-detailse.module.css'
+import { useAppDispatch, useAppSelector } from '../../services/redux-hooks'
+import Modal from '../../components/modal/modal'
+import {
+  modalFlag,
+  modalFlagOrderLent,
+  modalFlagProfileOrderLent,
+  modalOrderFlag,
+  orderInfoGetter,
+} from '../../services/reducer'
+import ProfileOrdersInfoDetailse from '../profile-orders-info-detailse/profile-orders-info-detailse'
+import { useNavigate } from 'react-router-dom'
+export default function ProfileOrdersInfo() {
+  const modalProfileOrderLent = useAppSelector(
+    (state) => state.modalProfileOrderLentFlag
+  )
 
-// ,
-// ,-.       _,---._ __  / \
-// /  )    .-'       `./ /   \
-// (  (   ,'            `/    /|
-// \  `-"             \'\   / |
-// `.              ,  \ \ /  |
-//  /`.          ,'-`----Y   |
-// (            ;        |   '
-// |  ,-.    ,-'         |  /
-// |  | (   |React+TS=<3 | /
-// )  |  \  `.___________|/
-// `--'   `--'
-export default function ProfileOrdersInfoDetailse() {
-  return (
+  const dispatch = useAppDispatch()
+  const navigate = useNavigate()
+  const onCloseModal = () => {
+    dispatch(modalOrderFlag(false))
+    dispatch(modalFlag(false))
+    dispatch(orderInfoGetter('Wait order number'))
+    dispatch(modalFlagOrderLent(false))
+    dispatch(modalFlagProfileOrderLent(false))
+    if (
+      window.location.pathname ===
+      `/profile/orders/${localStorage.getItem('orderLentIdElem')}`
+    ) {
+      navigate('/profile/orders')
+    }
+  }
+
+  const orderLentInfo = useAppSelector((state) => state.profileOrderLentState)
+  // const navigate = useNavigate()   // navigate('/profile/orders/') в случае необходимости возврата в историю заказов
+  //Вынеси отдельно в компонент модалку с юзнавигейтом, чтобы можно было использовать текущую страницу в протектед роутс
+  return modalProfileOrderLent ? (
+    <Modal
+      modalProfileOrderLent={modalProfileOrderLent}
+      onCloseModal={onCloseModal}
+    >
+      {modalProfileOrderLent && (
+        <ProfileOrdersInfoDetailse orderLentInfo={orderLentInfo} />
+      )}
+    </Modal>
+  ) : (
     <div className={styles.container}>
       <div className={styles.wrapper}>
         <p className={`${styles.order_number} mb-10`}>#034533</p>
