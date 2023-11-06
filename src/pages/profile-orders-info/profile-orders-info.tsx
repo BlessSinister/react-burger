@@ -97,7 +97,10 @@ export default function ProfileOrdersInfo() {
             className={`${styles.order_compound_elements_wrapper} ${styles.scroll} mb-10`}
           >
             {arrImage.map((item, i) => (
-              <div className={`${styles.order_compound_item_wrapper} mb-4`}>
+              <div
+                className={`${styles.order_compound_item_wrapper} mb-4`}
+                key={i}
+              >
                 <div className={`${styles.ingridient_item_container} mr-4`}>
                   <div className={`${styles.ingridient_item_img}`}>
                     <img src={item} alt="" />

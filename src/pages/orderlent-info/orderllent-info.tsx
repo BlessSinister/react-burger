@@ -71,8 +71,8 @@ export default function OrderlentInfo() {
     </Modal>
   ) : (
     <div className={styles.container}>
-      {dataTargetEl.map((item: IOrder) => (
-        <div className={styles.wrapper}>
+      {dataTargetEl.map((item: IOrder, i: number) => (
+        <div className={styles.wrapper} key={i}>
           <p className={`${styles.order_number} mb-10`}>#{item.number}</p>
           <h2 className={`${styles.h2} mb-3`}>{item.name}</h2>
           <p className={`${styles.order_status} mb-15`}>

@@ -27,7 +27,7 @@ export default function OrderInfo() {
     ) * 2
 
   const id: string[] = dropList.map((item: Idata) => item._id)
-  console.log(id)
+
   let sumPrice =
     dropList.map((item: Idata) => item.price).reduce((a, b) => a + b, 0) +
     bunPrice

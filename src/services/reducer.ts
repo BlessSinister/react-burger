@@ -42,7 +42,6 @@ export const modalIngridientsReducer = createSlice({
       if (localStorage.getItem('targetElem')) {
         localStorage.removeItem('targetElem')
       }
-      console.log(action.payload)
 
       return action.payload.data.filter((item: Idata) => {
         localStorage.setItem('targetElem', action.payload.id)
@@ -93,7 +92,6 @@ export const dropTargetReducer = createSlice({
     //@ts-ignore
     dropTargetSetter: {
       reducer: (state, action) => {
-        console.log(action.payload)
         state.push(
           //@ts-ignore
           ...action.payload.data.filter(
@@ -139,7 +137,7 @@ export const bunInfo = createSlice({
       ) {
         state.shift()
       }
-      console.log(action.payload)
+
       state.push(
         ...action.payload.data.filter(
           (item: Idata) =>
@@ -247,7 +245,6 @@ export const mainProfileInitialStateReducer = createSlice({
       action
       // action: PayloadAction<{ name: string; email: string; password: string }>
     ) => {
-      console.log(action.payload)
       state[0] = action.payload
     },
   },
