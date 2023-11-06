@@ -27,7 +27,7 @@ export const refreshToken = () => {
     //@ts-ignore
     headers: {
       'Content-Type': 'application/json;charset=utf-8',
-      authorization: localStorage.getItem('accessToken'),
+      authorization: localStorage.getItem('refreshToken'),
     },
     body: JSON.stringify({
       token: localStorage.getItem('refreshToken'),

@@ -318,9 +318,9 @@ export const { modalFlagProfileOrderLent } =
 // ==================================websocket
 export const orderLentStateReducer = createSlice({
   name: 'orderLentState',
-  initialState: [] as Idata[],
+  initialState: [] as IOrder[],
   reducers: {
-    orderLentStateFn: (state, action) => {
+    orderLentStateFn: (state, action: PayloadAction<IOrder[]>) => {
       return action.payload
     },
   },
@@ -329,7 +329,7 @@ export const { orderLentStateFn } = orderLentStateReducer.actions
 
 export const totalOrderReducer = createSlice({
   name: 'totalOrder',
-  initialState: 1 as number,
+  initialState: {} as IOrderLentObj,
   reducers: {
     totalOrderFn: (state, action) => {
       return action.payload

@@ -89,7 +89,7 @@ export const store = configureStore({
     modalOrderLentFlag: false,
     modalProfileOrderLentFlag: false,
     orderLentState: [],
-    totalOrder: 1,
+    // totalOrder: 1,
     // profileOrderLentState: [],
   },
 })

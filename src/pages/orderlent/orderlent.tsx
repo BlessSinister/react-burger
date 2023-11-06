@@ -6,7 +6,10 @@ import OrderlentItem from './orderlent-item'
 
 export default function Orderlent() {
   const totalOrder = useAppSelector((state) => state.totalOrder.total)
-  const totalToday = useAppSelector((state) => state.totalOrder.totalToday)
+
+  const totalToday: number = useAppSelector(
+    (state) => state.totalOrder.totalToday
+  )
 
   const orderLentInfo = useAppSelector((state) => state.orderLentState)
   // useEffect(() => {

@@ -20,25 +20,9 @@ export default function OrderlentInfo() {
     dispatch(orderInfoGetter('Wait order number'))
     dispatch(modalFlagOrderLent(false))
   }
-  const orderIngridients = useAppSelector((state) => state.burgerIngridients)
-  const orderLentInfo = useAppSelector((state) => state.orderLentState)
-  const ingredients = orderLentInfo.map((item) => item.ingredients)
-  let arrImage = ingredients.map((item) =>
-    orderIngridients
-      .filter((item1) => item1._id === item)
-      .map((item, i) => item.image_mobile)
-  )
-  let arrPrice = ingredients.map((item) =>
-    orderIngridients
-      .filter((item1) => item1._id === item)
-      .map((item, i) => item.price)
-      .reduce((a, b) => a + b, 0)
-  )
 
-  let detailse = ingredients.map((item) =>
-    item.map((item) => orderIngridients.filter((item1) => item1._id === item))
-  )
-  console.log(detailse)
+  const orderLentInfo = useAppSelector((state) => state.orderLentState)
+
   return modalOrderLent ? (
     <Modal modalOrderLent={modalOrderLent} onCloseModal={onCloseModal}>
       {modalOrderLent && <OrderlentInfoDetails orderLentInfo={orderLentInfo} />}

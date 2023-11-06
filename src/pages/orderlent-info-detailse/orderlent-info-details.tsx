@@ -1,8 +1,14 @@
-import { useAppSelector } from '../../services/redux-hooks'
+import { IOrder } from '../../utils/data'
 import styles from './orderlent-info-detailse.module.css'
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components'
-export default function OrderlentInfoDetails({ orderLentInfo }) {
-  console.log(orderLentInfo)
+
+interface IOrderlentInfoDetails {
+  orderLentInfo: IOrder[]
+}
+
+export default function OrderlentInfoDetails({
+  orderLentInfo,
+}: IOrderlentInfoDetails) {
   return (
     <div className={styles.container}>
       <div className={styles.wrapper}>

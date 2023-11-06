@@ -8,12 +8,18 @@ import { useNavigate } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../services/redux-hooks'
 import { modalFlagOrderLent } from '../../services/reducer'
 
+interface IOrderlentItem {
+  number: number
+  createdAt: string
+  name: string
+  ingredients: string[]
+}
 export default function OrderlentItem({
   number,
   createdAt,
   name,
   ingredients,
-}) {
+}: IOrderlentItem) {
   const orderIngridients = useAppSelector((state) => state.burgerIngridients)
 
   let arrImage = ingredients.map((item) =>
@@ -27,8 +33,12 @@ export default function OrderlentItem({
       .map((item, i) => item.price)
       .reduce((a, b) => a + b, 0)
   )
-  arrPrice = arrPrice.reduce((a, b) => a + b, 0)
-  arrImage = arrImage.filter((item, i) => (i <= 3 ? item : false))
+
+  let price = arrPrice.reduce((a, b) => a + b, 0)
+
+  let imgItem = arrImage
+    .map((item, i) => item[i])
+    .filter((item, i) => (i <= 3 ? item : false))
 
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
@@ -49,17 +59,21 @@ export default function OrderlentItem({
       <p className={`${styles.title_burger} mb-6`}>{name}</p>
       <div className={styles.ingridients_wrapper}>
         <div className={`${styles.ingridients_container} mr-6`}>
-          {arrImage.map((item, i) => (
+          {imgItem.map((item, i) => (
             <div className={`${styles.ingridient_item_container} ml-${10 * i}`}>
               <div className={`${styles.ingridient_item_img} `}>
-                <img src={item} alt="" />
+                <img
+                  //@ts-ignore
+                  src={item}
+                  alt=""
+                />
               </div>
             </div>
           ))}
         </div>
 
         <div className={`${styles.ingridients_price_container}`}>
-          <p className={`${styles.ingridients_price} mr-2`}>{arrPrice}</p>
+          <p className={`${styles.ingridients_price} mr-2`}>{price}</p>
           <CurrencyIcon type="primary" />
         </div>
       </div>
