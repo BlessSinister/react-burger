@@ -106,7 +106,7 @@
   line-height: 24px; /* 150% */
   max-width: 320px;
   width: 100%;
-  margin-right: 94px;
+  margin-right: 80px;
 }
 .ingridient_item_count {
   font-family: Iceland;
@@ -114,6 +114,8 @@
   font-style: normal;
   font-weight: 400;
   line-height: 24px;
+  width: 96px;
+  text-align: right;
 }
 .summary_price_wrapper {
   display: flex;
@@ -139,4 +141,9 @@
   font-style: normal;
   font-weight: 400;
   line-height: 24px; /* 85.714% */
+}
+.price_wrapper {
+  display: flex;
+  width: 139px;
+  justify-content: flex-end;
 }

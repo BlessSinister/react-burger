@@ -1,20 +1,49 @@
-import { useAppSelector } from '../../services/redux-hooks'
-import { IOrder } from '../../utils/data'
-import styles from './orderlent-info-detailse.module.css'
+import React, { useEffect } from 'react'
+import styles from './orderlent-info.module.css'
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components'
+import Modal from '../../components/modal/modal'
+import { useAppDispatch, useAppSelector } from '../../services/redux-hooks'
+import {
+  modalFlag,
+  modalFlagOrderLent,
+  modalOrderFlag,
+  orderInfoGetter,
+} from '../../services/reducer'
+import OrderlentInfoDetails from '../orderlent-info-detailse/orderlent-info-details'
+import { useNavigate } from 'react-router-dom'
+import { IOrder } from '../../utils/data'
+import { getBurgerIngridientList } from '../../services/actions'
 
-interface IOrderlentInfoDetails {
-  orderLentInfo: IOrder[]
-}
+export default function OrderlentInfo() {
+  const navigate = useNavigate()
 
-export default function OrderlentInfoDetails({
-  orderLentInfo,
-}: IOrderlentInfoDetails) {
-  let orderLentItem = orderLentInfo.filter(
-    (item) => item._id === localStorage.getItem('orderLentIdElem')
+  const modalOrderLent = useAppSelector((state) => state.modalOrderLentFlag)
+  const dispatch = useAppDispatch()
+  const onCloseModal = () => {
+    dispatch(modalOrderFlag(false))
+    dispatch(modalFlag(false))
+    dispatch(orderInfoGetter('Wait order number'))
+    dispatch(modalFlagOrderLent(false))
+
+    if (
+      window.location.pathname ===
+      `/feed/${localStorage.getItem('orderLentIdElem')}`
+    ) {
+      navigate('/feed')
+    }
+  }
+
+  const orderLentInfo = useAppSelector((state) => state.orderLentState)
+
+  let dataTargetEl = JSON.parse(
+    //@ts-ignore
+    localStorage.getItem('orderLentTargetEl')
   )
-  const orderIngridients = useAppSelector((state) => state.burgerIngridients)
-  let ingredients = orderLentItem[0].ingredients
+  const orderIngridients = JSON.parse(
+    //@ts-ignore
+    localStorage.getItem('allIngredients')
+  )
+  let ingredients = dataTargetEl[0].ingredients
   let arrImage = ingredients.map((item) =>
     orderIngridients
       .filter((item1) => item1._id === item)
@@ -34,15 +63,15 @@ export default function OrderlentInfoDetails({
       .reduce((a, b) => a + b)
   )
   let summaryPrice = priceItem.reduce((a, b) => a + b, 0)
-
-  const dataItem = orderLentInfo.filter(
-    (item) => item._id === localStorage.getItem('orderLentIdElem')
-  )
-  localStorage.setItem('orderLentTargetEl', JSON.stringify(dataItem))
-  return (
+  console.log(dataTargetEl)
+  return modalOrderLent ? (
+    <Modal modalOrderLent={modalOrderLent} onCloseModal={onCloseModal}>
+      {modalOrderLent && <OrderlentInfoDetails orderLentInfo={orderLentInfo} />}
+    </Modal>
+  ) : (
     <div className={styles.container}>
-      {orderLentItem.map((item, i) => (
-        <div className={styles.wrapper} key={i}>
+      {dataTargetEl.map((item) => (
+        <div className={styles.wrapper}>
           <p className={`${styles.order_number} mb-10`}>#{item.number}</p>
           <h2 className={`${styles.h2} mb-3`}>{item.name}</h2>
           <p className={`${styles.order_status} mb-15`}>
@@ -66,7 +95,6 @@ export default function OrderlentInfoDetails({
                     <img src={item} alt="" />
                   </div>
                 </div>
-
                 <p className={`${styles.ingridient_item_description}`}>
                   {nameItem[i]}
                 </p>

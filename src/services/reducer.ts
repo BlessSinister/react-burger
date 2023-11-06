@@ -6,6 +6,7 @@ export const burgerIngridientsReducer = createSlice({
   initialState: [] as Idata[],
   reducers: {
     addIngridientsList: (state, action: PayloadAction<Idata[]>) => {
+      localStorage.setItem('allIngredients', JSON.stringify(action.payload))
       return action.payload
     },
   },

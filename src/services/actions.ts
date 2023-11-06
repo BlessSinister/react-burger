@@ -290,7 +290,7 @@ export const getProfileOrderLentInfo = () => async (dispatch: Dispatch) => {
 }
 //Посмотреть асертс
 export const getOrderInfo =
-  (id: string) =>
+  (id: string[]) =>
   async (dispatch: Dispatch): Promise<any> => {
     try {
       const response = await fetch(`${BASE_URL}orders`, {
