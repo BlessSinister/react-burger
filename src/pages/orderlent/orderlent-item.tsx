@@ -13,12 +13,14 @@ interface IOrderlentItem {
   createdAt: string
   name: string
   ingredients: string[]
+  id: string
 }
 export default function OrderlentItem({
   number,
   createdAt,
   name,
   ingredients,
+  id,
 }: IOrderlentItem) {
   const orderIngridients = useAppSelector((state) => state.burgerIngridients)
 
@@ -46,6 +48,7 @@ export default function OrderlentItem({
   const hadleClick = () => {
     navigate('info')
     dispatch(modalFlagOrderLent(true))
+    localStorage.setItem('orderLentIdElem', id)
   }
   return (
     <div

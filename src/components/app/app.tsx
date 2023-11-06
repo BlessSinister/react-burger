@@ -63,7 +63,7 @@ export default function App() {
           element={<IngridientsInfo ingridient={ingridient} />}
         />
         <Route path="/feed" element={<Orderlent />} />
-        <Route path="/feed/info" element={<OrderlentInfo />} />
+        <Route path="/feed/:id" element={<OrderlentInfo />} />
       </Routes>
     </>
   )

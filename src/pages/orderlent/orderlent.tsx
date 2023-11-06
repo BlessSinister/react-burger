@@ -1,20 +1,21 @@
 import styles from './orderlent.module.css'
 
-import { useAppSelector } from '../../services/redux-hooks'
+import { useAppDispatch, useAppSelector } from '../../services/redux-hooks'
 
 import OrderlentItem from './orderlent-item'
-
+import { useEffect } from 'react'
+import { getOrderLentInfo } from '../../services/actions'
 export default function Orderlent() {
   const totalOrder = useAppSelector((state) => state.totalOrder.total)
 
   const totalToday: number = useAppSelector(
     (state) => state.totalOrder.totalToday
   )
-
+  const dispatch = useAppDispatch()
   const orderLentInfo = useAppSelector((state) => state.orderLentState)
-  // useEffect(() => {
-  //   dispatch(getOrderLentInfo())
-  // }, [getOrderLentInfo])
+  useEffect(() => {
+    dispatch(getOrderLentInfo())
+  }, [getOrderLentInfo])
   //Открытие вебсокета ленты, думаю, что лучше будет сделать открытие, когда человек заходит на главную,
   //Тогда когда он будет входить на страницу ленты, она будет уже загружена
   return (
@@ -32,6 +33,7 @@ export default function Orderlent() {
                   name={item.name}
                   createdAt={item.createdAt}
                   ingredients={item.ingredients}
+                  id={item._id}
                 />
               ))}
             </div>
