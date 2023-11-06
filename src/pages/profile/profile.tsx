@@ -7,7 +7,7 @@ import {
   PasswordInput,
 } from '@ya.praktikum/react-developer-burger-ui-components'
 import { NavLink, useNavigate } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
+
 import {
   getProfileOrderLentInfo,
   logoutUserFn,

@@ -61,8 +61,6 @@ export default function ProfileOrdersInfo() {
       .reduce((a: string, b: string) => a + b)
   )
 
-  console.log(orderIngridients)
-
   let priceItem: number[] = ingredients.map((item: string) =>
     orderIngridients
       .filter((item1: { _id: string }) => item1._id === item)

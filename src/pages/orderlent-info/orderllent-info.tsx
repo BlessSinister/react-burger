@@ -11,7 +11,7 @@ import {
 } from '../../services/reducer'
 import OrderlentInfoDetails from '../orderlent-info-detailse/orderlent-info-details'
 import { useNavigate } from 'react-router-dom'
-import { IOrder } from '../../utils/data'
+import { IOrder, Idata } from '../../utils/data'
 import { getBurgerIngridientList } from '../../services/actions'
 
 export default function OrderlentInfo() {
@@ -44,25 +44,26 @@ export default function OrderlentInfo() {
     localStorage.getItem('allIngredients')
   )
   let ingredients = dataTargetEl[0].ingredients
-  let arrImage = ingredients.map((item) =>
+
+  let arrImage: string[] = ingredients.map((item: string) =>
     orderIngridients
-      .filter((item1) => item1._id === item)
-      .map((item, i) => item.image_mobile)
-      .reduce((a, b) => a + b)
+      .filter((item1: { _id: string }) => item1._id === item)
+      .map((item: Idata) => item.image_mobile)
+      .reduce((a: string, b: string) => a + b)
   )
-  let nameItem = ingredients.map((item) =>
+  let nameItem: string[] = ingredients.map((item: string) =>
     orderIngridients
-      .filter((item1) => item1._id === item)
-      .map((item, i) => item.name)
-      .reduce((a, b) => a + b)
+      .filter((item1: { _id: string }) => item1._id === item)
+      .map((item: Idata) => item.name)
+      .reduce((a: string, b: string) => a + b)
   )
-  let priceItem = ingredients.map((item) =>
+  let priceItem: number[] = ingredients.map((item: string) =>
     orderIngridients
-      .filter((item1) => item1._id === item)
-      .map((item, i) => item.price)
-      .reduce((a, b) => a + b)
+      .filter((item1: { _id: string }) => item1._id === item)
+      .map((item: Idata) => item.price)
+      .reduce((a: number, b: number) => a + b)
   )
-  let summaryPrice = priceItem.reduce((a, b) => a + b, 0)
+  let summaryPrice: number = priceItem.reduce((a, b) => a + b, 0)
 
   return modalOrderLent ? (
     <Modal modalOrderLent={modalOrderLent} onCloseModal={onCloseModal}>
@@ -70,7 +71,7 @@ export default function OrderlentInfo() {
     </Modal>
   ) : (
     <div className={styles.container}>
-      {dataTargetEl.map((item) => (
+      {dataTargetEl.map((item: IOrder) => (
         <div className={styles.wrapper}>
           <p className={`${styles.order_number} mb-10`}>#{item.number}</p>
           <h2 className={`${styles.h2} mb-3`}>{item.name}</h2>

@@ -5,17 +5,16 @@ import {
   FormattedDate,
 } from '@ya.praktikum/react-developer-burger-ui-components'
 import { useAppDispatch, useAppSelector } from '../../services/redux-hooks'
-import { modalFlagProfileOrderLent } from '../../services/reducer'
 
-// interface IOrderProfileItemProps {
-//   handleClick: () => void
-//   name: string
-//   number: number
-//   createdAt: string
-//   ingredients: string[]
-//   status: string
-//   id: string
-// }
+interface IOrderProfileItemProps {
+  handleClick: () => void
+  name: string
+  number: number
+  createdAt: string
+  ingredients: string[]
+  status: string
+  id: string
+}
 
 export default function OrderProfileItem({
   name,
@@ -25,7 +24,7 @@ export default function OrderProfileItem({
   status,
   id,
   handleClick,
-}) {
+}: IOrderProfileItemProps) {
   const targetOrderElem = () => {
     localStorage.setItem('targetOrderElem', id)
   }
