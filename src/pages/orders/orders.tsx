@@ -52,7 +52,7 @@ export default function Orders() {
           </div>
         </div>
         <div className={`${styles.order_numbers_block} ${styles.scroll} `}>
-          {orderLent.orders.map((item) => (
+          {orderLent.orders.map((item, i) => (
             <OrderProfileItem
               handleClick={handleClick}
               number={item.number}
@@ -61,6 +61,7 @@ export default function Orders() {
               ingredients={item.ingredients}
               status={item.status}
               id={item._id}
+              key={i}
             />
           ))}
         </div>

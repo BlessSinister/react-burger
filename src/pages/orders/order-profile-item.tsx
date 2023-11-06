@@ -80,6 +80,7 @@ export default function OrderProfileItem({
             {arrImage.map((item, i) => (
               <div
                 className={`${styles.ingridient_item_container} ml-${10 * i}`}
+                key={i}
               >
                 <div
                   className={`${styles.ingridient_item_img} ${styles.ingridient_item_img5}`}

@@ -62,7 +62,10 @@ export default function OrderlentItem({
       <div className={styles.ingridients_wrapper}>
         <div className={`${styles.ingridients_container} mr-6`}>
           {imgItem.map((item, i) => (
-            <div className={`${styles.ingridient_item_container} ml-${10 * i}`}>
+            <div
+              className={`${styles.ingridient_item_container} ml-${10 * i}`}
+              key={i}
+            >
               <div className={`${styles.ingridient_item_img} `}>
                 <img
                   //@ts-ignore

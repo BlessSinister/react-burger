@@ -54,7 +54,7 @@ export default function ProfileOrdersInfoDetailse({
   return (
     <div className={styles.container}>
       {targetElem.map((item, i) => (
-        <div className={styles.wrapper}>
+        <div className={styles.wrapper} key={i}>
           <p className={`${styles.order_number} mb-10`}>#{item.number}</p>
           <h2 className={`${styles.h2} mb-3`}>{item.name}</h2>
           <p className={`${styles.order_status} mb-15`}>
@@ -69,7 +69,10 @@ export default function ProfileOrdersInfoDetailse({
             className={`${styles.order_compound_elements_wrapper} ${styles.scroll} mb-5`}
           >
             {arrImage.map((item, i) => (
-              <div className={`${styles.order_compound_item_wrapper} mb-4`}>
+              <div
+                className={`${styles.order_compound_item_wrapper} mb-4`}
+                key={i}
+              >
                 <div className={`${styles.ingridient_item_container} mr-4`}>
                   <div className={`${styles.ingridient_item_img}`}>
                     <img src={item} alt="" />

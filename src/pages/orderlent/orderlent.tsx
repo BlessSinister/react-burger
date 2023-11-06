@@ -27,13 +27,14 @@ export default function Orderlent() {
             className={`${styles.order_numbers_block} ${styles.scroll} mr-15`}
           >
             <div>
-              {orderLentInfo.map((item) => (
+              {orderLentInfo.map((item, i) => (
                 <OrderlentItem
                   number={item.number}
                   name={item.name}
                   createdAt={item.createdAt}
                   ingredients={item.ingredients}
                   id={item._id}
+                  key={i}
                 />
               ))}
             </div>
@@ -46,7 +47,7 @@ export default function Orderlent() {
 
                 {orderLentInfo.map((item, i) =>
                   item.status === 'done' && i <= 12 ? (
-                    <p className={`${styles.order_ready_number} mb-2`}>
+                    <p className={`${styles.order_ready_number} mb-2`} key={i}>
                       {item.number}
                     </p>
                   ) : null
@@ -56,7 +57,10 @@ export default function Orderlent() {
                 <h3 className={`${styles.h3} mb-6`}>В работе:</h3>
                 {orderLentInfo.map((item, i) =>
                   item.status !== 'done' && i <= 4 ? (
-                    <p className={`${styles.order_process_number} mb-2`}>
+                    <p
+                      className={`${styles.order_process_number} mb-2`}
+                      key={i}
+                    >
                       {item.number}
                     </p>
                   ) : null

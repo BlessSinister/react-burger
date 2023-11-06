@@ -331,7 +331,7 @@ export const totalOrderReducer = createSlice({
   name: 'totalOrder',
   initialState: {} as IOrderLentObj,
   reducers: {
-    totalOrderFn: (state, action) => {
+    totalOrderFn: (state, action: PayloadAction<IOrderLentObj>) => {
       return action.payload
     },
   },
@@ -342,20 +342,20 @@ export const profileOrderLentStateReducer = createSlice({
   name: 'profileOrderLentState',
   initialState: {} as IOrderLentObj,
   reducers: {
-    profileOrderLentStateFn: (state, action) => {
+    profileOrderLentStateFn: (state, action: PayloadAction<IOrderLentObj>) => {
       return action.payload
     },
   },
 })
 export const { profileOrderLentStateFn } = profileOrderLentStateReducer.actions
 
-export const orderLentCurrentStateReducer = createSlice({
-  name: 'profileOrderLentState',
-  initialState: [] as Idata[],
-  reducers: {
-    orderLentCurrentStateFn: (state, action) => {
-      return action.payload
-    },
-  },
-})
-export const { orderLentCurrentStateFn } = orderLentCurrentStateReducer.actions
+// export const orderLentCurrentStateReducer = createSlice({
+//   name: 'profileOrderLentState',
+//   initialState: [] as Idata[],
+//   reducers: {
+//     orderLentCurrentStateFn: (state, action) => {
+//       return action.payload
+//     },
+//   },
+// })
+// export const { orderLentCurrentStateFn } = orderLentCurrentStateReducer.actions
