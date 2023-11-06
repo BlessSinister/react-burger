@@ -12,9 +12,9 @@ import {
   totalOrderFn,
 } from './reducer'
 import { BASE_URL, url } from '../utils/api'
+import { Dispatch } from 'redux'
 
 const checkResponse = (response: any): Promise<any> => {
-  console.log(response)
   if (response.ok) {
     return response.json()
   }
@@ -24,10 +24,10 @@ const checkResponse = (response: any): Promise<any> => {
 export const refreshToken = () => {
   return fetch(`${BASE_URL}auth/token`, {
     method: 'POST',
-    //@ts-ignore
+
     headers: {
       'Content-Type': 'application/json;charset=utf-8',
-      authorization: localStorage.getItem('refreshToken'),
+      authorization: localStorage.getItem('refreshToken') as string,
     },
     body: JSON.stringify({
       token: localStorage.getItem('refreshToken'),
@@ -51,8 +51,7 @@ const fetchWithRefresh = async (err, url, options) => {
 }
 // ======================================================
 
-//@ts-ignore
-export const getBurgerIngridientList = () => async (dispatch) => {
+export const getBurgerIngridientList = () => async (dispatch: Dispatch) => {
   try {
     const response = await fetch(url)
     const data = await checkResponse(response)
@@ -62,13 +61,9 @@ export const getBurgerIngridientList = () => async (dispatch) => {
   }
 }
 
-//@ts-ignore
 export const registrUserFn =
   (email: string, password: string, name: string) =>
-  async (
-    //@ts-ignore
-    dispatch
-  ) => {
+  async (dispatch: Dispatch) => {
     try {
       const response = await fetch(`${BASE_URL}auth/register`, {
         method: 'POST',
@@ -92,21 +87,20 @@ export const registrUserFn =
       console.log(err)
     }
   }
-//@ts-ignore
-export const checkFn = () => async (dispatch) => {
+
+export const checkFn = () => async (dispatch: Dispatch) => {
   if (localStorage.getItem('accessToken')) {
     dispatch(loginSystem(true))
   }
   let options = {
       method: 'GET',
       headers: {
-        authorization: localStorage.getItem('accessToken'),
+        authorization: localStorage.getItem('accessToken') as string,
         'Content-Type': 'application/json',
       },
     },
     url = `${BASE_URL}auth/user`
   try {
-    //@ts-ignore
     const response = await fetch(url, options)
 
     const data = await checkResponse(response)
@@ -122,11 +116,7 @@ export const checkFn = () => async (dispatch) => {
 }
 
 export const loginUserFn =
-  (email: string, password: string) =>
-  async (
-    //@ts-ignore
-    dispatch
-  ) => {
+  (email: string, password: string) => async (dispatch: Dispatch) => {
     let options = {
         method: 'POST',
         headers: {
@@ -151,9 +141,9 @@ export const loginUserFn =
     try {
       const response = await fetch(`${BASE_URL}auth/user`, {
         method: 'GET',
-        //@ts-ignore
+
         headers: {
-          authorization: localStorage.getItem('accessToken'),
+          authorization: localStorage.getItem('accessToken') as string,
           'Content-Type': 'application/json',
         },
       })
@@ -170,8 +160,8 @@ export const loginUserFn =
       dispatch(loginSystem(true))
     }
   }
-//@ts-ignore
-export const logoutUserFn = () => async (dispatch) => {
+
+export const logoutUserFn = () => async (dispatch: Dispatch) => {
   let options = {
       method: 'post',
       headers: {
@@ -197,8 +187,7 @@ export const logoutUserFn = () => async (dispatch) => {
   }
 }
 
-//@ts-ignore
-export const forgotPassFn = (email: string) => async (dispatch) => {
+export const forgotPassFn = (email: string) => async (dispatch: Dispatch) => {
   try {
     const response = await fetch(`${BASE_URL}password-reset`, {
       method: 'post',
@@ -218,13 +207,8 @@ export const forgotPassFn = (email: string) => async (dispatch) => {
   }
 }
 
-//@ts-ignore
 export const resetPassFn =
-  (password: string, token: string) =>
-  async (
-    //@ts-ignore
-    dispatch
-  ) => {
+  (password: string, token: string) => async (dispatch: Dispatch) => {
     let options = {
         method: 'post',
         headers: {
@@ -250,15 +234,12 @@ export const resetPassFn =
 
 export const setProfileInfo =
   (name: string, password: string, email: string) =>
-  async (
-    //@ts-ignore
-    dispatch
-  ) => {
+  async (dispatch: Dispatch) => {
     let options = {
-        method: 'PATCH',
+        method: 'PATCH' as string,
         headers: {
-          authorization: localStorage.getItem('accessToken'),
-          'Content-Type': 'application/json',
+          authorization: localStorage.getItem('accessToken') as string,
+          'Content-Type': 'application/json' as string,
         },
         body: JSON.stringify({
           name: name,
@@ -266,7 +247,6 @@ export const setProfileInfo =
       },
       url = `${BASE_URL}auth/user`
     try {
-      //@ts-ignore
       const response = await fetch(url, options)
 
       const data = await checkResponse(response)
@@ -277,8 +257,8 @@ export const setProfileInfo =
     }
   }
 // ======================================================================== websocket
-//@ts-ignore
-export const getOrderLentInfo = () => async (dispatch) => {
+
+export const getOrderLentInfo = () => async (dispatch: Dispatch) => {
   try {
     const response = new WebSocket('wss://norma.nomoreparties.space/orders/all')
 
@@ -291,43 +271,43 @@ export const getOrderLentInfo = () => async (dispatch) => {
   }
 }
 
-//@ts-ignore
-export const getProfileOrderLentInfo = () => async (dispatch) => {
+export const getProfileOrderLentInfo = () => async (dispatch: Dispatch) => {
   try {
-    //@ts-ignore
-    let x = localStorage.getItem('accessToken').split('Bearer ')[1]
-    const response = new WebSocket(
-      `wss://norma.nomoreparties.space/orders?token=${x}`
-    )
-
-    response.onmessage = (event) => {
+    if (localStorage.getItem('accessToken') !== null) {
       //@ts-ignore
-      dispatch(profileOrderLentStateFn(JSON.parse(event.data)))
+      let x = localStorage.getItem('accessToken').split('Bearer ')[1] as string
+      const response = new WebSocket(
+        `wss://norma.nomoreparties.space/orders?token=${x}`
+      )
+
+      response.onmessage = (event) => {
+        dispatch(profileOrderLentStateFn(JSON.parse(event.data)))
+      }
     }
   } catch (err) {
     console.log(err)
   }
 }
+//Посмотреть асертс
+export const getOrderInfo =
+  (id: string) =>
+  async (dispatch: Dispatch): Promise<any> => {
+    try {
+      const response = await fetch(`${BASE_URL}orders`, {
+        method: 'post',
+        headers: {
+          Accept: 'application/json' as string,
+          'Content-Type': 'application/json' as string,
+          authorization: localStorage.getItem('accessToken') as string,
+        },
+        body: JSON.stringify({
+          ingredients: id,
+        }),
+      })
 
-//@ts-ignore
-export const getOrderInfo = (id: string) => async (dispatch) => {
-  try {
-    const response = await fetch(`${BASE_URL}orders`, {
-      method: 'post',
-      //@ts-ignore
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-        authorization: localStorage.getItem('accessToken'),
-      },
-      body: JSON.stringify({
-        ingredients: id,
-      }),
-    })
-
-    const data = await checkResponse(response)
-    dispatch(orderInfoGetter(data.order.number))
-  } catch (err) {
-    console.log(err)
+      const data = await checkResponse(response)
+      dispatch(orderInfoGetter(data.order.number))
+    } catch (err) {
+      console.log(err)
+    }
   }
-}
