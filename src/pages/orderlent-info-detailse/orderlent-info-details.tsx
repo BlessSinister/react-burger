@@ -13,6 +13,7 @@ export default function OrderlentInfoDetails({
   let orderLentItem = orderLentInfo.filter(
     (item) => item._id === localStorage.getItem('orderLentIdElem')
   )
+
   const orderIngridients = useAppSelector((state) => state.burgerIngridients)
   let ingredients = orderLentItem[0].ingredients
   let arrImage = ingredients.map((item) =>
@@ -35,10 +36,6 @@ export default function OrderlentInfoDetails({
   )
   let summaryPrice = priceItem.reduce((a, b) => a + b, 0)
 
-  const dataItem = orderLentInfo.filter(
-    (item) => item._id === localStorage.getItem('orderLentIdElem')
-  )
-  localStorage.setItem('orderLentTargetEl', JSON.stringify(dataItem))
   return (
     <div className={styles.container}>
       {orderLentItem.map((item, i) => (

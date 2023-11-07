@@ -9,8 +9,8 @@ import {
 import { NavLink, useNavigate } from 'react-router-dom'
 
 import {
-  getProfileOrderLentInfo,
   logoutUserFn,
+  refreshToken,
   setProfileInfo,
 } from '../../services/actions'
 import { useAppDispatch, useAppSelector } from '../../services/redux-hooks'
@@ -49,10 +49,11 @@ export default function Profile() {
     dispatch(setProfileInfo(value, pass, email))
     event.preventDefault()
   }
+  let orderLent = useAppSelector((state) => state.profileOrderLentState)
 
-  useEffect(() => {
-    dispatch(getProfileOrderLentInfo())
-  }, [])
+  // useEffect(() => {
+  //   dispatch(getProfileOrderLentInfo())
+  // }, [])
   return (
     <div className={styles.container}>
       <div className={`${styles.wrapper_navigation} mt-30`}>

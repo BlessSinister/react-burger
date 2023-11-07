@@ -43,10 +43,22 @@ export default function OrderlentItem({
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
 
+  const orderLentInfo = useAppSelector((state) => state.orderLentState)
+  // const dataItem = orderLentInfo.filter(
+  //   (item) => item._id === localStorage.getItem('orderLentIdElem')
+  // )
+
   const hadleClick = () => {
     dispatch(modalFlagOrderLent(true))
     localStorage.setItem('orderLentIdElem', id)
-
+    localStorage.setItem(
+      'orderLentTargetEl',
+      JSON.stringify(
+        orderLentInfo.filter(
+          (item) => item._id === localStorage.getItem('orderLentIdElem')
+        )
+      )
+    )
     navigate(`/feed/${localStorage.getItem('orderLentIdElem')}`)
   }
   return (
@@ -61,7 +73,7 @@ export default function OrderlentItem({
       <p className={`${styles.title_burger} mb-6`}>{name}</p>
       <div className={styles.ingridients_wrapper}>
         <div className={`${styles.ingridients_container} mr-6`}>
-          {imgItem.map((item, i) => (
+          {imgItem.map((item: string[], i) => (
             <div
               className={`${styles.ingridient_item_container} ml-${10 * i}`}
               key={i}

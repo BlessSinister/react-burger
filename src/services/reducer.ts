@@ -87,7 +87,7 @@ export const { orderInfoGetter } = orderConstructorInfo.actions
 
 export const dropTargetReducer = createSlice({
   name: 'dropTarget',
-  initialState: [],
+  initialState: [] as Idata[],
   reducers: {
     //@ts-ignore
     dropTargetSetter: {
@@ -128,7 +128,7 @@ interface IbunInfo {
 }
 export const bunInfo = createSlice({
   name: 'bunInfo',
-  initialState: [] as IbunInfo[],
+  initialState: [] as Idata[],
   reducers: {
     bunChanger: (state, action) => {
       if (

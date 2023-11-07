@@ -13,7 +13,12 @@ export default function AppHeader() {
     ? '/profile'
     : '/login'
 
-  const setActive = ({ isActive }: any): string =>
+  const setActive = ({
+    isActive,
+  }: {
+    isActive: boolean
+    isPending: boolean
+  }): string =>
     isActive
       ? `text text_type_main-default ${header_style.active}`
       : `text text_type_main-default ${header_style.a}`

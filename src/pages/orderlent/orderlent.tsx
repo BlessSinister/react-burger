@@ -13,9 +13,11 @@ export default function Orderlent() {
   )
   const dispatch = useAppDispatch()
   const orderLentInfo = useAppSelector((state) => state.orderLentState)
+  //@ts-ignore
+
   useEffect(() => {
     dispatch(getOrderLentInfo())
-  }, [getOrderLentInfo])
+  }, [dispatch])
   //Открытие вебсокета ленты, думаю, что лучше будет сделать открытие, когда человек заходит на главную,
   //Тогда когда он будет входить на страницу ленты, она будет уже загружена
   return (

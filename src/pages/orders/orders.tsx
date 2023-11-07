@@ -1,17 +1,18 @@
+import { useEffect } from 'react'
 import styles from './orders.module.css'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../services/redux-hooks'
 import { modalFlagProfileOrderLent } from '../../services/reducer'
-import { logoutUserFn } from '../../services/actions'
+import { getProfileOrderLentInfo, logoutUserFn } from '../../services/actions'
 import OrderProfileItem from './order-profile-item'
 
 export default function Orders() {
   const navigate = useNavigate()
   const modal = useAppSelector((state) => state.modalProfileOrderLentFlag)
-  let orderLent = useAppSelector((state) => state.profileOrderLentState) || []
+
   const dispatch = useAppDispatch()
 
-  const orderLentInfo = useAppSelector((state) => state.profileOrderLentState)
+  let orderLent = useAppSelector((state) => state.profileOrderLentState)
 
   const handleClick = () => {
     if (modal) {
@@ -26,6 +27,9 @@ export default function Orders() {
     dispatch(modalFlagProfileOrderLent(true))
     navigate(`/profile/orders/${localStorage.getItem('orderLentIdElem')}`)
   }
+  useEffect(() => {
+    dispatch(getProfileOrderLentInfo())
+  }, [])
 
   return (
     <div className={styles.container}>
@@ -54,18 +58,20 @@ export default function Orders() {
           </div>
         </div>
         <div className={`${styles.order_numbers_block} ${styles.scroll} `}>
-          {orderLent.orders.map((item, i) => (
-            <OrderProfileItem
-              handleClick={handleClick}
-              number={item.number}
-              createdAt={item.createdAt}
-              name={item.name}
-              ingredients={item.ingredients}
-              status={item.status}
-              id={item._id}
-              key={i}
-            />
-          ))}
+          {orderLent.success
+            ? orderLent.orders.map((item, i) => (
+                <OrderProfileItem
+                  handleClick={handleClick}
+                  number={item.number}
+                  createdAt={item.createdAt}
+                  name={item.name}
+                  ingredients={item.ingredients}
+                  status={item.status}
+                  id={item._id}
+                  key={i}
+                />
+              ))
+            : null}
         </div>
       </div>
     </div>

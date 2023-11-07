@@ -15,9 +15,9 @@ export default function Home() {
     dispatch(modalFlag(false))
     localStorage.removeItem('modalIng')
   }
-  useEffect(() => {
-    dispatch(getOrderLentInfo())
-  }, [getOrderLentInfo])
+  // useEffect(() => {
+  //   dispatch(getOrderLentInfo())
+  // }, [getOrderLentInfo])
 
   return (
     <main>

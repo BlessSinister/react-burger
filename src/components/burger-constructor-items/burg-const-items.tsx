@@ -50,6 +50,7 @@ export default function BurgConstItems() {
   let dropElements = useAppSelector((state) => state.dropTargetElem)
 
   let bunInfo = useAppSelector((state) => state.bunState)
+  console.log(dropElements)
 
   return (
     <div
@@ -63,11 +64,8 @@ export default function BurgConstItems() {
               <ConstructorElement
                 type="top"
                 isLocked={true}
-                //@ts-ignore
                 text={`${item.name}  (верх)`}
-                //@ts-ignore
                 price={item.price}
-                //@ts-ignore
                 thumbnail={item.image}
                 key={keyBun[index]}
               />
@@ -75,34 +73,28 @@ export default function BurgConstItems() {
           </div>
         ) : null}
 
-        {dropElements.map(
-          //@ts-ignore
-          (item, index) => (
-            <BoxDndController
-              //@ts-ignore
-              className={burg_items_style.box_dnd_wrapper}
-              data={dropElements}
-              index={index}
-              key={keyIngridients[index]}
-            >
-              <div className={burg_items_style.decor_wrap_dnd}>
-                <div
-                  onClick={() => dispatch(deleteItems(index))}
-                  className={burg_items_style.trash_decor}
-                ></div>
-                <DragIcon type="primary" />
-                <ConstructorElement
-                  //@ts-ignore
-                  text={item.name}
-                  //@ts-ignore
-                  price={item.price}
-                  //@ts-ignore
-                  thumbnail={item.image}
-                />
-              </div>
-            </BoxDndController>
-          )
-        )}
+        {dropElements.map((item, index) => (
+          <BoxDndController
+            //@ts-ignore
+            className={burg_items_style.box_dnd_wrapper}
+            data={dropElements}
+            index={index}
+            key={keyIngridients[index]}
+          >
+            <div className={burg_items_style.decor_wrap_dnd}>
+              <div
+                onClick={() => dispatch(deleteItems(index))}
+                className={burg_items_style.trash_decor}
+              ></div>
+              <DragIcon type="primary" />
+              <ConstructorElement
+                text={item.name}
+                price={item.price}
+                thumbnail={item.image}
+              />
+            </div>
+          </BoxDndController>
+        ))}
 
         {bunInfo.length || dropElements.length ? (
           <div className={burg_items_style.decor_wrap}>
@@ -111,11 +103,8 @@ export default function BurgConstItems() {
                 key={keyBun[index]}
                 type="bottom"
                 isLocked={true}
-                //@ts-ignore
                 text={`${item.name}  (низ)`}
-                //@ts-ignore
                 price={item.price}
-                //@ts-ignore
                 thumbnail={item.image}
               />
             ))}

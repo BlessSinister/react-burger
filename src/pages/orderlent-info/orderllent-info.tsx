@@ -64,7 +64,7 @@ export default function OrderlentInfo() {
       .reduce((a: number, b: number) => a + b)
   )
   let summaryPrice: number = priceItem.reduce((a, b) => a + b, 0)
-
+  console.log(orderLentInfo)
   return modalOrderLent ? (
     <Modal modalOrderLent={modalOrderLent} onCloseModal={onCloseModal}>
       {modalOrderLent && <OrderlentInfoDetails orderLentInfo={orderLentInfo} />}

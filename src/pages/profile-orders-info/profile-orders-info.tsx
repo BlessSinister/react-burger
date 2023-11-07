@@ -79,7 +79,7 @@ export default function ProfileOrdersInfo() {
         <ProfileOrdersInfoDetailse orderLentInfo={orderLentInfo} />
       )}
     </Modal>
-  ) : (
+  ) : dataTargetEl ? (
     <div className={styles.container}>
       {dataTargetEl.map((item: IOrder, i: number) => (
         <div className={styles.wrapper} key={i}>
@@ -129,5 +129,5 @@ export default function ProfileOrdersInfo() {
         </div>
       ))}
     </div>
-  )
+  ) : null
 }

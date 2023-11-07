@@ -24,10 +24,8 @@ const checkResponse = (response: any): Promise<any> => {
 export const refreshToken = () => {
   return fetch(`${BASE_URL}auth/token`, {
     method: 'POST',
-
     headers: {
       'Content-Type': 'application/json;charset=utf-8',
-      authorization: localStorage.getItem('refreshToken') as string,
     },
     body: JSON.stringify({
       token: localStorage.getItem('refreshToken'),
@@ -36,17 +34,40 @@ export const refreshToken = () => {
 }
 
 //@ts-ignore
-const fetchWithRefresh = async (err, url, options) => {
-  if (err.message === 'jwt expired') {
-    const refreshData = await refreshToken()
-    if (!refreshData.success) {
-      return Promise.reject(refreshData)
-    }
-    localStorage.setItem('refreshToken', refreshData.refreshToken)
-    localStorage.setItem('accessToken', refreshData.accessToken)
-    options.headers.authorization = refreshData.accessToken
+// const fetchWithRefresh = async (err, url, options) => {
+//   if (err.message === 'jwt expired') {
+//     const refreshData = await refreshToken()
+//     if (!refreshData.success) {
+//       return Promise.reject(refreshData)
+//     }
+//     localStorage.setItem('refreshToken', refreshData.refreshToken)
+//     localStorage.setItem('accessToken', refreshData.accessToken)
+//     options.headers.authorization = refreshData.accessToken
+//     const res = await fetch(url, options)
+//     return await checkResponse(res)
+//   }
+// }
+
+export const fetchWithRefresh = async (url, options) => {
+  try {
     const res = await fetch(url, options)
+
     return await checkResponse(res)
+  } catch (err) {
+    //@ts-ignore
+    if (err === 'Ошибка 403') {
+      const refreshData = await refreshToken() //обновляем токен
+      if (!refreshData.success) {
+        return Promise.reject(refreshData)
+      }
+      localStorage.setItem('refreshToken', refreshData.refreshToken)
+      localStorage.setItem('accessToken', refreshData.accessToken)
+      options.headers.authorization = refreshData.accessToken
+      const res = await fetch(url, options) //повторяем запрос
+      return await checkResponse(res)
+    } else {
+      return Promise.reject(err)
+    }
   }
 }
 // ======================================================
@@ -79,7 +100,7 @@ export const registrUserFn =
       const data = await checkResponse(response)
       localStorage.setItem('accessToken', data.accessToken.split('Bearer ')[1])
       localStorage.setItem('refreshToken', data.refreshToken)
-      console.log(data)
+
       dispatch(registerAccount(data.success))
       dispatch(setMainProfileInitialState({ email, password, name }))
       dispatch(resetProfileInitialState({ email, password, name }))
@@ -95,11 +116,13 @@ export const checkFn = () => async (dispatch: Dispatch) => {
   let options = {
       method: 'GET',
       headers: {
+        Accept: 'application/json' as string,
+        'Content-Type': 'application/json' as string,
         authorization: localStorage.getItem('accessToken') as string,
-        'Content-Type': 'application/json',
       },
     },
     url = `${BASE_URL}auth/user`
+
   try {
     const response = await fetch(url, options)
 
@@ -111,7 +134,8 @@ export const checkFn = () => async (dispatch: Dispatch) => {
 
     dispatch(setMainProfileInitialState({ email, password, name }))
   } catch (err) {
-    fetchWithRefresh(err, url, options)
+    //@ts-ignore
+    fetchWithRefresh(url, options)
   }
 }
 
@@ -131,12 +155,13 @@ export const loginUserFn =
     try {
       const response = await fetch(url, options)
       const data = await checkResponse(response)
-      console.log(email, password)
+
       localStorage.setItem('accessToken', data.accessToken)
       localStorage.setItem('refreshToken', data.refreshToken)
       dispatch(loginSystem(data.success))
     } catch (err) {
-      fetchWithRefresh(err, url, options)
+      //@ts-ignore
+      fetchWithRefresh(url, options)
     }
     try {
       const response = await fetch(`${BASE_URL}auth/user`, {
@@ -149,12 +174,13 @@ export const loginUserFn =
       })
 
       const data = await checkResponse(response)
-      console.log(data)
+
       const name = data.user.name
 
       dispatch(setMainProfileInitialState({ email, password, name }))
     } catch (err) {
-      fetchWithRefresh(err, url, options)
+      //@ts-ignore
+      fetchWithRefresh(url, options)
     }
     if (localStorage.getItem('accessToken')) {
       dispatch(loginSystem(true))
@@ -183,7 +209,8 @@ export const logoutUserFn = () => async (dispatch: Dispatch) => {
     localStorage.removeItem('refreshToken')
     dispatch(setMainProfileInitialState({}))
   } catch (err) {
-    fetchWithRefresh(err, url, options)
+    //@ts-ignore
+    fetchWithRefresh(url, options)
   }
 }
 
@@ -200,7 +227,7 @@ export const forgotPassFn = (email: string) => async (dispatch: Dispatch) => {
     })
 
     const data = await checkResponse(response)
-    console.log(data)
+
     dispatch(forgotPass(data.success))
   } catch (err) {
     console.log(err)
@@ -225,10 +252,11 @@ export const resetPassFn =
       const response = await fetch(url, options)
 
       const data = await checkResponse(response)
-      console.log(data)
+
       dispatch(resetPass(data.success))
     } catch (err) {
-      fetchWithRefresh(err, url, options)
+      //@ts-ignore
+      fetchWithRefresh(url, options)
     }
   }
 
@@ -250,10 +278,11 @@ export const setProfileInfo =
       const response = await fetch(url, options)
 
       const data = await checkResponse(response)
-      console.log(data)
+
       dispatch(setMainProfileInitialState({ name, password, email }))
     } catch (err) {
-      fetchWithRefresh(err, url, options)
+      //@ts-ignore
+      fetchWithRefresh(url, options)
     }
   }
 // ======================================================================== websocket

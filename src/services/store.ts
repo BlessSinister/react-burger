@@ -1,4 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit'
+
 import {
   bunInfo,
   burgerConstructorReducer,
@@ -54,7 +55,7 @@ export const store = configureStore({
 
   devTools: true,
   //@ts-ignore
-  middleware: (defaultMiddleWare) => defaultMiddleWare(),
+  middleware: (defaultMiddleWare) => defaultMiddleWare().concat(),
   preloadedState: {
     burgerIngridients: [],
     ingridietnConstructor: [],
