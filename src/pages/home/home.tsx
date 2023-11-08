@@ -5,12 +5,10 @@ import BurgerConstructor from '../../components/burger-constructor/burger-constr
 
 import { modalFlag, modalOrderFlag } from '../../services/reducer'
 import { useAppDispatch } from '../../services/redux-hooks'
-import { getOrderLentInfo } from '../../services/actions'
-import { useEffect } from 'react'
 
 export default function Home() {
   const dispatch = useAppDispatch()
-  const onCloseModal = (): void => {
+  const onCloseModal = () => {
     dispatch(modalOrderFlag(false))
     dispatch(modalFlag(false))
     localStorage.removeItem('modalIng')
@@ -24,10 +22,7 @@ export default function Home() {
       <DndProvider backend={HTML5Backend}>
         <BurgerIngredients onCloseModal={onCloseModal} />
 
-        <BurgerConstructor
-          //@ts-ignore
-          onCloseModal={onCloseModal}
-        />
+        <BurgerConstructor />
       </DndProvider>
     </main>
   )

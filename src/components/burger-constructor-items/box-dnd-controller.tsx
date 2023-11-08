@@ -7,6 +7,7 @@ interface IBoxDndControllerProps {
   data: Idata[]
   index: number
   children: ReactNode
+  className?: string
 }
 interface IhoverItem {
   index: number
@@ -15,6 +16,7 @@ export default function BoxDndController({
   index,
   data,
   children,
+  className,
 }: IBoxDndControllerProps) {
   const dispatch = useAppDispatch()
 

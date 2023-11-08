@@ -13,7 +13,6 @@ export default function Orderlent() {
   )
   const dispatch = useAppDispatch()
   const orderLentInfo = useAppSelector((state) => state.orderLentState)
-  //@ts-ignore
 
   useEffect(() => {
     dispatch(getOrderLentInfo())

@@ -3,7 +3,7 @@ import burg_items_style from './burg-const-tems.module.css'
 import app_style from '../app/app.module.css'
 import { DragIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 import { useDrop } from 'react-dnd/dist/hooks/useDrop'
-import { useDispatch, useSelector } from 'react-redux'
+
 import {
   bunChanger,
   checkFlag,
@@ -75,7 +75,6 @@ export default function BurgConstItems() {
 
         {dropElements.map((item, index) => (
           <BoxDndController
-            //@ts-ignore
             className={burg_items_style.box_dnd_wrapper}
             data={dropElements}
             index={index}

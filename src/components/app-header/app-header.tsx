@@ -23,27 +23,34 @@ export default function AppHeader() {
       ? `text text_type_main-default ${header_style.active}`
       : `text text_type_main-default ${header_style.a}`
 
-  let setIconTypeConstr: string =
-    window.location.pathname === '/' ? 'primary' : 'secondary'
-  let setIconTypeOrder: string =
-    window.location.pathname === '/orderlent' ? 'primary' : 'secondary'
-  let setIconTypeProfile: string =
+  let setIconTypeConstr =
+    window.location.pathname === '/' ? (
+      <BurgerIcon type="primary" />
+    ) : (
+      <BurgerIcon type="secondary" />
+    )
+
+  let setIconTypeOrder =
+    window.location.pathname === '/feed' ? (
+      <ListIcon type="primary" />
+    ) : (
+      <ListIcon type="secondary" />
+    )
+  let setIconTypeProfile =
     window.location.pathname === '/profile' ||
     window.location.pathname === '/login' ||
-    window.location.pathname === '/profile/orders'
-      ? 'primary'
-      : 'secondary'
+    window.location.pathname === '/profile/orders' ? (
+      <ProfileIcon type="primary" />
+    ) : (
+      <ProfileIcon type="secondary" />
+    )
   return (
     <nav>
       <div className={`${header_style.btn_wrapper}`}>
         <div
           className={`${header_style.btn_block_item} pl-5 pr-5 pt-4 pb-4 mr-2`}
         >
-          <BurgerIcon
-            //@ts-ignore
-            type={setIconTypeConstr}
-            className={`${header_style.item1_ico} `}
-          />
+          {setIconTypeConstr}
           <p className={`ml-2`}>
             <NavLink to="/" className={setActive}>
               Конструктор
@@ -53,10 +60,7 @@ export default function AppHeader() {
         <div
           className={`${header_style.btn_block_item} ${header_style.btn_item2} pl-5 pr-5 pt-4 pb-4 mr-2`}
         >
-          <ListIcon
-            //@ts-ignore
-            type={setIconTypeOrder}
-          />
+          {setIconTypeOrder}
           <p className={`ml-2`}>
             <NavLink to="/feed" className={setActive}>
               Лента заказов
@@ -69,12 +73,7 @@ export default function AppHeader() {
         <div
           className={`${header_style.btn_block_item} ${header_style.btn_item2}  pl-5 pr-5 pt-4 pb-4 mr-2`}
         >
-          <ProfileIcon
-            //@ts-ignore
-            type={setIconTypeProfile}
-            className={`${header_style.item1_ico} `}
-          />
-
+          {setIconTypeProfile}
           <p className={`ml-2`}>
             <NavLink to={authUser} className={setActive}>
               Личный кабинет

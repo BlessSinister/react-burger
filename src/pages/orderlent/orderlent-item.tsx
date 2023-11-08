@@ -39,6 +39,10 @@ export default function OrderlentItem({
   let price = arrPrice.reduce((a, b) => a + b, 0)
 
   let imgItem = arrImage.filter((item, i) => (i <= 3 ? item : false))
+  let arrImg: string[] = []
+  for (let key of imgItem) {
+    arrImg.push(...key)
+  }
 
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
@@ -73,17 +77,13 @@ export default function OrderlentItem({
       <p className={`${styles.title_burger} mb-6`}>{name}</p>
       <div className={styles.ingridients_wrapper}>
         <div className={`${styles.ingridients_container} mr-6`}>
-          {imgItem.map((item: string[], i) => (
+          {arrImg.map((item: string, i) => (
             <div
               className={`${styles.ingridient_item_container} ml-${10 * i}`}
               key={i}
             >
               <div className={`${styles.ingridient_item_img} `}>
-                <img
-                  //@ts-ignore
-                  src={item}
-                  alt=""
-                />
+                <img src={item} alt="" />
               </div>
             </div>
           ))}

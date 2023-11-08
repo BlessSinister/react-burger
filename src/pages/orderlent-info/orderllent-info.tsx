@@ -34,14 +34,12 @@ export default function OrderlentInfo() {
   }
 
   const orderLentInfo = useAppSelector((state) => state.orderLentState)
-
+  console.log(typeof localStorage)
   let dataTargetEl = JSON.parse(
-    //@ts-ignore
-    localStorage.getItem('orderLentTargetEl')
+    localStorage.getItem('orderLentTargetEl') as string
   )
   const orderIngridients = JSON.parse(
-    //@ts-ignore
-    localStorage.getItem('allIngredients')
+    localStorage.getItem('allIngredients') as string
   )
   let ingredients = dataTargetEl[0].ingredients
 

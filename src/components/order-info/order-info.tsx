@@ -22,7 +22,7 @@ export default function OrderInfo() {
   const dropList = useAppSelector((state) => state.dropTargetElem)
 
   const bunPrice =
-    useAppSelector((state: any) =>
+    useAppSelector((state) =>
       state.bunState.length ? state.bunState[0].price : 0
     ) * 2
 

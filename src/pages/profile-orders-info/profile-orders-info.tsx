@@ -37,12 +37,10 @@ export default function ProfileOrdersInfo() {
   const orderLentInfo = useAppSelector((state) => state.profileOrderLentState)
 
   let dataTargetEl = JSON.parse(
-    //@ts-ignore
-    localStorage.getItem('setTargetOrderProfile')
+    localStorage.getItem('setTargetOrderProfile') as string
   )
   const orderIngridients = JSON.parse(
-    //@ts-ignore
-    localStorage.getItem('allIngredients')
+    localStorage.getItem('allIngredients') as string
   )
   console.log(dataTargetEl)
   let ingredients = dataTargetEl[0].ingredients

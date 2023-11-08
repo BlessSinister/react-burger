@@ -16,10 +16,7 @@ export default function Orders() {
 
   const handleClick = () => {
     if (modal) {
-      //@ts-ignore
       window.history.pushState(
-        null,
-        //@ts-ignore
         null,
         `/profile/order/${localStorage.getItem('orderLentIdElem')}`
       )
