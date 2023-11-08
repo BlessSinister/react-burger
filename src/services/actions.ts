@@ -48,13 +48,23 @@ export const refreshToken = () => {
 //   }
 // }
 
-export const fetchWithRefresh = async (url, options) => {
+export const fetchWithRefresh = async (
+  url: string,
+  options: {
+    method?: string
+    headers: {
+      'Content-Type'?: string
+      authorization?: string
+      Accept?: string
+    }
+    body?: string
+  }
+) => {
   try {
     const res = await fetch(url, options)
 
     return await checkResponse(res)
   } catch (err) {
-    //@ts-ignore
     if (err === 'Ошибка 403') {
       const refreshData = await refreshToken() //обновляем токен
       if (!refreshData.success) {
@@ -62,6 +72,7 @@ export const fetchWithRefresh = async (url, options) => {
       }
       localStorage.setItem('refreshToken', refreshData.refreshToken)
       localStorage.setItem('accessToken', refreshData.accessToken)
+
       options.headers.authorization = refreshData.accessToken
       const res = await fetch(url, options) //повторяем запрос
       return await checkResponse(res)
@@ -134,7 +145,6 @@ export const checkFn = () => async (dispatch: Dispatch) => {
 
     dispatch(setMainProfileInitialState({ email, password, name }))
   } catch (err) {
-    //@ts-ignore
     fetchWithRefresh(url, options)
   }
 }
@@ -160,7 +170,6 @@ export const loginUserFn =
       localStorage.setItem('refreshToken', data.refreshToken)
       dispatch(loginSystem(data.success))
     } catch (err) {
-      //@ts-ignore
       fetchWithRefresh(url, options)
     }
     try {
@@ -179,7 +188,6 @@ export const loginUserFn =
 
       dispatch(setMainProfileInitialState({ email, password, name }))
     } catch (err) {
-      //@ts-ignore
       fetchWithRefresh(url, options)
     }
     if (localStorage.getItem('accessToken')) {
@@ -209,7 +217,6 @@ export const logoutUserFn = () => async (dispatch: Dispatch) => {
     localStorage.removeItem('refreshToken')
     dispatch(setMainProfileInitialState({}))
   } catch (err) {
-    //@ts-ignore
     fetchWithRefresh(url, options)
   }
 }
@@ -255,7 +262,6 @@ export const resetPassFn =
 
       dispatch(resetPass(data.success))
     } catch (err) {
-      //@ts-ignore
       fetchWithRefresh(url, options)
     }
   }
@@ -281,7 +287,6 @@ export const setProfileInfo =
 
       dispatch(setMainProfileInitialState({ name, password, email }))
     } catch (err) {
-      //@ts-ignore
       fetchWithRefresh(url, options)
     }
   }
@@ -303,8 +308,11 @@ export const getOrderLentInfo = () => async (dispatch: Dispatch) => {
 export const getProfileOrderLentInfo = () => async (dispatch: Dispatch) => {
   try {
     if (localStorage.getItem('accessToken') !== null) {
-      //@ts-ignore
-      let x = localStorage.getItem('accessToken').split('Bearer ')[1] as string
+      // //@ts-ignore
+      // let x = localStorage.getItem('accessToken').split('Bearer ')[1] as string
+
+      let x = localStorage.getItem('accessToken') as string
+      x = x.split('Bearer ')[1]
       const response = new WebSocket(
         `wss://norma.nomoreparties.space/orders?token=${x}`
       )

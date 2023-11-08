@@ -89,31 +89,20 @@ export const dropTargetReducer = createSlice({
   name: 'dropTarget',
   initialState: [] as Idata[],
   reducers: {
-    //@ts-ignore
-    dropTargetSetter: {
-      reducer: (state, action) => {
-        state.push(
-          //@ts-ignore
-          ...action.payload.data.filter(
-            //@ts-ignore
-            (item) =>
-              item._id === action.payload.id &&
-              action.payload.id !== '643d69a5c3f7b9001cfa093c' &&
-              action.payload.id !== '643d69a5c3f7b9001cfa093d'
-          )
+    dropTargetSetter: (state: Idata[], action) => {
+      state.push(
+        ...action.payload.data.filter(
+          (item: { _id: string }) =>
+            item._id === action.payload.id &&
+            action.payload.id !== '643d69a5c3f7b9001cfa093c' &&
+            action.payload.id !== '643d69a5c3f7b9001cfa093d'
         )
-      },
+      )
     },
-    //@ts-ignore
-    mixConstructorItems: {
-      //@ts-ignore
-      reducer: (state, action) => action.payload.map((item) => item),
-    },
-    //@ts-ignore
-    deleteItems: {
-      reducer: (state, action) =>
-        state.filter((item, index) => index !== action.payload),
-    },
+    mixConstructorItems: (state: Idata[], action: PayloadAction<Idata[]>) =>
+      action.payload.map((item) => item),
+    deleteItems: (state, action: PayloadAction<number>) =>
+      state.filter((item, index) => index !== action.payload),
   },
 })
 export const { dropTargetSetter, mixConstructorItems, deleteItems } =

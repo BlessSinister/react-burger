@@ -25,8 +25,14 @@ export default function OrderInfo() {
     useAppSelector((state) =>
       state.bunState.length ? state.bunState[0].price : 0
     ) * 2
+  const bunId = useAppSelector((state) => state.bunState)
+  console.log(bunId)
 
   const id: string[] = dropList.map((item: Idata) => item._id)
+  if (bunId.length !== 0) {
+    id.push(bunId[0]._id)
+    id.unshift(bunId[0]._id)
+  }
 
   let sumPrice =
     dropList.map((item: Idata) => item.price).reduce((a, b) => a + b, 0) +
