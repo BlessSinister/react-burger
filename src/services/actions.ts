@@ -33,21 +33,6 @@ export const refreshToken = () => {
   }).then(checkResponse)
 }
 
-//@ts-ignore
-// const fetchWithRefresh = async (err, url, options) => {
-//   if (err.message === 'jwt expired') {
-//     const refreshData = await refreshToken()
-//     if (!refreshData.success) {
-//       return Promise.reject(refreshData)
-//     }
-//     localStorage.setItem('refreshToken', refreshData.refreshToken)
-//     localStorage.setItem('accessToken', refreshData.accessToken)
-//     options.headers.authorization = refreshData.accessToken
-//     const res = await fetch(url, options)
-//     return await checkResponse(res)
-//   }
-// }
-
 export const fetchWithRefresh = async (
   url: string,
   options: {
@@ -133,19 +118,20 @@ export const checkFn = () => async (dispatch: Dispatch) => {
       },
     },
     url = `${BASE_URL}auth/user`
+  if (localStorage.getItem('accessToken')) {
+    try {
+      const response = await fetch(url, options)
 
-  try {
-    const response = await fetch(url, options)
+      const data = await checkResponse(response)
 
-    const data = await checkResponse(response)
+      const name = data.user.name
+      const email = data.user.email
+      const password = data.user.password || 'qwerty'
 
-    const name = data.user.name
-    const email = data.user.email
-    const password = data.user.password || 'qwerty'
-
-    dispatch(setMainProfileInitialState({ email, password, name }))
-  } catch (err) {
-    fetchWithRefresh(url, options)
+      dispatch(setMainProfileInitialState({ email, password, name }))
+    } catch (err) {
+      fetchWithRefresh(url, options)
+    }
   }
 }
 
@@ -292,39 +278,36 @@ export const setProfileInfo =
   }
 // ======================================================================== websocket
 
-export const getOrderLentInfo = () => async (dispatch: Dispatch) => {
-  try {
-    const response = new WebSocket('wss://norma.nomoreparties.space/orders/all')
+// export const getOrderLentInfo = () => async (dispatch: Dispatch) => {
+//   // try {
+//   //   const response = new WebSocket('wss://norma.nomoreparties.space/orders/all')
+//   //   response.onmessage = (event) => {
+//   //     dispatch(orderLentStateFn(JSON.parse(event.data).orders))
+//   //     dispatch(totalOrderFn(JSON.parse(event.data)))
+//   //   }
+//   // } catch (err) {
+//   //   console.log(err)
+//   // }
+// }
 
-    response.onmessage = (event) => {
-      dispatch(orderLentStateFn(JSON.parse(event.data).orders))
-      dispatch(totalOrderFn(JSON.parse(event.data)))
-    }
-  } catch (err) {
-    console.log(err)
-  }
-}
-
-export const getProfileOrderLentInfo = () => async (dispatch: Dispatch) => {
-  try {
-    if (localStorage.getItem('accessToken') !== null) {
-      // //@ts-ignore
-      // let x = localStorage.getItem('accessToken').split('Bearer ')[1] as string
-
-      let x = localStorage.getItem('accessToken') as string
-      x = x.split('Bearer ')[1]
-      const response = new WebSocket(
-        `wss://norma.nomoreparties.space/orders?token=${x}`
-      )
-
-      response.onmessage = (event) => {
-        dispatch(profileOrderLentStateFn(JSON.parse(event.data)))
-      }
-    }
-  } catch (err) {
-    console.log(err)
-  }
-}
+// export const getProfileOrderLentInfo = () => async (dispatch: Dispatch) => {
+//   // try {
+//   //   if (localStorage.getItem('accessToken') !== null) {
+//   //     // //@ts-ignore
+//   //     // let x = localStorage.getItem('accessToken').split('Bearer ')[1] as string
+//   //     let x = localStorage.getItem('accessToken') as string
+//   //     x = x.split('Bearer ')[1]
+//   //     const response = new WebSocket(
+//   //       `wss://norma.nomoreparties.space/orders?token=${x}`
+//   //     )
+//   //     response.onmessage = (event) => {
+//   //       dispatch(profileOrderLentStateFn(JSON.parse(event.data)))
+//   //     }
+//   //   }
+//   // } catch (err) {
+//   //   console.log(err)
+//   // }
+// }
 //Посмотреть асертс
 export const getOrderInfo =
   (id: string[]) =>

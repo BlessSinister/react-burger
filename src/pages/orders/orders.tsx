@@ -2,8 +2,11 @@ import { useEffect } from 'react'
 import styles from './orders.module.css'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../services/redux-hooks'
-import { modalFlagProfileOrderLent } from '../../services/reducer'
-import { getProfileOrderLentInfo, logoutUserFn } from '../../services/actions'
+import {
+  getConnectInfoProfile,
+  modalFlagProfileOrderLent,
+} from '../../services/reducer'
+import { logoutUserFn } from '../../services/actions'
 import OrderProfileItem from './order-profile-item'
 
 export default function Orders() {
@@ -25,7 +28,7 @@ export default function Orders() {
     navigate(`/profile/orders/${localStorage.getItem('orderLentIdElem')}`)
   }
   useEffect(() => {
-    dispatch(getProfileOrderLentInfo())
+    dispatch(getConnectInfoProfile(true))
   }, [])
 
   return (

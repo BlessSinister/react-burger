@@ -50,7 +50,6 @@ export default function BurgConstItems() {
   let dropElements = useAppSelector((state) => state.dropTargetElem)
 
   let bunInfo = useAppSelector((state) => state.bunState)
-  console.log(dropElements)
 
   return (
     <div

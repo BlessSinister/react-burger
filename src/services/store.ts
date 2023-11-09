@@ -24,7 +24,10 @@ import {
   registerAccountReducer,
   resetPasswordReducer,
   totalOrderReducer,
+  wsConnectedOrderLent,
+  wsConnectedProfileLent,
 } from './reducer'
+import { socketMiddleware } from './middleware/middleware'
 
 export const store = configureStore({
   reducer: {
@@ -51,11 +54,14 @@ export const store = configureStore({
     orderLentState: orderLentStateReducer.reducer,
     totalOrder: totalOrderReducer.reducer,
     profileOrderLentState: profileOrderLentStateReducer.reducer,
+    wsConnectInfo: wsConnectedOrderLent.reducer,
+    wsConnectProfileLent: wsConnectedProfileLent.reducer,
   },
 
   devTools: true,
   //@ts-ignore
-  middleware: (defaultMiddleWare) => defaultMiddleWare().concat(),
+  middleware: (defaultMiddleWare) =>
+    defaultMiddleWare().concat(socketMiddleware()),
   preloadedState: {
     burgerIngridients: [],
     ingridietnConstructor: [],

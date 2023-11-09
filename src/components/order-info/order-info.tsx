@@ -26,7 +26,6 @@ export default function OrderInfo() {
       state.bunState.length ? state.bunState[0].price : 0
     ) * 2
   const bunId = useAppSelector((state) => state.bunState)
-  console.log(bunId)
 
   const id: string[] = dropList.map((item: Idata) => item._id)
   if (bunId.length !== 0) {

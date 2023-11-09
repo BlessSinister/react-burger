@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { Idata } from '../components/ing-list/ingr-list'
 import { IOrder, IOrderLentObj } from '../utils/data'
+
 export const burgerIngridientsReducer = createSlice({
   name: 'burgerIngReducer',
   initialState: [] as Idata[],
@@ -346,3 +347,34 @@ export const { profileOrderLentStateFn } = profileOrderLentStateReducer.actions
 //   },
 // })
 // export const { orderLentCurrentStateFn } = orderLentCurrentStateReducer.actions
+// =====================================================================================
+//@ts-ignore
+// const initialState: TWSState = {
+//   wsConnected: false,
+//   messages: [],
+// }
+// Создадим редьюсер для WebSocket
+
+export const wsConnectedOrderLent = createSlice({
+  name: 'orderLentConnect',
+  initialState: false as boolean,
+  reducers: {
+    getConnectInfo: (state, action: PayloadAction<boolean>) => {
+      console.log(action)
+      return action.payload
+    },
+  },
+})
+export const { getConnectInfo } = wsConnectedOrderLent.actions
+
+export const wsConnectedProfileLent = createSlice({
+  name: 'orderLentConnect',
+  initialState: false as boolean,
+  reducers: {
+    getConnectInfoProfile: (state, action: PayloadAction<boolean>) => {
+      console.log(action)
+      return action.payload
+    },
+  },
+})
+export const { getConnectInfoProfile } = wsConnectedProfileLent.actions

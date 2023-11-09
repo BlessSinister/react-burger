@@ -4,7 +4,9 @@ import { useAppDispatch, useAppSelector } from '../../services/redux-hooks'
 
 import OrderlentItem from './orderlent-item'
 import { useEffect } from 'react'
-import { getOrderLentInfo } from '../../services/actions'
+
+import { getConnectInfo } from '../../services/reducer'
+
 export default function Orderlent() {
   const totalOrder = useAppSelector((state) => state.totalOrder.total)
 
@@ -15,7 +17,9 @@ export default function Orderlent() {
   const orderLentInfo = useAppSelector((state) => state.orderLentState)
 
   useEffect(() => {
-    dispatch(getOrderLentInfo())
+    // dispatch(getOrderLentInfo())
+
+    dispatch(getConnectInfo(true))
   }, [dispatch])
   //Открытие вебсокета ленты, думаю, что лучше будет сделать открытие, когда человек заходит на главную,
   //Тогда когда он будет входить на страницу ленты, она будет уже загружена
