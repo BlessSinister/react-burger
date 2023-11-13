@@ -55,6 +55,7 @@ export default function BurgConstItems() {
     <div
       className={`${burg_items_style.wrapper} mb-10 ${app_style.scroll}`}
       ref={DropTargetRef}
+      id="cypress_drop"
     >
       <div className={burg_items_style.content_container}>
         {bunInfo.length ? (
