@@ -121,6 +121,7 @@ export const bunInfo = createSlice({
   initialState: [] as Idata[],
   reducers: {
     bunChanger: (state, action) => {
+      console.log(action)
       if (
         '643d69a5c3f7b9001cfa093c' === action.payload.id ||
         '643d69a5c3f7b9001cfa093d' === action.payload.id
