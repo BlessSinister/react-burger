@@ -1,0 +1,36 @@
+.login_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.login_wrapper {
+  width: 480px;
+  height: 430px;
+}
+.link {
+  color: var(--interface-accent, #4c4cff);
+  text-decoration: none;
+}
+.h2 {
+  color: var(--text-primary-light-standart-text, #f2f2f3);
+  text-align: center;
+
+  /* desktop/display small */
+  font-family: Jet Brains Mono;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 30px; /* 125% */
+}
+.p {
+  color: var(--text-dark-grey-secondary-text, #8585ad);
+  text-align: center;
+
+  /* desktop/text */
+  font-family: Jet Brains Mono;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px; /* 150% */
+}

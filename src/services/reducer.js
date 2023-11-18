@@ -36,9 +36,13 @@ export const modalIngridientsReducer = createSlice({
   reducers: {
     modalChanger: {
       reducer: (state, action) => {
-        return action.payload.data.filter(
-          (item) => item._id === action.payload.id
-        )
+        if (localStorage.getItem('targetElem')) {
+          localStorage.removeItem('targetElem')
+        }
+        return action.payload.data.filter((item) => {
+          localStorage.setItem('targetElem', action.payload.id)
+          return item._id === action.payload.id
+        })
       },
     },
   },
@@ -50,7 +54,9 @@ export const modalingFlagReducer = createSlice({
   initialState: false,
   reducers: {
     modalFlag: {
-      reducer: (state, action) => action.payload,
+      reducer: (state, action) => {
+        return action.payload
+      },
     },
   },
 })
@@ -172,3 +178,95 @@ export const keyGenerateBunReducer = createSlice({
   },
 })
 export const { setKeyBunId } = keyGenerateBunReducer.actions
+
+export const registerAccountReducer = createSlice({
+  name: 'registerAcc',
+  initialState: {},
+  reducers: {
+    registerAccount: {
+      reducer: (state, action) => {
+        return action.payload
+      },
+    },
+  },
+})
+export const { registerAccount } = registerAccountReducer.actions
+
+export const forgotPasswordReducer = createSlice({
+  name: 'forgotPass',
+  initialState: false,
+  reducers: {
+    forgotPass: {
+      reducer: (state, action) => {
+        return action.payload
+      },
+    },
+  },
+})
+export const { forgotPass } = forgotPasswordReducer.actions
+
+export const resetPasswordReducer = createSlice({
+  name: 'forgotPass',
+  initialState: false,
+  reducers: {
+    resetPass: {
+      reducer: (state, action) => {
+        return action.payload
+      },
+    },
+  },
+})
+export const { resetPass } = resetPasswordReducer.actions
+
+export const loginReducer = createSlice({
+  name: 'login',
+  initialState: [],
+  reducers: {
+    loginSystem: {
+      reducer: (state, action) => {
+        return action.payload
+      },
+    },
+  },
+})
+export const { loginSystem } = loginReducer.actions
+
+export const mainProfileInitialStateReducer = createSlice({
+  name: 'mainProfileInitialState',
+  initialState: [{ name: '', email: '', password: '' }],
+  reducers: {
+    setMainProfileInitialState: {
+      reducer: (state, action) => {
+        state[0] = action.payload
+      },
+    },
+  },
+})
+export const { setMainProfileInitialState } =
+  mainProfileInitialStateReducer.actions
+
+export const profileInitialStateReducer = createSlice({
+  name: 'profileInitialState',
+  initialState: [],
+  reducers: {
+    resetProfileInitialState: {
+      reducer: (state, action) => {
+        return action.payload
+      },
+    },
+  },
+})
+export const { resetProfileInitialState } = profileInitialStateReducer.actions
+
+export const modalIngridientRefresh = createSlice({
+  name: 'refreshModal',
+  initialState: [],
+  reducers: {
+    refreshModalState: {
+      reducer: (state, action) => {
+        return action.payload
+      },
+    },
+  },
+})
+export const { refreshModalState } = modalIngridientRefresh.actions

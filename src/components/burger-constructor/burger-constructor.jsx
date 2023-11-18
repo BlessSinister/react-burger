@@ -4,7 +4,11 @@ import OrderInfo from '../order-info/order-info'
 import { useDispatch, useSelector } from 'react-redux'
 import Modal from '../modal/modal'
 import OrderDetails from '../order-detailse/order-details'
-import { modalFlag, modalOrderFlag } from '../../services/reducer'
+import {
+  modalFlag,
+  modalOrderFlag,
+  orderInfoGetter,
+} from '../../services/reducer'
 
 export default function BurgerConstructor() {
   const modal = useSelector((state) => state.modalOrderFlag)
@@ -12,6 +16,7 @@ export default function BurgerConstructor() {
   const onCloseModal = () => {
     dispatch(modalOrderFlag(false))
     dispatch(modalFlag(false))
+    dispatch(orderInfoGetter('Wait order number'))
   }
 
   return (

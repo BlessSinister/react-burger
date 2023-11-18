@@ -29,7 +29,10 @@ export default function IngrList({ data, modalIngFn, tabScrollChanger }) {
       onScroll={tabScrollChanger}
     >
       <div>
-        <h2 className={`text text_type_main-medium mb-6`} id="main_bun">
+        <h2
+          className={`text text_type_main-medium mb-6 ${ingr_list_style.h2}`}
+          id="main_bun"
+        >
           Булки
         </h2>
         <div className={ingr_list_style.wrapper}>
@@ -46,7 +49,9 @@ export default function IngrList({ data, modalIngFn, tabScrollChanger }) {
         </div>
       </div>
       <div>
-        <h2 className={`text text_type_main-medium mb-6`}>Соусы</h2>
+        <h2 className={`text text_type_main-medium mb-6 ${ingr_list_style.h2}`}>
+          Соусы
+        </h2>
         <div className={ingr_list_style.wrapper}>
           {sauce.map((item, index) => (
             <div key={item._id}>
@@ -67,7 +72,9 @@ export default function IngrList({ data, modalIngFn, tabScrollChanger }) {
       </div>
 
       <div>
-        <h2 className={`text text_type_main-medium mb-6`}>Начинки</h2>
+        <h2 className={`text text_type_main-medium mb-6 ${ingr_list_style.h2}`}>
+          Начинки
+        </h2>
         <div className={ingr_list_style.wrapper}>
           {main.map((item, index) => (
             <div key={item._id}>
