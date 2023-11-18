@@ -3,24 +3,28 @@ import {
   Input,
   PasswordInput,
 } from '@ya.praktikum/react-developer-burger-ui-components'
-import { useRef, useState, useEffect } from 'react'
+import { useRef, useState } from 'react'
 import styles from './login.module.css'
 import { NavLink } from 'react-router-dom'
-import { loginUserFn } from '../services/actions'
+import { loginUserFn } from '../../services/actions'
 import { useDispatch } from 'react-redux'
 export default function Login() {
-  const [email, setEmail] = useState('')
+  const [email, setEmail] = useState<string>('')
   const inputRef = useRef(null)
-  const [pass, setPass] = useState('')
+  const [pass, setPass] = useState<string>('')
   const dispatch = useDispatch()
-  const handleSbubmit = (e) => {
+  const handleSbubmit = (e: React.FormEvent<HTMLInputElement>) => {
     e.preventDefault()
+    //@ts-ignore
     dispatch(loginUserFn(email, pass))
   }
   return (
     <div className={styles.login_container}>
       <div className={styles.login_wrapper}>
-        <form onSubmit={handleSbubmit}>
+        <form
+          //@ts-ignore
+          onSubmit={handleSbubmit}
+        >
           <h2 className={`${styles.h2}`}>Вход</h2>
           <Input
             type={'text'}
@@ -43,6 +47,7 @@ export default function Login() {
             htmlType="button"
             type="primary"
             size="medium"
+            //@ts-ignore
             onClick={() => dispatch(loginUserFn(email, pass))}
           >
             Войти

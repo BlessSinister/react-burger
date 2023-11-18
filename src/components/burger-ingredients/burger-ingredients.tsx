@@ -8,22 +8,28 @@ import { useSelector, useDispatch } from 'react-redux'
 import { getBurgerIngridientList } from '../../services/actions'
 import IngredientDetails from '../ingredient-details/ingredient-details'
 
-export default function BurgerIngredients({ onCloseModal }) {
+interface IburgerIngredientsProps {
+  onCloseModal: () => void
+}
+
+export default function BurgerIngredients({
+  onCloseModal,
+}: IburgerIngredientsProps) {
+  //@ts-ignore
   const modalIng = useSelector((state) => state.modalIngridientFlag)
-
+  //@ts-ignore
   const data = useSelector((state) => state.burgerIngridients)
-
-  const id = data.map((item) => item._id)
 
   const dispatch = useDispatch()
 
   const [current, setCurrent] = useState('one')
   useEffect(() => {
+    //@ts-ignore
     dispatch(getBurgerIngridientList())
     // dispatch(refreshModalState(JSON.parse(localStorage.getItem('Ing'))))
     if (modalIng) {
       // navigate(`ingridients/${localStorage.getItem('targetElem')}`)
-      localStorage.setItem('modalIng', true)
+      localStorage.setItem('modalIng', 'true')
     }
   }, [modalIng, dispatch])
   let titlePlace = document.getElementById('main_bun')
@@ -54,7 +60,7 @@ export default function BurgerIngredients({ onCloseModal }) {
         Соберите бургер
       </h1>
       <Tabs tabChanger={tabScrollChanger} current={current} />
-      <IngrList data={data} tabScrollChanger={tabScrollChanger} id={id} />
+      <IngrList data={data} tabScrollChanger={tabScrollChanger} />
       {modalIng && (
         <Modal modalIng={modalIng} onCloseModal={onCloseModal}>
           <IngredientDetails />

@@ -8,18 +8,20 @@ import {
 import { useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 export default function AppHeader() {
+  //@ts-ignore
   const authUser = useSelector((state) => state.authUser)
     ? '/profile'
     : '/login'
-  const setActive = ({ isActive }) =>
+  //@ts-ignore
+  const setActive = ({ isActive }): string =>
     isActive
       ? `text text_type_main-default ${header_style.active}`
       : `text text_type_main-default ${header_style.a}`
-  let setIconTypeConstr =
+  let setIconTypeConstr: string =
     window.location.pathname === '/' ? 'primary' : 'secondary'
-  let setIconTypeOrder =
+  let setIconTypeOrder: string =
     window.location.pathname === '/orderlent' ? 'primary' : 'secondary'
-  let setIconTypeProfile =
+  let setIconTypeProfile: string =
     window.location.pathname === '/profile' ||
     window.location.pathname === '/login' ||
     window.location.pathname === '/profile/orders'
@@ -32,6 +34,7 @@ export default function AppHeader() {
           className={`${header_style.btn_block_item} pl-5 pr-5 pt-4 pb-4 mr-2`}
         >
           <BurgerIcon
+            //@ts-ignore
             type={setIconTypeConstr}
             className={`${header_style.item1_ico} `}
           />
@@ -44,7 +47,10 @@ export default function AppHeader() {
         <div
           className={`${header_style.btn_block_item} ${header_style.btn_item2} pl-5 pr-5 pt-4 pb-4 mr-2`}
         >
-          <ListIcon type={setIconTypeOrder} />
+          <ListIcon
+            //@ts-ignore
+            type={setIconTypeOrder}
+          />
           <p className={`ml-2`}>
             <NavLink to="/orderlent" className={setActive}>
               Лента заказов
@@ -58,6 +64,7 @@ export default function AppHeader() {
           className={`${header_style.btn_block_item} ${header_style.btn_item2}  pl-5 pr-5 pt-4 pb-4 mr-2`}
         >
           <ProfileIcon
+            //@ts-ignore
             type={setIconTypeProfile}
             className={`${header_style.item1_ico} `}
           />

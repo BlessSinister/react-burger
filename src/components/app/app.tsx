@@ -1,30 +1,33 @@
 import app_style from './app.module.css'
 import AppHeader from '../app-header/app-header'
 import { Route, Routes } from 'react-router-dom'
-import Home from '../../pages/home'
-import Login from '../../pages/login'
-import Registr from '../../pages/registr'
-import ForgotPass from '../../pages/forgot-pass'
-import ResetPass from '../../pages/reset-pass'
-import Profile from '../../pages/profile'
-import IngridientsInfo from '../../pages/ingridients-info'
+import Home from '../../pages/home/home'
+import Login from '../../pages/login/login'
+import Registr from '../../pages/registr/registr'
+import ForgotPass from '../../pages/forgot-pass/forgot-pass'
+import ResetPass from '../../pages/forgot-pass/reset-pass'
+import Profile from '../../pages/profile/profile'
+import IngridientsInfo from '../../pages/ingridients-info/ingridients-info'
 import { ProtectedAuth, ProtectedUnAuth } from './protected-route'
-import Orders from '../../pages/orders'
+import Orders from '../../pages/orders/orders'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { checkFn, getBurgerIngridientList } from '../../services/actions'
-import Orderlent from '../../pages/orderlent'
+import Orderlent from '../../pages/orderlent/orderlent'
 import { modalFlag } from '../../services/reducer'
 export default function App() {
   const dispatch = useDispatch()
   let id = localStorage.getItem('targetElem')
+  //@ts-ignore
   const modalIng = useSelector((state) => state.modalIngridientFlag)
+  //@ts-ignore
   let ingridient = useSelector((state) => state.burgerIngridients).filter(
-    (item) => item._id === id
+    (item: { _id: string }) => item._id === id
   )
   localStorage.setItem('Ing', JSON.stringify(ingridient))
 
   useEffect(() => {
+    //@ts-ignore
     dispatch(getBurgerIngridientList())
     if (localStorage.getItem('modalIng')) {
       dispatch(modalFlag(true))
@@ -32,6 +35,7 @@ export default function App() {
   }, [])
 
   useEffect(() => {
+    //@ts-ignore
     dispatch(checkFn())
   }, [])
 
@@ -56,9 +60,7 @@ export default function App() {
         </Route>
         <Route
           path="/ingridients/:id"
-          element={
-            <IngridientsInfo modalIng={modalIng} ingridient={ingridient} />
-          }
+          element={<IngridientsInfo ingridient={ingridient} />}
         />
         <Route path="/orderlent" element={<Orderlent />} />
       </Routes>

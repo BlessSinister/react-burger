@@ -1,6 +1,11 @@
+import { Idata } from '../../components/ing-list/ingr-list'
 import styles from './ingridients-info.module.css'
 
-export default function IngridientsInfo({ ingridient }) {
+interface Iingridient {
+  ingridient: Idata[]
+}
+
+export default function IngridientsInfo({ ingridient }: Iingridient) {
   if (ingridient.length === 0) {
     return null
   }

@@ -5,13 +5,14 @@ import {
 import styles from './forgot-pass.module.css'
 import { useRef, useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { forgotPassFn } from '../services/actions'
+import { forgotPassFn } from '../../services/actions'
 import { useDispatch, useSelector } from 'react-redux'
 
 export default function ForgotPass() {
-  const [email, setEmail] = useState('')
+  const [email, setEmail] = useState<string>('')
   const dispatch = useDispatch()
   const inputRef = useRef(null)
+  //@ts-ignore
   const redirect = useSelector((state) => state.forgotPass)
   const navigate = useNavigate()
   useEffect(() => {
@@ -42,7 +43,8 @@ export default function ForgotPass() {
           size="medium"
           onClick={() =>
             email.length
-              ? dispatch(forgotPassFn(email))
+              ? //@ts-ignore
+                dispatch(forgotPassFn(email))
               : alert('Введите имеил')
           }
         >

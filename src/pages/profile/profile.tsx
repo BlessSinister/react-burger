@@ -8,20 +8,26 @@ import {
 } from '@ya.praktikum/react-developer-burger-ui-components'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { logoutUserFn, setProfileInfo } from '../services/actions'
+import { logoutUserFn, setProfileInfo } from '../../services/actions'
 
 export default function Profile() {
+  //@ts-ignore
   const name = useSelector((state) => state.initialProfileInfo.name)
+  //@ts-ignore
   const password = useSelector((state) => state.initialProfileInfo.password)
+  //@ts-ignore
   const emailState = useSelector((state) => state.initialProfileInfo.email)
+  //@ts-ignore
   const editName = useSelector((state) => state.mainProfileInfo[0].name)
+  //@ts-ignore
   const editPass = useSelector((state) => state.mainProfileInfo[0].password)
+  //@ts-ignore
   const editEmail = useSelector((state) => state.mainProfileInfo[0].email)
-  const [value, setValue] = useState(name)
-  const [email, setEmail] = useState(emailState)
-  const [pass, setPass] = useState(password)
+  const [value, setValue] = useState<string>(name)
+  const [email, setEmail] = useState<string>(emailState)
+  const [pass, setPass] = useState<string>(password)
   const navigate = useNavigate()
-  const restoreProfileFn = () => {
+  const restoreProfileFn = (): void => {
     setValue(name)
     setEmail(emailState)
     setPass(password)
@@ -35,7 +41,8 @@ export default function Profile() {
   }, [editEmail, editName, editPass, navigate])
   const dispatch = useDispatch()
 
-  let handleSubmitForm = (event) => {
+  let handleSubmitForm = (event: React.FormEvent<HTMLInputElement>) => {
+    //@ts-ignore
     dispatch(setProfileInfo(value, pass, email))
     event.preventDefault()
   }
@@ -51,6 +58,7 @@ export default function Profile() {
         <NavLink
           to="/profile"
           className={styles.link}
+          //@ts-ignore
           onClick={() => dispatch(logoutUserFn())}
         >
           <p className={`${styles.p} mb-20`}>Выход</p>
@@ -60,7 +68,10 @@ export default function Profile() {
         </p>
       </div>
       <div className={`${styles.wrapper_edit} mt-30 ml-95`}>
-        <form onSubmit={handleSubmitForm}>
+        <form
+          //@ts-ignore
+          onSubmit={handleSubmitForm}
+        >
           <Input
             onChange={(e) => setValue(e.target.value)}
             value={value}
@@ -88,6 +99,7 @@ export default function Profile() {
             type="secondary"
             size="medium"
             extraClass="mt-6"
+            //@ts-ignore
             onClick={() => dispatch(setProfileInfo(value, pass, email))}
           >
             Сохранить

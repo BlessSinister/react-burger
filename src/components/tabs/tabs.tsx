@@ -1,8 +1,12 @@
 import tabs_style from './tabs.module.css'
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components'
-import PropTypes from 'prop-types'
 
-const Tabs = ({ tabChanger, current }) => {
+interface Itab {
+  current: string
+  tabChanger: () => void
+}
+
+const Tabs = ({ tabChanger, current }: Itab) => {
   return (
     <div className={`mb-10 ${tabs_style.tabs_wrapper}`}>
       <Tab value="one" active={current === 'one'} onClick={tabChanger}>
@@ -19,8 +23,3 @@ const Tabs = ({ tabChanger, current }) => {
 }
 
 export default Tabs
-
-Tabs.propTypes = {
-  current: PropTypes.string,
-  tabChanger: PropTypes.func,
-}
