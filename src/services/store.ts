@@ -1,4 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit'
+
 import {
   bunInfo,
   burgerConstructorReducer,
@@ -13,12 +14,20 @@ import {
   modalIngridientRefresh,
   modalIngridientsReducer,
   modalOrderFlagReducer,
+  modalingFlagOrderLentReducer,
+  modalingFlagProfileOrderLentReducer,
   modalingFlagReducer,
   orderConstructorInfo,
+  orderLentStateReducer,
   profileInitialStateReducer,
+  profileOrderLentStateReducer,
   registerAccountReducer,
   resetPasswordReducer,
+  totalOrderReducer,
+  wsConnectedOrderLent,
+  wsConnectedProfileLent,
 } from './reducer'
+import { socketMiddleware } from './middleware/middleware'
 
 export const store = configureStore({
   reducer: {
@@ -40,20 +49,31 @@ export const store = configureStore({
     initialProfileInfo: profileInitialStateReducer.reducer,
     mainProfileInfo: mainProfileInitialStateReducer.reducer,
     inst: modalIngridientRefresh.reducer,
+    modalOrderLentFlag: modalingFlagOrderLentReducer.reducer,
+    modalProfileOrderLentFlag: modalingFlagProfileOrderLentReducer.reducer,
+    orderLentState: orderLentStateReducer.reducer,
+    totalOrder: totalOrderReducer.reducer,
+    profileOrderLentState: profileOrderLentStateReducer.reducer,
+    wsConnectInfo: wsConnectedOrderLent.reducer,
+    wsConnectProfileLent: wsConnectedProfileLent.reducer,
   },
 
   devTools: true,
-  middleware: (defaultMiddleWare) => defaultMiddleWare(),
+  //@ts-ignore
+  middleware: (defaultMiddleWare) =>
+    defaultMiddleWare().concat(socketMiddleware()),
   preloadedState: {
     burgerIngridients: [],
     ingridietnConstructor: [],
-    currentIngridient: { id: 1, data: [] },
+    //@ts-ignore
+    currentIngridient: { data: [] },
     modalIngridientFlag: false,
     modalOrderFlag: false,
     order: 'Wait order number',
     dropTargetElem: [],
     counterState: [],
     bunState: [],
+    //@ts-ignore
     inst: JSON.parse(localStorage.getItem('Ing')),
     keyIngridientsGenerate: [],
     keyBunGenerate: [],
@@ -62,9 +82,9 @@ export const store = configureStore({
     authUser: false,
     resetPass: false,
     initialProfileInfo: {
-      name: '',
-      email: '',
-      password: '',
+      name: 'Igor',
+      email: 'ig.mar@yandex.ru',
+      password: 'qwerty',
     },
     mainProfileInfo: [
       {
@@ -73,5 +93,13 @@ export const store = configureStore({
         password: '',
       },
     ],
+    modalOrderLentFlag: false,
+    modalProfileOrderLentFlag: false,
+    orderLentState: [],
+    // totalOrder: 1,
+    // profileOrderLentState: [],
   },
 })
+
+export type RootState = ReturnType<typeof store.getState>
+export type AppDispatch = typeof store.dispatch

@@ -1,12 +1,13 @@
 import React, { useRef, ReactNode } from 'react'
 import { useDrag, useDrop } from 'react-dnd'
 import { mixConstructorItems } from '../../services/reducer'
-import { useDispatch } from 'react-redux'
 import { Idata } from '../ing-list/ingr-list'
+import { useAppDispatch } from '../../services/redux-hooks'
 interface IBoxDndControllerProps {
   data: Idata[]
   index: number
   children: ReactNode
+  className?: string
 }
 interface IhoverItem {
   index: number
@@ -15,8 +16,9 @@ export default function BoxDndController({
   index,
   data,
   children,
+  className,
 }: IBoxDndControllerProps) {
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
 
   const moveConstructorItems = (dragIndex: number, hoverIndex: number) => {
     const dragCard = data[dragIndex]

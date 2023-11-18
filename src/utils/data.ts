@@ -1,4 +1,35 @@
-const data = [
+export interface Idata {
+  calories: number
+  carbohydrates: number
+  fat: number
+  image: string
+  image_large: string
+  image_mobile: string
+  name: string
+  price: number
+  proteins: number
+  type: string
+  __v: number
+  _id: string
+}
+
+export interface IOrder {
+  _id: string
+  status: string
+  name: string
+  createdAt: string
+  updatedAt: string
+  number: number
+  ingredients: string[]
+}
+export interface IOrderLentObj {
+  orders: IOrder[]
+  success: boolean
+  total: number
+  totalToday: number
+}
+
+export const data = [
   {
     _id: '60666c42cc7b410027a1a9b1',
     name: 'Краторная булка N-200i',

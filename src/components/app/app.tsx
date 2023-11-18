@@ -11,23 +11,23 @@ import IngridientsInfo from '../../pages/ingridients-info/ingridients-info'
 import { ProtectedAuth, ProtectedUnAuth } from './protected-route'
 import Orders from '../../pages/orders/orders'
 import { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
 import { checkFn, getBurgerIngridientList } from '../../services/actions'
 import Orderlent from '../../pages/orderlent/orderlent'
 import { modalFlag } from '../../services/reducer'
+import { useAppDispatch, useAppSelector } from '../../services/redux-hooks'
+import OrderlentInfo from '../../pages/orderlent-info/orderllent-info'
+import ProfileOrdersInfo from '../../pages/profile-orders-info/profile-orders-info'
+
 export default function App() {
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
   let id = localStorage.getItem('targetElem')
-  //@ts-ignore
-  const modalIng = useSelector((state) => state.modalIngridientFlag)
-  //@ts-ignore
-  let ingridient = useSelector((state) => state.burgerIngridients).filter(
+  const modalIng = useAppSelector((state) => state.modalIngridientFlag)
+  let ingridient = useAppSelector((state) => state.burgerIngridients).filter(
     (item: { _id: string }) => item._id === id
   )
   localStorage.setItem('Ing', JSON.stringify(ingridient))
-
+  const orderLentInfo = useAppSelector((state) => state.orderLentState)
   useEffect(() => {
-    //@ts-ignore
     dispatch(getBurgerIngridientList())
     if (localStorage.getItem('modalIng')) {
       dispatch(modalFlag(true))
@@ -35,7 +35,6 @@ export default function App() {
   }, [])
 
   useEffect(() => {
-    //@ts-ignore
     dispatch(checkFn())
   }, [])
 
@@ -51,6 +50,7 @@ export default function App() {
         <Route element={<ProtectedAuth />}>
           <Route path="/profile" element={<Profile />} />
           <Route path="/profile/orders" element={<Orders />} />
+          <Route path="/profile/orders/:id" element={<ProfileOrdersInfo />} />
         </Route>
         <Route element={<ProtectedUnAuth />}>
           <Route path="/login" element={<Login />} />
@@ -62,7 +62,8 @@ export default function App() {
           path="/ingridients/:id"
           element={<IngridientsInfo ingridient={ingridient} />}
         />
-        <Route path="/orderlent" element={<Orderlent />} />
+        <Route path="/feed" element={<Orderlent />} />
+        <Route path="/feed/:id" element={<OrderlentInfo />} />
       </Routes>
     </>
   )

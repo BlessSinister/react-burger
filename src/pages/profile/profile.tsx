@@ -7,22 +7,26 @@ import {
   PasswordInput,
 } from '@ya.praktikum/react-developer-burger-ui-components'
 import { NavLink, useNavigate } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
-import { logoutUserFn, setProfileInfo } from '../../services/actions'
+
+import {
+  logoutUserFn,
+  refreshToken,
+  setProfileInfo,
+} from '../../services/actions'
+import { useAppDispatch, useAppSelector } from '../../services/redux-hooks'
 
 export default function Profile() {
-  //@ts-ignore
-  const name = useSelector((state) => state.initialProfileInfo.name)
-  //@ts-ignore
-  const password = useSelector((state) => state.initialProfileInfo.password)
-  //@ts-ignore
-  const emailState = useSelector((state) => state.initialProfileInfo.email)
-  //@ts-ignore
-  const editName = useSelector((state) => state.mainProfileInfo[0].name)
-  //@ts-ignore
-  const editPass = useSelector((state) => state.mainProfileInfo[0].password)
-  //@ts-ignore
-  const editEmail = useSelector((state) => state.mainProfileInfo[0].email)
+  const name = useAppSelector((state) => state.initialProfileInfo.name)
+
+  const password = useAppSelector((state) => state.initialProfileInfo.password)
+
+  const emailState = useAppSelector((state) => state.initialProfileInfo.email)
+
+  const editName = useAppSelector((state) => state.mainProfileInfo[0].name)
+
+  const editPass = useAppSelector((state) => state.mainProfileInfo[0].password)
+
+  const editEmail = useAppSelector((state) => state.mainProfileInfo[0].email)
   const [value, setValue] = useState<string>(name)
   const [email, setEmail] = useState<string>(emailState)
   const [pass, setPass] = useState<string>(password)
@@ -39,13 +43,17 @@ export default function Profile() {
     setEmail(editEmail)
     localStorage.getItem('accessToken') ? navigate('/profile') : navigate('/')
   }, [editEmail, editName, editPass, navigate])
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
 
   let handleSubmitForm = (event: React.FormEvent<HTMLInputElement>) => {
-    //@ts-ignore
     dispatch(setProfileInfo(value, pass, email))
     event.preventDefault()
   }
+  let orderLent = useAppSelector((state) => state.profileOrderLentState)
+
+  // useEffect(() => {
+  //   dispatch(getProfileOrderLentInfo())
+  // }, [])
   return (
     <div className={styles.container}>
       <div className={`${styles.wrapper_navigation} mt-30`}>
@@ -58,7 +66,6 @@ export default function Profile() {
         <NavLink
           to="/profile"
           className={styles.link}
-          //@ts-ignore
           onClick={() => dispatch(logoutUserFn())}
         >
           <p className={`${styles.p} mb-20`}>Выход</p>
@@ -99,7 +106,6 @@ export default function Profile() {
             type="secondary"
             size="medium"
             extraClass="mt-6"
-            //@ts-ignore
             onClick={() => dispatch(setProfileInfo(value, pass, email))}
           >
             Сохранить
