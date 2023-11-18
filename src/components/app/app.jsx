@@ -2,26 +2,27 @@ import app_style from './app.module.css'
 import AppHeader from '../app-header/app-header'
 import BurgerIngredients from '../burger-ingredients/burger-ingredients'
 import BurgerConstructor from '../burger-constructor/burger-constructor'
-import { useContext, useEffect, useState } from 'react'
-import { getData } from '../../utils/api'
-import { CustomContext } from '../context/context'
+import { DndProvider } from 'react-dnd'
+import { HTML5Backend } from 'react-dnd-html5-backend'
+import { useDispatch } from 'react-redux'
+import { modalFlag, modalOrderFlag } from '../../services/reducer'
 
 export default function App() {
-  const { setState, state } = useContext(CustomContext)
-  const [orderNumber] = useState('034546')
-
-  useEffect(() => {
-    getData().then((data) => setState(data))
-  }, [setState])
-
+  const dispatch = useDispatch()
+  const onCloseModal = () => {
+    dispatch(modalOrderFlag(false))
+    dispatch(modalFlag(false))
+  }
   return (
     <>
       <header className={app_style.header}>
         <AppHeader />
       </header>
       <main>
-        <BurgerIngredients data={state.data} />
-        <BurgerConstructor data={state.data} orderNumber={orderNumber} />
+        <DndProvider backend={HTML5Backend}>
+          <BurgerIngredients onCloseModal={onCloseModal} />
+          <BurgerConstructor onCloseModal={onCloseModal} />
+        </DndProvider>
       </main>
     </>
   )

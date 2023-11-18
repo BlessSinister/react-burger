@@ -1,6 +1,8 @@
+import { useSelector } from 'react-redux'
 import style from './order-details.module.css'
-import PropTypes from 'prop-types'
-export default function OrderDetails({ orderNumber }) {
+
+export default function OrderDetails() {
+  const orderNumber = useSelector((state) => state.order)
   return (
     <div className={style.modal}>
       <div
@@ -8,7 +10,6 @@ export default function OrderDetails({ orderNumber }) {
         onClick={(e) => e.stopPropagation()}
       >
         <h2 className={`${style.h2} mb-8`}>{orderNumber}</h2>
-
         <p className={`${style.p_content_item1}  ${style.p} mb-15`}>
           идентификатор заказа
         </p>
@@ -20,7 +21,4 @@ export default function OrderDetails({ orderNumber }) {
       </div>
     </div>
   )
-}
-OrderDetails.propTypes = {
-  orderNumber: PropTypes.string,
 }

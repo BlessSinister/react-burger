@@ -50,3 +50,20 @@
   font-weight: 400;
   line-height: 24px; /* 85.714% */
 }
+.h2 {
+  color: var(--text-primary-light-standart-text, #f2f2f3);
+  font-family: 'Jet Brains Mono';
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 40px;
+  margin-right: 227px;
+}
+.decor_wrapper_icon {
+  max-width: 640px;
+  height: 64px;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}

@@ -2,6 +2,16 @@
   grid-column: 10/24;
   height: 912px;
 }
+@media (max-width: 1669px) {
+  .wrapper {
+    grid-column: 4/20;
+  }
+}
+@media (max-width: 1450px) {
+  .wrapper {
+    grid-column: 4/23;
+  }
+}
 .h2 {
   font-family: 'Jet Brains Mono', monospace;
   font-weight: 700;

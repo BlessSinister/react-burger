@@ -7,8 +7,17 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  max-width: 609px;
+  width: 100%;
 }
-
+.modal__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 609px;
+  width: 100%;
+}
 .h2 {
   color: var(--text-primary-light-standart-text, #f2f2f3);
   text-align: center;
@@ -47,5 +56,11 @@
   max-width: 120px;
   height: 120px;
   width: 100%;
-  margin-left: 180px;
+}
+.decor_wrapper_icon {
+  max-width: 640px;
+  height: 64px;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
 }

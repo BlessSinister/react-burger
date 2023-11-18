@@ -1,12 +1,17 @@
+import { useSelector } from 'react-redux'
 import style from './ingredient-details.module.css'
-import PropTypes from 'prop-types'
 
-export default function IngredientDetails({ data }) {
+export default function IngredientDetails() {
+  const data = useSelector((state) => state.currentIngridient)
+
   return (
     <div
       onClick={(e) => e.stopPropagation()}
       className={`${style.flex_container} p-10 pb-15`}
     >
+      <div className={`${style.decor_wrapper_icon} mb-4`}>
+        <h2 className={style.h2}>Детали ингредиента</h2>
+      </div>
       <div className={`${style.main_card_img} mb-4`}>
         <img src={data[0].image_large} className={style.img} alt="" />
       </div>
@@ -31,7 +36,4 @@ export default function IngredientDetails({ data }) {
       </div>
     </div>
   )
-}
-IngredientDetails.propTypes = {
-  data: PropTypes.array,
 }

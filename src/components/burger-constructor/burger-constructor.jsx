@@ -1,31 +1,27 @@
 import const_style from './burger-constructor.module.css'
 import BurgConstItems from '../burger-constructor-items/burg-const-items'
 import OrderInfo from '../order-info/order-info'
-import PropTypes from 'prop-types'
-import { CustomContext } from '../context/context'
-import { useContext } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import Modal from '../modal/modal'
 import OrderDetails from '../order-detailse/order-details'
-export default function BurgerConstructor({ data, orderNumber }) {
-  const { modal } = useContext(CustomContext)
+import { modalFlag, modalOrderFlag } from '../../services/reducer'
+
+export default function BurgerConstructor() {
+  const modal = useSelector((state) => state.modalOrderFlag)
+  const dispatch = useDispatch()
+  const onCloseModal = () => {
+    dispatch(modalOrderFlag(false))
+    dispatch(modalFlag(false))
+  }
+
   return (
     <section className={`${const_style.wrapper} mt-25`}>
-      <BurgConstItems data={data} />
+      <BurgConstItems />
       <OrderInfo />
-      {modal && (
-        <Modal>
-          <OrderDetails orderNumber={orderNumber} />
-        </Modal>
-      )}
+
+      <Modal modal={modal} onCloseModal={onCloseModal}>
+        {modal && <OrderDetails />}
+      </Modal>
     </section>
   )
-}
-BurgerConstructor.propTypes = {
-  _id: PropTypes.string,
-  price: PropTypes.number,
-  image: PropTypes.string,
-  name: PropTypes.string,
-  type: PropTypes.string,
-  data: PropTypes.array,
-  orderNumber: PropTypes.string,
 }
