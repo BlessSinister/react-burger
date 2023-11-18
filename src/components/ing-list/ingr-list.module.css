@@ -1,0 +1,11 @@
+.wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.ing_container {
+  height: 650px;
+  width: 600px;
+  overflow-x: overlay;
+}

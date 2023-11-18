@@ -1,0 +1,8 @@
+.wrapper {
+  grid-column: 10/24;
+  height: 912px;
+}
+.h2 {
+  font-family: 'Jet Brains Mono', monospace;
+  font-weight: 700;
+}

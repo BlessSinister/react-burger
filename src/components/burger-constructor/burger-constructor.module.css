@@ -1,0 +1,5 @@
+.wrapper {
+  grid-column: 25/42;
+  height: 756px;
+  width: 600px;
+}
