@@ -2,31 +2,22 @@ import { ConstructorElement } from '@ya.praktikum/react-developer-burger-ui-comp
 import burg_items_style from './burg-const-tems.module.css'
 import app_style from '../app/app.module.css'
 import { DragIcon } from '@ya.praktikum/react-developer-burger-ui-components'
-import propTypes from '../../utils/props-types'
+import PropTypes from 'prop-types'
 
-export default function BurgConstItems({ data, summ }) {
+export default function BurgConstItems({ data }) {
   const data1 = []
 
   if (data) {
     for (let i = 1; i < 8; i++) {
       data1.push(data[i])
     }
-    summ(data1)
   } else {
     return
   }
 
   return (
     <div className={`${burg_items_style.wrapper} mb-10 ${app_style.scroll}`}>
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '10px',
-        }}
-      >
-        {/* Эти стили сделаные не мною, они прописаны в самом компоненте
-        из UI библиотеки, поэтому я их не трогаю */}
+      <div className={burg_items_style.content_container}>
         <div className={burg_items_style.decor_wrap}>
           <ConstructorElement
             type="top"
@@ -47,10 +38,6 @@ export default function BurgConstItems({ data, summ }) {
           </div>
         ))}
         <div className={burg_items_style.decor_wrap}>
-          {/* Не могу использовать для отступов родителеьский контейнер
-            посколку, у динамически созданых элементов, помимо самого элемента
-            есть также icon, в связи с чем элементы верхней и нижней булки, всё равно
-            будет необходимо двигать навешивая дополнительные классы конкретно на них */}
           <ConstructorElement
             type="bottom"
             isLocked={true}
@@ -64,4 +51,12 @@ export default function BurgConstItems({ data, summ }) {
   )
 }
 
-propTypes(BurgConstItems)
+BurgConstItems.propTypes = {
+  price: PropTypes.number,
+  image: PropTypes.string,
+  name: PropTypes.string,
+  isLocked: PropTypes.bool,
+  type: PropTypes.string,
+  thumbnail: PropTypes.string,
+  data: PropTypes.array,
+}

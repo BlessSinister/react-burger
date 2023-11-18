@@ -1,7 +1,8 @@
 import IngrItems from '../ingr-items/ingr-items'
 import ingr_list_style from './ingr-list.module.css'
 import app_style from '../app/app.module.css'
-import propTypes from '../../utils/props-types'
+import PropTypes from 'prop-types'
+
 export default function IngrList({ data, modalIngFn }) {
   let bun, sauce, main
 
@@ -65,4 +66,12 @@ export default function IngrList({ data, modalIngFn }) {
   )
 }
 
-propTypes(IngrList)
+IngrList.propTypes = {
+  _id: PropTypes.string,
+  price: PropTypes.number,
+  image: PropTypes.string,
+  name: PropTypes.string,
+  type: PropTypes.string,
+  modalIngFn: PropTypes.func,
+  data: PropTypes.array,
+}
